@@ -20,6 +20,9 @@ using DailyAtHome.Web.ViewModels;
 using DailyAtHome.Models;
 using DailyAtHome.DataContracts;
 using System.Web.Security;
+using System.Security.Principal;
+using System.Threading;
+using DailyAtHome.Web.Attributes;
 
 namespace DailyAtHome.Web.Controllers
 {
@@ -55,12 +58,14 @@ namespace DailyAtHome.Web.Controllers
 
             if (user != null)
             {
-                FormsAuthentication.SetAuthCookie(vm.Email, false);
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(user.Email), user.Roles.ToArray());
 
-                var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(20), false, user.Role);
-                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-               HttpContext.Current.Response.Cookies.Add(authCookie);
+                // FormsAuthentication.SetAuthCookie(vm.Email, false);
+
+                // var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(20), false, user.Roles);
+                // string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                // var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                //HttpContext.Current.Response.Cookies.Add(authCookie);
                 return new DAHResponse() { };
             }
 
@@ -73,7 +78,8 @@ namespace DailyAtHome.Web.Controllers
         }
 
         [HttpGet]
-        [HostAuthentication(DefaultAuthenticationTypes.ApplicationCookie)]
+        //[HostAuthentication(DefaultAuthenticationTypes.ApplicationCookie)]
+        [DAHAuthorize]
         public DAHResponse AuthTest()
         {
             return new DAHResponse() { Message = "success", StatusCode=200 };

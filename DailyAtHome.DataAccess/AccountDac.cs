@@ -12,7 +12,7 @@ namespace DailyAtHome.DataAccess
     {
         public User GetUserDetails(User user)
         {
-            return new User() { Email = "test", Role = "Admin" };
+            return new User() { Email = "test", Roles = new List<string> { "Admin" } };
         }
     }
 }
