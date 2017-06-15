@@ -23,16 +23,19 @@ using System.Web.Security;
 
 namespace DailyAtHome.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        //public AccountController() : base() { }
+
         private IAccountDac _accountDac;
         public AccountController(IAccountDac accountDac)
         {
             _accountDac = accountDac;
         }
 
+        
         public DAHResponse Login(LoginViewModel vm)
         {
             if (!ModelState.IsValid)
@@ -58,15 +61,22 @@ namespace DailyAtHome.Web.Controllers
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                HttpContext.Current.Response.Cookies.Add(authCookie);
-                return new DAHResponse() { StatusCode=200, Message="success" };
+                return new DAHResponse() { };
             }
 
             else
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
-                return new DAHResponse() { Message = "Invalid login attempt.", StatusCode = 403 };
+                return new DAHResponse() { };
             }
 
+        }
+
+        [HttpGet]
+        [HostAuthentication(DefaultAuthenticationTypes.ApplicationCookie)]
+        public DAHResponse AuthTest()
+        {
+            return new DAHResponse() { Message = "success", StatusCode=200 };
         }
         //        private const string LocalLoginProvider = "Local";
         //        private ApplicationUserManager _userManager;

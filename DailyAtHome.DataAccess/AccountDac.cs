@@ -12,7 +12,7 @@ namespace DailyAtHome.DataAccess
     {
         public User GetUserDetails(User user)
         {
-            throw new NotImplementedException();
+            return new User() { Email = "test", Role = "Admin" };
         }
     }
 }
