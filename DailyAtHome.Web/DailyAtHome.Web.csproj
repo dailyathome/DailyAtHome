@@ -235,12 +235,14 @@
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\App\app.js" />
     <Content Include="scripts\App\Controllers\login.js" />
+    <Content Include="scripts\App\Controllers\orders.js" />
     <Content Include="scripts\App\Controllers\register.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="Views\Login.html" />
+    <Content Include="Views\Orders.html" />
     <Content Include="Views\Register.html" />
     <Content Include="Views\Shared\header.html" />
     <Content Include="Web.config" />

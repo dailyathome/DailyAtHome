@@ -1,12 +1,15 @@
-﻿dahApp.controller('LoginController', function ($scope, $http) {
-    $scope.registermodel = { Email: '', Password: '',ConfirmPassword:'' };
+﻿dahApp.controller('LoginController', function ($scope, $http,$modal) {
+    $scope.registermodel = { Email: '', Password: '', ConfirmPassword: '' };
+    $scope.registerSuccess = false;
     $scope.btnRegisterClick = function () {
         if ($scope.registerForm.$valid) {
             $http.post('http://localhost:56259/api/account/register', $scope.registermodel).then(function (response) {
-                console.log(response);
-            });
+                $scope.registerSuccess = true;
+                
+            });           
         }
         else {
+            $modal.open('#registerSuccessModal');
             $scope.registerForm.submitted = true;
         }
     }
