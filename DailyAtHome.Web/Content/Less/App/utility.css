@@ -1,0 +1,6 @@
+﻿body .red-border {
+  border: red;
+}
+body input.submitted.ng-invalid {
+  border: 1px solid #f00;
+}
