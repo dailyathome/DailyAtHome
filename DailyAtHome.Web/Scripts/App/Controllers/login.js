@@ -1,4 +1,4 @@
-﻿dahApp.controller('LoginController', function ($scope, $http) {
+﻿dahApp.registerCtrl('LoginController', function ($scope, $http) {
     $scope.loginmodel = { Email: '', Password: '', grant_type: 'password' };
     $scope.btnLoginClick = function () {
         if ($scope.loginForm.$valid) {
