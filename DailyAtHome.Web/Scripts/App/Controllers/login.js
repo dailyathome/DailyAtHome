@@ -9,7 +9,7 @@
   { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
 ).then(function (response) {
     sessionStorage.setItem('access_token', response.data.access_token);
-    window.location.href = '/Views/Orders.html';
+    window.location.href = '/Orders';
 });
         }
         else {
