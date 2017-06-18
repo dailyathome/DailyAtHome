@@ -132,6 +132,7 @@
     <Content Include="Content\Less\bootstrap\variables.min.css">
       <DependentUpon>variables.css</DependentUpon>
     </Content>
+    <Content Include="index.html" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -241,9 +242,11 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\Home.html" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />
     <Content Include="Views\Register.html" />
+    <Content Include="Views\Shared\footer.html" />
     <Content Include="Views\Shared\header.html" />
     <Content Include="Web.config" />
   </ItemGroup>

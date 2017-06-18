@@ -1,4 +1,4 @@
-﻿dahApp.controller('LoginController', function ($scope, $http,$modal) {
+﻿dahApp.controller('RegisterController', function ($scope, $http,$modal) {
     $scope.registermodel = { Email: '', Password: '', ConfirmPassword: '' };
     $scope.registerSuccess = false;
     $scope.btnRegisterClick = function () {

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width,
@@ -18,44 +18,44 @@
     <div ng-include="'/Views/Shared/header.html'">
 
     </div>
-    <div class="container" style="padding-top:60px">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h3 class="text-center">Login</h3>
-                <hr>
-            </div>
+    <div class="container" style="padding-top:60px">-->
+<div class="row" ng-controller="LoginController">
+    <div class="col-md-6 col-md-offset-3">
+        <h3 class="text-center">Login</h3>
+        <hr>
+    </div>
 
-            <div class="row">
-                <div class="col-md-6 col-lg-offset-3">
-                    <form id="loginForm" name="loginForm">
-                        <div class="form-group">
-                            <input type="email" ng-required="true" ng-class="{submitted:loginForm.submitted}" ng-model="loginmodel.Email" name="Email" id="Email" tabindex="1" class="form-control center-block" placeholder="Email" value="">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" ng-class="{submitted:loginForm.submitted}" ng-model="loginmodel.Password" name="Password" id="password" tabindex="2" class="form-control center-block" placeholder="Password" ng-required="true">
-                        </div>
-                        <div class="form-group text-center">
-                            <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                            <label for="remember"> Remember Me</label>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    <button name="login-submit" id="login-submit" ng-click="btnLoginClick()" tabindex="4" class="form-control btn-success center-block" value="Log In">Log In</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group text-center">
-                            <a href="" tabindex="5" class="text-left">Forgot Password?</a>
-                        </div>
-                        <div class="form-group text-center">
-                            <a href="/views/register.html" tabindex="5" class="text-right">Register</a>
-                        </div>
-                    </form>
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-3">
+            <form id="loginForm" name="loginForm">
+                <div class="form-group">
+                    <input type="email" ng-required="true" ng-class="{submitted:loginForm.submitted}" ng-model="loginmodel.Email" name="Email" id="Email" tabindex="1" class="form-control center-block" placeholder="Email" value="">
                 </div>
-            </div>
-
+                <div class="form-group">
+                    <input type="password" ng-class="{submitted:loginForm.submitted}" ng-model="loginmodel.Password" name="Password" id="password" tabindex="2" class="form-control center-block" placeholder="Password" ng-required="true">
+                </div>
+                <div class="form-group text-center">
+                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                    <label for="remember"> Remember Me</label>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <button name="login-submit" id="login-submit" ng-click="btnLoginClick()" tabindex="4" class="form-control btn-success center-block" value="Log In">Log In</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <a href="" tabindex="5" class="text-left">Forgot Password?</a>
+                </div>
+                <div class="form-group text-center">
+                    <a href="Register" tabindex="5" class="text-right">Register</a>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+<!--</div>
 </body>
-</html>
+</html>-->

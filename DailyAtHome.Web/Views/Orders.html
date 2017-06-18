@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width,
@@ -18,17 +18,17 @@
 
     <div ng-include="'/Views/Shared/header.html'">
 
-    </div>
-    <div class="container" style="padding-top:60px">
-        <h3>Orders</h3>
-        <table class="table-bordered">
-            <tbody>
-                <tr ng-repeat="d in data">
-                    <td>{{d}}</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-</body>
-</html>
+    </div>-->
+<div class="container" ng-controller="ordersController" style="padding-top:60px">
+    <h3>Orders</h3>
+    <table class="table-bordered">
+        <tbody>
+            <tr ng-repeat="d in data">
+                <td>{{d}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="../scripts/App/Controllers/orders.js" type="text/javascript"></script>
+<!--</body>
+</html>-->
