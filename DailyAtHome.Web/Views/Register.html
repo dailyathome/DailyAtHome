@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-md-6 col-lg-offset-3">
-                <form name="registerForm">
+                <form name="registerForm" ng-show="!registerSuccess">
                     <div class="form-group">
                         <input type="email" ng-required="true" ng-class="{submitted:registerForm.submitted}" ng-model="registermodel.Email" name="Email" id="username" tabindex="1" class="form-control center-block" placeholder="Email" value="">
                     </div>
@@ -28,6 +28,9 @@
             </div>
         </div>
 
+    </div>
+    <div class="alert alert-success text-center" ng-show="registerSuccess">
+        <i class="fa fa-check-square-o"></i> Registration Successful! <a href="Login">Click Here</a> to Login
     </div>
     <div class="modal" id="registerSuccessModal">
         <div class="modal-dialog">
