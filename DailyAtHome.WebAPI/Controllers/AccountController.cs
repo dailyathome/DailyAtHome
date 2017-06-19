@@ -22,7 +22,7 @@ namespace DailyAtHome.WebAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    [EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";

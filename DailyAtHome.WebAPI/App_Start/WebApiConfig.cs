@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.Cors;
+using System.Configuration;
 
 namespace DailyAtHome.WebAPI
 {
@@ -21,8 +22,8 @@ namespace DailyAtHome.WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-           // EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:53097", "*", "*");
-            config.EnableCors();
+           EnableCorsAttribute cors = new EnableCorsAttribute(ConfigurationManager.AppSettings.Get("WebsiteURL").ToString(), "*", "*");
+            config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

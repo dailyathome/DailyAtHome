@@ -1,9 +1,9 @@
-﻿dahApp.registerCtrl('ordersController', function ($scope, $http) {
+﻿dahApp.registerCtrl('ordersController', function ($scope, $http, CONFIG) {
 
     $scope.data = [];
     angular.element(document).ready(function () {
         $http.get(
-            'http://localhost:56259/api/Values',
+            CONFIG.API_URL +'/api/Values',
         { headers: { 'Authorization': 'Bearer ' + sessionStorage.getItem('access_token') } }
  ).then(function successCallback(response) {
      $scope.data = angular.copy(response.data);
