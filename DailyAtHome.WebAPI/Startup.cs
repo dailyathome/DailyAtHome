@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(DailyAtHome.WebAPI.Startup))]
-
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
 namespace DailyAtHome.WebAPI
 {
     public partial class Startup
