@@ -23,7 +23,7 @@ namespace DailyAtHome.WebAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    [EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
