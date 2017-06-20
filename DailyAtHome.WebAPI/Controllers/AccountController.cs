@@ -17,6 +17,7 @@ using DailyAtHome.WebAPI.Models;
 using DailyAtHome.WebAPI.Providers;
 using DailyAtHome.WebAPI.Results;
 using System.Web.Http.Cors;
+using System.Net;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -25,6 +26,7 @@ namespace DailyAtHome.WebAPI.Controllers
     //[EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
+        readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -326,21 +328,29 @@ namespace DailyAtHome.WebAPI.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                return Ok();
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            catch(Exception ex)
             {
-                return GetErrorResult(result);
+                logger.Error("Method: Register", ex);
+                return InternalServerError();
             }
-
-            return Ok();
         }
 
         // POST api/Account/RegisterExternal
