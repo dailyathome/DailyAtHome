@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\Logo.png" />
+    <Content Include="Content\Images\Logo_Green.png" />
     <Content Include="Content\Less\App\app.css">
       <DependentUpon>app.less</DependentUpon>
     </Content>
