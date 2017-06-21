@@ -243,6 +243,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\categories.html" />
     <Content Include="Views\Home.html" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />
@@ -261,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

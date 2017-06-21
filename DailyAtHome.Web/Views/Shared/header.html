@@ -10,10 +10,20 @@
             <a href="Home"><img src="../../Content/Images/Logo_Green.png" style="width:64px;" /></a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#categories">
+                        Categories <span class="caret"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <li><a href="Login">Log In</a></li>
                 <li><a href="Register">Register</a></li>
             </ul>
         </div>
     </div>
+</div>
+
+<div id="categories" class="collapse" ng-include="'/Views/categories.html'">
 </div>

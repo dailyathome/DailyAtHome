@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +43,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDac.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dahEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dahEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dahEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dahEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dahEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="user.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DailyAtHome.DataContracts\DailyAtHome.DataContracts.csproj">
@@ -52,6 +87,33 @@
       <Project>{db004e80-302c-44e2-ba43-b75d0e6df554}</Project>
       <Name>DailyAtHome.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="dahEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dahEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="dahEntity.edmx.diagram">
+      <DependentUpon>dahEntity.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dahEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dahEntity.edmx</DependentUpon>
+      <LastGenOutput>dahEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dahEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dahEntity.edmx</DependentUpon>
+      <LastGenOutput>dahEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
