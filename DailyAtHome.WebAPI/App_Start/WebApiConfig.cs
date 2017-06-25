@@ -22,13 +22,18 @@ namespace DailyAtHome.WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-           EnableCorsAttribute cors = new EnableCorsAttribute(ConfigurationManager.AppSettings.Get("WebsiteURL").ToString(), "*", "*");
+            EnableCorsAttribute cors = new EnableCorsAttribute(ConfigurationManager.AppSettings.Get("WebsiteURL").ToString(), "*", "*");
             config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+          config.Routes.MapHttpRoute(
+           name: "ActionApi",
+           routeTemplate: "api/{controller}/{action}/{id}",
+           defaults: new { id = RouteParameter.Optional });
         }
     }
 }
