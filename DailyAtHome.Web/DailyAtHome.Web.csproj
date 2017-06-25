@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\Logo.png" />
+    <Content Include="Content\Images\Logo_Green.png" />
     <Content Include="Content\Less\App\app.css">
       <DependentUpon>app.less</DependentUpon>
     </Content>
@@ -244,6 +245,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\categories.html" />
     <Content Include="Views\Home.html" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />
@@ -266,7 +268,7 @@
     <Content Include="scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="scripts\App\directives\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
