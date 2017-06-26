@@ -25,7 +25,7 @@ function error(xHR) {
 });
         }
         else {
-            $scope.submitted = true;
+            $scope.submitted = true; 
         }
     }
 });

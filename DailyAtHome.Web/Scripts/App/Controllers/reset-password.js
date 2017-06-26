@@ -9,7 +9,7 @@
     $scope.pwdResetErrorMsg = '';
     $scope.submitted = false;
     $scope.pwdRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/;
-    $scope.btnResetPasswordClick = function () {
+    $scope.btnResetPasswordClick = function () { 
         if ($scope.ResetPasswordForm.$valid) {
             $scope.email = location.href.indexOf('userId') > 0 ? decodeURIComponent(location.href.split('&')[0].split('userId=')[1]) : '';
             $scope.token = location.href.indexOf('token') > 0 ? decodeURIComponent(location.href.split('&')[1].split('token=')[1]) : '';

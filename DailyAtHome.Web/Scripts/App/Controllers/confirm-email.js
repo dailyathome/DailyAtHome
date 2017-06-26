@@ -10,7 +10,7 @@
             .then(function success(response) {
                 $scope.confirmEmailSuccess = true;
             }, function error(xHR) {
-                $scope.confirmEmailFailed = true;
+                $scope.confirmEmailFailed = true; 
                 $scope.confirmEmailErrorMsg = xHR.data != null ? xHR.data.Message : 'Unexpected error. Please try again';
             });
     });

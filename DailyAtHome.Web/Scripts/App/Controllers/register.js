@@ -22,7 +22,7 @@
                 $scope.loading = false;
                 $scope.registerFailed = true;
                 $scope.registerSuccess = false;
-                if (xHR.status == 400) {
+                if (xHR.status == 400) { 
                     $scope.registerErrorMsg = xHR.data.ModelState[""][1];
                 }
                 else {

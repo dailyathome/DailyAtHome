@@ -14,7 +14,7 @@
                     $scope.loading = false;
                 }, function error(xHR) {
                     $scope.loading = false;
-                    $scope.resetEmailFailed = true;
+                    $scope.resetEmailFailed = true; 
                     $scope.forgotPasswordFormErrorMsg = xHR.data != null ? xHR.data.Message : 'Unexpected error. Please try again';
                 });
         }
