@@ -2,8 +2,8 @@
 
 var dahApp = angular.module('dahApp', ["ngRoute"]);
 dahApp.constant('CONFIG', {
-    //'API_URL': 'http://sample-env-1.tit52nkbfk.us-west-2.elasticbeanstalk.com'
-    'API_URL': 'http://localhost:56259'
+    'API_URL': 'http://sample-env-1.tit52nkbfk.us-west-2.elasticbeanstalk.com'
+   // 'API_URL': 'http://localhost:56259'
 });
 dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', function ($routeProvider, $controllerProvider, $locationProvider) {
 
