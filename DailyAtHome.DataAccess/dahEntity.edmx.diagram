@@ -10,10 +10,12 @@
         <EntityTypeShape EntityType="dahDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="dahDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dahDBModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dahDBModel.user" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dahDBModel.category" Width="1.5" PointX="5.375" PointY="7" />
+        <EntityTypeShape EntityType="dahDBModel.subcategory" Width="1.5" PointX="7.625" PointY="6.875" />
+        <AssociationConnector Association="dahDBModel.FK__subcatego__categ__4F7CD00D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

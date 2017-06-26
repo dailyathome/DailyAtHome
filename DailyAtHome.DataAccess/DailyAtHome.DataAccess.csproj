@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -55,6 +64,9 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="category.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
@@ -74,7 +86,7 @@
       <DependentUpon>dahEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="user.cs">
+    <Compile Include="subcategory.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -99,6 +111,7 @@
     <None Include="dahEntity.edmx.diagram">
       <DependentUpon>dahEntity.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dahEntity.Context.tt">

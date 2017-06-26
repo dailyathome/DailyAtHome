@@ -2,9 +2,18 @@ use DailyAtHomeDB
 
 Go
 
-Create table users
+Create table categories
 (
-	ID int Primary Key Identity,
-	emailid nvarchar(100),
-	pwd nvarchar(100)
+	id int Primary Key Identity,
+	categoty nvarchar(50)
 )
+
+Go
+
+CREATE TABLE subcategories (
+    id int NOT NULL PRIMARY KEY Identity,
+    subcategory nvarchar(50) NOT NULL,
+    categoryid int FOREIGN KEY REFERENCES categories(id)
+)
+
+ 
