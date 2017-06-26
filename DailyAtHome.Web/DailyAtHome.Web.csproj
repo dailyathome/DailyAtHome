@@ -90,7 +90,6 @@
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\Logo.png" />
-    <Content Include="Content\Images\Logo_Green.png" />
     <Content Include="Content\Less\App\app.css">
       <DependentUpon>app.less</DependentUpon>
     </Content>
@@ -237,6 +236,7 @@
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\App\app.js" />
     <Content Include="scripts\App\Controllers\header.js" />
+    <Content Include="scripts\App\Controllers\confirm-email.js" />
     <Content Include="scripts\App\Controllers\login.js" />
     <Content Include="scripts\App\Controllers\orders.js" />
     <Content Include="scripts\App\Controllers\forgot-password.js" />
@@ -247,6 +247,7 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="Views\categories.html" />
+    <Content Include="Views\ConfirmEmail.html" />
     <Content Include="Views\Home.html" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />

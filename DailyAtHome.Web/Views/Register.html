@@ -4,7 +4,6 @@
             <h4 class="text-center">Register</h4>
             <hr>
         </div>
-
         <div class="row">
             <div class="col-md-6 col-lg-offset-3">
                 <form name="registerForm" ng-show="!registerSuccess" novalidate>
@@ -34,22 +33,13 @@
                 </form>
             </div>
         </div>
-
     </div>
-    <div class="alert alert-success text-center" ng-show="registerSuccess">
-        <i class="fa fa-check-square-o"></i> Registration Successful! <a href="Login">Click Here</a> to Login
-    </div>
-    <div class="modal" id="registerSuccessModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dissmiss="modal">&times;</button>
-                    <h4>Success</h4>
-                </div>
-                <div class="modal-body">
-                    <span class="text-success">Successfully Registered.</span>
-                </div>
-            </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-success text-center form-group center-block" ng-show="registerSuccess">
+            <i class="fa fa-check-square-o fa-2x"></i>Please confirm your email address to complete the Registration.
+        </div>
+        <div class="alert alert-danger text-center form-group center-block" ng-show="registerFailed">
+            <i class="fa fa-exclamation-triangle fa-2x"></i> <span>{{registerErrorMsg}}</span>
         </div>
     </div>
 </div>

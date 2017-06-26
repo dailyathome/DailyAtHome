@@ -336,16 +336,25 @@ namespace DailyAtHome.WebAPI.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-
                 var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
                 {
                     return GetErrorResult(result);
                 }
-
+                string token = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                token = HttpUtility.UrlEncode(token);
+                try
+                {
+                    var callbackUrl = ConfigurationManager.AppSettings["WebSiteUrl"] + "/confirm-email?userId=" + model.Email + "&token=" + token;
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("User Create but Failed to Send Confirmation Email", ex);
+                    return InternalServerError();
+                }
                 return Ok();
             }
             catch (Exception ex)
@@ -408,19 +417,29 @@ namespace DailyAtHome.WebAPI.Controllers
             return InternalServerError();
         }
 
-        //[Route("ResetPassword")]
-        public async Task<IHttpActionResult> ConfirmEmail(string userId, string token)
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ConfirmEmail(ResetPasswordViewModel model)
         {
-            if (userId == null || token == null)
+            try
             {
-                return BadRequest();
+                if (model == null || string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Token))
+                {
+                    return BadRequest();
+                }
+
+                var user = await UserManager.FindByNameAsync(model.Email);
+
+                var result = await UserManager.ConfirmEmailAsync(user.Id, model.Token);
+                if (!result.Succeeded)
+                {
+                    return InternalServerError();
+                }
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, token);
-            if (!result.Succeeded)
+            catch(Exception ex)
             {
-                return Ok();
+                logger.Error("method: ConfirmEmail", ex);
             }
-            return InternalServerError();
+            return Ok();
         }
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
