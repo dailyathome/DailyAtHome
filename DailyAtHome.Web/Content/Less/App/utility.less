@@ -3,9 +3,38 @@
         border: 1px solid #f00;
     }
 
-    .field-validation-error{
-        color:#f00;
-        padding-left:4px;
-        width:inherit;
+    .field-validation-error {
+        color: #f00;
+        padding-left: 4px;
+        width: inherit;
+        position: relative;
+        &:before {
+            /* content: "\f06a";*/
+            content: '\f12a';
+            font-family: FontAwesome;
+            margin-right:2px;
+        }
+    }
+
+    .alert-success {
+        position: relative;
+
+        &:before {
+            content: '\f046';
+            font-family: FontAwesome;
+        }
+    }
+
+    .alert-danger {
+        position: relative;
+
+        &:before {
+            content: '\f071';
+            font-family: FontAwesome;
+        }
+    }
+
+    .loading {
+        pointer-events: none;
     }
 }

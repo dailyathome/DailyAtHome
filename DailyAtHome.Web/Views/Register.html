@@ -5,8 +5,8 @@
             <hr>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-offset-3">
-                <form name="registerForm" ng-show="!registerSuccess" novalidate>
+            <div class="col-md-6 col-lg-offset-3 ">
+                <form name="registerForm" ng-show="!registerSuccess" ng-class="{loading:loading}" novalidate>
                     <div class="form-group center-block">
                         <input type="email" ng-required="true" ng-class="{submitted:submitted}" ng-model="email" name="email" id="email" tabindex="1" class="form-control center-block" placeholder="Email" value="">
                         <span class="pull-left field-validation-error" ng-show="submitted && registerForm.email.$error.required">Required.</span>
@@ -26,7 +26,7 @@
                     <div class="form-group center-block">
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
-                                <button name="register-submit" id="register-submit" ng-click="btnRegisterClick()" tabindex="4" class="form-control btn-success center-block" value="Register">Register</button>
+                                <button name="register-submit"  id="register-submit" ng-click="btnRegisterClick()" tabindex="4" class="form-control btn-success center-block" value="Register">Register <i ng-show="loading" class="fa fa-spinner fa-spin"></i></button>
                             </div>
                         </div>
                     </div>
@@ -36,10 +36,21 @@
     </div>
     <div class="col-md-6 col-md-offset-3">
         <div class="alert alert-success text-center form-group center-block" ng-show="registerSuccess">
-            <i class="fa fa-check-square-o fa-2x"></i>Please confirm your email address to complete the Registration.
+            <!--<i class="fa fa-check-square-o fa-2x"></i>-->Please confirm your email address to complete the Registration.
         </div>
         <div class="alert alert-danger text-center form-group center-block" ng-show="registerFailed">
-            <i class="fa fa-exclamation-triangle fa-2x"></i> <span>{{registerErrorMsg}}</span>
+            <!--<i class="fa fa-exclamation-triangle fa-2x"></i>--> <span>{{registerErrorMsg}}</span>
         </div>
     </div>
 </div>
+
+<!--<div class="" id="myModal" role="dialog" ng-class={loading:modal}>
+    <div class="modal-dialog">
+        <div class="modal-content spinner">
+            <div class="modal-body">
+                <i class="fa fa-spinner fa-5x fa-spin" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>-->
+

@@ -6,6 +6,7 @@
     $scope.token = '';
     //$scope.registermodel = { email:$scope.email, password: $scope.password, confirmPassword: $scope.confirmPassword};
     $scope.pwdResetSuccess = false;
+    $scope.pwdResetErrorMsg = '';
     $scope.submitted = false;
     $scope.pwdRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/;
     $scope.btnResetPasswordClick = function () {

@@ -8,18 +8,25 @@
     $scope.registerSuccess = false;
     $scope.submitted = false;
     $scope.pwdRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/;
+    $scope.loading = false;
     $scope.btnRegisterClick = function () {
         if ($scope.registerForm.$valid) {
+            $scope.loading = true;
             $http.post(CONFIG.API_URL + '/api/account/register', { email: $scope.email, password: $scope.password, confirmPassword: $scope.confirmPassword })
                 .then(function success(response) {
                     $scope.registerSuccess = true;
                     $scope.registerFailed = false;
+                    $scope.loading = false;
                 },
             function error(xHR) {
+                $scope.loading = false;
                 $scope.registerFailed = true;
                 $scope.registerSuccess = false;
                 if (xHR.status == 400) {
                     $scope.registerErrorMsg = xHR.data.ModelState[""][1];
+                }
+                else {
+                    $scope.registerErrorMsg = xHR.data.Message;
                 }
             });
         }

@@ -17,4 +17,28 @@ body .field-validation-error {
   color: #f00;
   padding-left: 4px;
   width: inherit;
+  position: relative;
+}
+body .field-validation-error:before {
+  /* content: "\f06a";*/
+  content: '\f12a';
+  font-family: FontAwesome;
+  margin-right: 2px;
+}
+body .alert-success {
+  position: relative;
+}
+body .alert-success:before {
+  content: '\f046';
+  font-family: FontAwesome;
+}
+body .alert-danger {
+  position: relative;
+}
+body .alert-danger:before {
+  content: '\f071';
+  font-family: FontAwesome;
+}
+body .loading {
+  pointer-events: none;
 }
