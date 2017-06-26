@@ -12,10 +12,12 @@ namespace DailyAtHome.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class subcategory
     {
-        public int ID { get; set; }
-        public string emailid { get; set; }
-        public string pwd { get; set; }
+        public int id { get; set; }
+        public string subcategory1 { get; set; }
+        public Nullable<int> categoryid { get; set; }
+    
+        public virtual category category { get; set; }
     }
 }

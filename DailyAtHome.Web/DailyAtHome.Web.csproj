@@ -235,6 +235,7 @@
     <Content Include="Content\Less\App\utility.less" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\App\app.js" />
+    <Content Include="scripts\App\Controllers\header.js" />
     <Content Include="scripts\App\Controllers\confirm-email.js" />
     <Content Include="scripts\App\Controllers\login.js" />
     <Content Include="scripts\App\Controllers\orders.js" />

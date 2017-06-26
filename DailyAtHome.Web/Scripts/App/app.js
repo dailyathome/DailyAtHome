@@ -50,6 +50,8 @@ dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', fun
     $routeProvider
         .when('/Home', {
             templateUrl: 'Views/Home.html',
+            controller: 'HeaderController',
+            resolve: loader(['header'])
         })
         .when('/Login', {
             templateUrl: 'Views/Login.html',
