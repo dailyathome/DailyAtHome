@@ -18,6 +18,8 @@ using DailyAtHome.WebAPI.Providers;
 using DailyAtHome.WebAPI.Results;
 using System.Web.Http.Cors;
 using System.Net;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -129,7 +131,7 @@ namespace DailyAtHome.WebAPI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -262,9 +264,9 @@ namespace DailyAtHome.WebAPI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -346,13 +348,80 @@ namespace DailyAtHome.WebAPI.Controllers
 
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Error("Method: Register", ex);
                 return InternalServerError();
             }
         }
 
+
+        [Route("ForgotPassword")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IHttpActionResult> ForgotPassword([FromBody]string email)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var user = await UserManager.FindByNameAsync(email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    return Ok();
+                }
+                var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                token = HttpUtility.UrlEncode(token);
+                var callbackUrl = ConfigurationManager.AppSettings["WebSiteUrl"] + "/reset-password?userId=" + email + "&token=" + token;
+                string body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", body);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ResetPassword")]
+        public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return InternalServerError();
+            }
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Token, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return InternalServerError();
+        }
+
+        //[Route("ResetPassword")]
+        public async Task<IHttpActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+            {
+                return BadRequest();
+            }
+            var result = await UserManager.ConfirmEmailAsync(userId, token);
+            if (!result.Succeeded)
+            {
+                return Ok();
+            }
+            return InternalServerError();
+        }
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -381,7 +450,7 @@ namespace DailyAtHome.WebAPI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

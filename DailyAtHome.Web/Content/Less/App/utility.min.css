@@ -1,1 +1,1 @@
-﻿body .red-border{border:#f00;}body input.submitted.ng-invalid{border:1px solid #f00;}
+﻿body input.submitted.ng-invalid{border:1px solid #f00;}body .field-validation-error{color:#f00;padding-left:4px;width:inherit;}

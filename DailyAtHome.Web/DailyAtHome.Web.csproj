@@ -239,6 +239,8 @@
     <Content Include="scripts\App\Controllers\header.js" />
     <Content Include="scripts\App\Controllers\login.js" />
     <Content Include="scripts\App\Controllers\orders.js" />
+    <Content Include="scripts\App\Controllers\forgot-password.js" />
+    <Content Include="scripts\App\Controllers\reset-password.js" />
     <Content Include="scripts\App\Controllers\register.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -248,7 +250,9 @@
     <Content Include="Views\Home.html" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />
+    <Content Include="Views\ForgotPassword.html" />
     <Content Include="Views\Register.html" />
+    <Content Include="Views\ResetPassword.html" />
     <Content Include="Views\Shared\footer.html" />
     <Content Include="Views\Shared\header.html" />
     <Content Include="Web.config" />

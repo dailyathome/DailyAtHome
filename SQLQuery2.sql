@@ -1,0 +1,1 @@
+﻿update AspNetUsers set EmailConfirmed=1 where  Email='kirankatnam@gmail.com'

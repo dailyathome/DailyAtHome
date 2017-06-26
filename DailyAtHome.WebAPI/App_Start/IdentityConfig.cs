@@ -4,6 +4,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using DailyAtHome.WebAPI.Models;
+using System;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace DailyAtHome.WebAPI
 {
@@ -22,24 +25,36 @@ namespace DailyAtHome.WebAPI
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
-                AllowOnlyAlphanumericUserNames = false,
+                AllowOnlyAlphanumericUserNames = true,
                 RequireUniqueEmail = true
             };
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
             };
+            manager.EmailService = new EmailService();
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+    }
+
+    public class EmailService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            SmtpClient smtp = new SmtpClient();
+            MailMessage mailMessage = new MailMessage("Accounts@DailyAtHome.com", message.Destination);
+            mailMessage.Subject = "Reset Password";
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = message.Body;
+           return smtp.SendMailAsync(mailMessage);
         }
     }
 }
