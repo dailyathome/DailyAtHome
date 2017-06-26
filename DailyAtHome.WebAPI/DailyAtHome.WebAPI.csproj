@@ -247,7 +247,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,9 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-DailyAtHome.WebAPI-20170616092241.mdf" />
-    <Content Include="App_Data\aspnet-DailyAtHome.WebAPI-20170616092241_log.ldf">
-      <DependentUpon>aspnet-DailyAtHome.WebAPI-20170616092241.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\DailyAtHomeProd.mdf" />
     <Content Include="App_Data\DailyAtHomeProd_log.ldf">
       <DependentUpon>DailyAtHomeProd.mdf</DependentUpon>

@@ -51,7 +51,7 @@ namespace DailyAtHome.WebAPI
         {
             SmtpClient smtp = new SmtpClient();
             MailMessage mailMessage = new MailMessage("Accounts@DailyAtHome.com", message.Destination);
-            mailMessage.Subject = "Reset Password";
+            mailMessage.Subject = message.Subject;
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = message.Body;
            return smtp.SendMailAsync(mailMessage);
