@@ -13,6 +13,9 @@
         if ($scope.password !== $scope.confirmPassword) {
             $scope.registerForm.confirmPassword.$setValidity('mismatch', false);
         }
+        else {
+            $scope.registerForm.confirmPassword.$setValidity('mismatch', true);
+        }
         if ($scope.registerForm.$valid) {
             $scope.loading = true;
             $http.post(CONFIG.API_URL + '/api/account/register', { email: $scope.email, password: $scope.password, confirmPassword: $scope.confirmPassword })
