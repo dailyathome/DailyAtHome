@@ -10,6 +10,9 @@
     $scope.pwdRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/;
     $scope.loading = false;
     $scope.btnRegisterClick = function () {
+        if ($scope.password !== $scope.confirmPassword) {
+            $scope.registerForm.confirmPassword.$setValidity('mismatch', false);
+        }
         if ($scope.registerForm.$valid) {
             $scope.loading = true;
             $http.post(CONFIG.API_URL + '/api/account/register', { email: $scope.email, password: $scope.password, confirmPassword: $scope.confirmPassword })

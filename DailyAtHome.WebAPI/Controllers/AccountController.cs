@@ -377,9 +377,27 @@ namespace DailyAtHome.WebAPI.Controllers
                     return BadRequest(ModelState);
                 }
                 var user = await UserManager.FindByNameAsync(email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null)
                 {
                     return Ok();
+                }
+                if(!(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    string confirmEmailToken = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    confirmEmailToken = HttpUtility.UrlEncode(confirmEmailToken);
+                    try
+                    {
+                        var confirmEmailcallbackUrl = ConfigurationManager.AppSettings["WebSiteUrl"] + "/confirm-email?userId=" + email + "&token=" + confirmEmailToken;
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + confirmEmailcallbackUrl + "\">here</a>");
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error("User Create but Failed to Send Confirmation Email", ex);
+                        return InternalServerError();
+                    }
+
+                    return Ok();
+
                 }
                 var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 token = HttpUtility.UrlEncode(token);
