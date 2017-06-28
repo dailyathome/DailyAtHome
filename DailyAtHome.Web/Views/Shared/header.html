@@ -1,4 +1,4 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
+﻿<div class="navbar navbar-inverse navbar-top">
     <div class="">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,15 +9,16 @@
 
             <a href="Home"><img src="../../Content/Images/Logo.png" style="width:64px;" /></a>
         </div>
+
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-left">
+            <ul class="nav navbar-nav navbar-left dropdown">
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#categories">
+                    <a href="#" data-toggle="collapse" class="dropdown-toggle" data-target="#categories" >
                         Categories <span class="caret"></span>
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" style="margin-right:1%">
+            <ul class="nav navbar-nav navbar-right">
                 <li><a href="Login" data-toggle="collapse" data-target=".navbar-collapse.in">Log In</a></li>
                 <li><a href="Register" data-toggle="collapse" data-target=".navbar-collapse.in">Register</a></li>
             </ul>
@@ -25,5 +26,5 @@
     </div>
 </div>
 
-<div id="categories" class="collapse" ng-include="'/Views/categories.html'">
+<div id="categories" class="collapse" style="margin-top: -20px;" ng-include="'/Views/categories.html'">
 </div>

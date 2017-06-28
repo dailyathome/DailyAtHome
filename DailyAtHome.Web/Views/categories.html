@@ -1,15 +1,4 @@
-﻿<!--<div ng-controller="HeaderController" class="navbar-inverse navbar-default" style="padding-top:2%; margin-left: 3.9%;">
-    <a href="#" data-toggle="collapse" ng-repeat="item in Categories" data-target="#SubCategories-{{item.id}}">
-        <p>{{item.categoty}} <span class="fa fa-caret-right"></span></p>
-        <div id="SubCategories-{{item.id}}" class="collapse">
-            <p ng-repeat="SubCat in item.subcategories">{{SubCat.subcategory1}}</p>
-
-        </div>
-    </a>
-</div>-->
-
-
-<div ng-controller="HeaderController" class="navbar-inverse">
+﻿<div ng-controller="HeaderController" class="navbar-inverse">
     <div class="navbar-collapse collapse" ng-repeat="item in Categories">
         <ul class="nav navbar-nav navbar-left">
             <li>
