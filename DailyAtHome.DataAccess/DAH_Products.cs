@@ -12,12 +12,16 @@ namespace DailyAtHome.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class subcategory
+    public partial class DAH_Products
     {
-        public int id { get; set; }
-        public string subcategory1 { get; set; }
-        public Nullable<int> categoryid { get; set; }
+        public int ID { get; set; }
+        public string Product { get; set; }
+        public string Description { get; set; }
+        public byte[] Image { get; set; }
+        public decimal Cost { get; set; }
+        public int SubCategoryID { get; set; }
+        public bool IsAvailable { get; set; }
     
-        public virtual category category { get; set; }
+        public virtual DAH_SubCategories DAH_SubCategories { get; set; }
     }
 }

@@ -22,25 +22,25 @@ namespace DailyAtHome.WebAPI.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("GetCategories")]
-        public List<category> GetCategories()
+        public List<DAH_Categories> GetCategories()
         {
-            List<category> categoriesList = new List<category>();
-            List<subcategory> SubcategoriesList = new List<subcategory>();
+            List<DAH_Categories> categoriesList = new List<DAH_Categories>();
+            List<DAH_SubCategories> SubcategoriesList = new List<DAH_SubCategories>();
 
-            categoriesList = dahEntity.categories.ToList();
+            categoriesList = dahEntity.DAH_Categories.ToList();
             SubcategoriesList = GetSubCategories();
-            foreach (category cat in categoriesList)
+            foreach (DAH_Categories cat in categoriesList)
             {
-                cat.subcategories = SubcategoriesList.Where(x => x.categoryid == cat.id).ToList();
+                cat.DAH_SubCategories = SubcategoriesList.Where(x => x.CategoryID == cat.ID).ToList();
             }
             return categoriesList;
         }
 
-        public List<subcategory> GetSubCategories()
+        public List<DAH_SubCategories> GetSubCategories()
         {
-            List<subcategory> SubcategoriesList = new List<subcategory>();
+            List<DAH_SubCategories> SubcategoriesList = new List<DAH_SubCategories>();
 
-            SubcategoriesList = dahEntity.subcategories.ToList();
+            SubcategoriesList = dahEntity.DAH_SubCategories.ToList();
 
             return SubcategoriesList;
         }

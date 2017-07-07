@@ -12,18 +12,20 @@ namespace DailyAtHome.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class category
+    public partial class DAH_Categories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public category()
+        public DAH_Categories()
         {
-            this.subcategories = new HashSet<subcategory>();
+            this.DAH_SubCategories = new HashSet<DAH_SubCategories>();
         }
     
-        public int id { get; set; }
-        public string categoty { get; set; }
+        public int ID { get; set; }
+        public string Category { get; set; }
+        public string Description { get; set; }
+        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subcategory> subcategories { get; set; }
+        public virtual ICollection<DAH_SubCategories> DAH_SubCategories { get; set; }
     }
 }

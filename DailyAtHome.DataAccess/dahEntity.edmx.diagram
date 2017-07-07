@@ -13,9 +13,11 @@
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="dahDBModel.category" Width="1.5" PointX="5.375" PointY="7" />
-        <EntityTypeShape EntityType="dahDBModel.subcategory" Width="1.5" PointX="7.625" PointY="6.875" />
-        <AssociationConnector Association="dahDBModel.FK__subcatego__categ__4F7CD00D" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Categories" Width="1.5" PointX="7.375" PointY="1.25" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Products" Width="1.5" PointX="11.875" PointY="1" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_SubCategories" Width="1.5" PointX="9.625" PointY="1" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_SubCategories_DAH_Categories" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Products_DAH_SubCategories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -66,30 +66,58 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="categories">
+        <EntityType Name="DAH_Categories">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="categoty" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
         </EntityType>
-        <EntityType Name="subcategories">
+        <EntityType Name="DAH_Products">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="subcategory" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="categoryid" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__subcatego__categ__4F7CD00D">
-          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
-          <End Role="subcategories" Type="Self.subcategories" Multiplicity="*" />
+        <EntityType Name="DAH_SubCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCategory" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <Association Name="FK_DAH_Products_DAH_SubCategories">
+          <End Role="DAH_SubCategories" Type="Self.DAH_SubCategories" Multiplicity="1" />
+          <End Role="DAH_Products" Type="Self.DAH_Products" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="categories">
-              <PropertyRef Name="id" />
+            <Principal Role="DAH_SubCategories">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="subcategories">
-              <PropertyRef Name="categoryid" />
+            <Dependent Role="DAH_Products">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_SubCategories_DAH_Categories">
+          <End Role="DAH_Categories" Type="Self.DAH_Categories" Multiplicity="1" />
+          <End Role="DAH_SubCategories" Type="Self.DAH_SubCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_SubCategories">
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -156,11 +184,16 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="subcategories" EntityType="Self.subcategories" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__subcatego__categ__4F7CD00D" Association="Self.FK__subcatego__categ__4F7CD00D">
-            <End Role="categories" EntitySet="categories" />
-            <End Role="subcategories" EntitySet="subcategories" />
+          <EntitySet Name="DAH_Categories" EntityType="Self.DAH_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_Products" EntityType="Self.DAH_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_SubCategories" EntityType="Self.DAH_SubCategories" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DAH_Products_DAH_SubCategories" Association="Self.FK_DAH_Products_DAH_SubCategories">
+            <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
+            <End Role="DAH_Products" EntitySet="DAH_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_SubCategories_DAH_Categories" Association="Self.FK_DAH_SubCategories_DAH_Categories">
+            <End Role="DAH_Categories" EntitySet="DAH_Categories" />
+            <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -292,39 +325,74 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="categories" EntityType="dahDBModel.category" />
-          <EntitySet Name="subcategories" EntityType="dahDBModel.subcategory" />
-          <AssociationSet Name="FK__subcatego__categ__4F7CD00D" Association="dahDBModel.FK__subcatego__categ__4F7CD00D">
-            <End Role="category" EntitySet="categories" />
-            <End Role="subcategory" EntitySet="subcategories" />
+          <EntitySet Name="DAH_Categories" EntityType="dahDBModel.DAH_Categories" />
+          <EntitySet Name="DAH_Products" EntityType="dahDBModel.DAH_Products" />
+          <EntitySet Name="DAH_SubCategories" EntityType="dahDBModel.DAH_SubCategories" />
+          <AssociationSet Name="FK_DAH_SubCategories_DAH_Categories" Association="dahDBModel.FK_DAH_SubCategories_DAH_Categories">
+            <End Role="DAH_Categories" EntitySet="DAH_Categories" />
+            <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Products_DAH_SubCategories" Association="dahDBModel.FK_DAH_Products_DAH_SubCategories">
+            <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
+            <End Role="DAH_Products" EntitySet="DAH_Products" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="category">
+        <EntityType Name="DAH_Categories">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="categoty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="subcategories" Relationship="dahDBModel.FK__subcatego__categ__4F7CD00D" FromRole="category" ToRole="subcategory" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="DAH_SubCategories" Relationship="dahDBModel.FK_DAH_SubCategories_DAH_Categories" FromRole="DAH_Categories" ToRole="DAH_SubCategories" />
         </EntityType>
-        <EntityType Name="subcategory">
+        <EntityType Name="DAH_Products">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="subcategory1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="categoryid" Type="Int32" />
-          <NavigationProperty Name="category" Relationship="dahDBModel.FK__subcatego__categ__4F7CD00D" FromRole="subcategory" ToRole="category" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DAH_SubCategories" Relationship="dahDBModel.FK_DAH_Products_DAH_SubCategories" FromRole="DAH_Products" ToRole="DAH_SubCategories" />
         </EntityType>
-        <Association Name="FK__subcatego__categ__4F7CD00D">
-          <End Type="dahDBModel.category" Role="category" Multiplicity="0..1" />
-          <End Type="dahDBModel.subcategory" Role="subcategory" Multiplicity="*" />
+        <EntityType Name="DAH_SubCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="DAH_Categories" Relationship="dahDBModel.FK_DAH_SubCategories_DAH_Categories" FromRole="DAH_SubCategories" ToRole="DAH_Categories" />
+          <NavigationProperty Name="DAH_Products" Relationship="dahDBModel.FK_DAH_Products_DAH_SubCategories" FromRole="DAH_SubCategories" ToRole="DAH_Products" />
+        </EntityType>
+        <Association Name="FK_DAH_SubCategories_DAH_Categories">
+          <End Type="dahDBModel.DAH_Categories" Role="DAH_Categories" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_SubCategories" Role="DAH_SubCategories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="category">
-              <PropertyRef Name="id" />
+            <Principal Role="DAH_Categories">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="subcategory">
-              <PropertyRef Name="categoryid" />
+            <Dependent Role="DAH_SubCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Products_DAH_SubCategories">
+          <End Type="dahDBModel.DAH_SubCategories" Role="DAH_SubCategories" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Products" Role="DAH_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_SubCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Products">
+              <PropertyRef Name="SubCategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,24 +465,41 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="categories">
-            <EntityTypeMapping TypeName="dahDBModel.category">
-              <MappingFragment StoreEntitySet="categories">
-                <ScalarProperty Name="categoty" ColumnName="categoty" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="DAH_Categories">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_Categories">
+              <MappingFragment StoreEntitySet="DAH_Categories">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="subcategories">
-            <EntityTypeMapping TypeName="dahDBModel.subcategory">
-              <MappingFragment StoreEntitySet="subcategories">
-                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
-                <ScalarProperty Name="subcategory1" ColumnName="subcategory" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="DAH_Products">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_Products">
+              <MappingFragment StoreEntitySet="DAH_Products">
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="DAH_SubCategories">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_SubCategories">
+              <MappingFragment StoreEntitySet="DAH_SubCategories">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
