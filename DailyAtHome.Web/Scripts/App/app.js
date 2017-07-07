@@ -83,6 +83,11 @@ dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', fun
             controller: 'ConfirmEmailController',
             resolve: loader(['confirm-email'])
         })
+         .when('/products', {
+             templateUrl: 'Views/Products.html',
+             controller: 'ProductsController',
+             resolve: loader(['products'])
+         })
         .otherwise({
             redirectTo: "Home"
         });

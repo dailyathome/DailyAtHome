@@ -8,7 +8,7 @@ using DailyAtHome.DataAccess;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
-    [Authorize]
+  
     [RoutePrefix("api/Header")]
     public class HeaderController : ApiController
     {
@@ -43,6 +43,12 @@ namespace DailyAtHome.WebAPI.Controllers
             SubcategoriesList = dahEntity.DAH_SubCategories.ToList();
 
             return SubcategoriesList;
+        }
+        public List<DAH_Products>GetProductsBySubCategory(int ID)
+        {
+            List<DAH_Products> products = new List<DAH_Products>();
+            products = dahEntity.DAH_Products.Where(s => s.SubCategoryID == ID).ToList();
+            return products;
         }
     }
 }

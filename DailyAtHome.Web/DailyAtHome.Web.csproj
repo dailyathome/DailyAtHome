@@ -244,6 +244,7 @@
     <Content Include="scripts\App\Controllers\login.js" />
     <Content Include="scripts\App\Controllers\orders.js" />
     <Content Include="scripts\App\Controllers\forgot-password.js" />
+    <Content Include="scripts\App\Controllers\products.js" />
     <Content Include="scripts\App\Controllers\reset-password.js" />
     <Content Include="scripts\App\Controllers\register.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Login.html" />
     <Content Include="Views\Orders.html" />
     <Content Include="Views\ForgotPassword.html" />
+    <Content Include="Views\Products.html" />
     <Content Include="Views\Register.html" />
     <Content Include="Views\ResetPassword.html" />
     <Content Include="Views\Shared\footer.html" />
