@@ -7,8 +7,12 @@ body .navbar-inverse .navbar-nav > li a {
   font-size: medium;
   font-weight: bold;
 }
-body .navbar-inverse .navbar-header {
-  padding-right: 10px;
+body .navbar-default {
+  background-color: #5cb85c;
+}
+body .navbar-default h4 {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 body input.submitted.ng-invalid {
   border: 1px solid #f00;

@@ -241,6 +241,7 @@
     <Content Include="scripts\App\app.js" />
     <Content Include="scripts\App\Controllers\header.js" />
     <Content Include="scripts\App\Controllers\confirm-email.js" />
+    <Content Include="scripts\App\Controllers\home.js" />
     <Content Include="scripts\App\Controllers\login.js" />
     <Content Include="scripts\App\Controllers\orders.js" />
     <Content Include="scripts\App\Controllers\forgot-password.js" />

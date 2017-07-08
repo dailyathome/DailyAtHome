@@ -8,7 +8,6 @@
             params: { ID: $scope.ID }
         }).then(function success(response) {
             $scope.products = response.data;
-            console.log(response);
         });
     });
 });
