@@ -85,6 +85,15 @@
     <Compile Include="DAH_Categories.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAH_Img_Categories.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAH_Img_Products.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAH_Img_SubCategories.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAH_Products.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>

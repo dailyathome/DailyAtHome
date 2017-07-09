@@ -239,6 +239,7 @@
     <Content Include="Content\Less\App\utility.less" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\App\app.js" />
+    <Content Include="scripts\App\Controllers\admin.js" />
     <Content Include="scripts\App\Controllers\header.js" />
     <Content Include="scripts\App\Controllers\confirm-email.js" />
     <Content Include="scripts\App\Controllers\home.js" />
@@ -252,6 +253,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\Admin\Admin.html" />
     <Content Include="Views\categories.html" />
     <Content Include="Views\ConfirmEmail.html" />
     <Content Include="Views\Home.html" />

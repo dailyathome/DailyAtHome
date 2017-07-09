@@ -30,8 +30,11 @@ namespace DailyAtHome.DataAccess
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<DAH_Img_Categories> DAH_Img_Categories { get; set; }
+        public virtual DbSet<DAH_Img_Products> DAH_Img_Products { get; set; }
+        public virtual DbSet<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
         public virtual DbSet<DAH_Categories> DAH_Categories { get; set; }
-        public virtual DbSet<DAH_Products> DAH_Products { get; set; }
         public virtual DbSet<DAH_SubCategories> DAH_SubCategories { get; set; }
+        public virtual DbSet<DAH_Products> DAH_Products { get; set; }
     }
 }

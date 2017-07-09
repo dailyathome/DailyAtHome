@@ -89,6 +89,11 @@ dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', fun
              controller: 'ProductsController',
              resolve: loader(['products'])
          })
+        .when('/Admin', {
+            templateUrl: 'Views/Admin/Admin.html',
+            controller: 'AdminController',
+            resolve: loader(['admin'])
+        })
         .otherwise({
             redirectTo: "Home"
         });
