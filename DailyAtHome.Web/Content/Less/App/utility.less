@@ -1,23 +1,32 @@
 ﻿body {
+    width: 100%;
+
     input.submitted.ng-invalid {
         border: 1px solid #f00;
     }
+
+    footer {
+        width: inherit;
+    }
+
 
     .field-validation-error {
         color: #f00;
         padding-left: 4px;
         width: inherit;
         position: relative;
+
         &:before {
             /* content: "\f06a";*/
             content: '\f12a';
             font-family: FontAwesome;
-            margin-right:2px;
+            margin-right: 2px;
         }
     }
 
     .alert-success {
         position: relative;
+
         &:before {
             content: '\f046';
             font-family: FontAwesome;
@@ -35,5 +44,36 @@
 
     .loading {
         pointer-events: none;
+    }
+
+    .inline-list {
+        display: inline;
+    }
+
+
+    .btn-cart {
+        width: 45px;
+        padding: 0;
+        border-radius: 50%;
+        margin: 0 150px;
+        color: #5cb85c;
+        background: #fff;
+        border: none;
+
+        .badge {
+            margin-top: -20px;
+            color: #222;
+            background: #5cb85c;
+            border: solid 1px #fff;
+        }
+
+        i {
+            margin-top: -20px;           
+        }
+    }
+    .btn,button{
+        &:hover{
+            background-color: #3e8e41
+        }
     }
 }
