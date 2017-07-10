@@ -14,6 +14,12 @@ namespace DailyAtHome.DataAccess
     
     public partial class DAH_Products
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DAH_Products()
+        {
+            this.DAH_Img_Products = new HashSet<DAH_Img_Products>();
+        }
+    
         public int ID { get; set; }
         public string Product { get; set; }
         public string Description { get; set; }
@@ -21,7 +27,10 @@ namespace DailyAtHome.DataAccess
         public decimal Cost { get; set; }
         public int SubCategoryID { get; set; }
         public bool IsAvailable { get; set; }
+        public Nullable<int> ImageID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DAH_Img_Products> DAH_Img_Products { get; set; }
         public virtual DAH_SubCategories DAH_SubCategories { get; set; }
     }
 }

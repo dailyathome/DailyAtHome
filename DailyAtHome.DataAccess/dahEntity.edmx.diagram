@@ -13,10 +13,16 @@
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="dahDBModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="dahDBModel.DAH_Categories" Width="1.5" PointX="7.375" PointY="1.25" />
-        <EntityTypeShape EntityType="dahDBModel.DAH_Products" Width="1.5" PointX="11.875" PointY="1" />
-        <EntityTypeShape EntityType="dahDBModel.DAH_SubCategories" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Img_Categories" Width="1.5" PointX="9.625" PointY="5.875" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Img_Products" Width="1.5" PointX="14.125" PointY="1.625" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Img_SubCategories" Width="1.5" PointX="11.875" PointY="6.125" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Categories" Width="1.5" PointX="7.5" PointY="2" />
+        <AssociationConnector Association="dahDBModel.FK__DAH_Img_C__Categ__5DCAEF64" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_SubCategories" Width="1.5" PointX="9.375" PointY="1.375" />
         <AssociationConnector Association="dahDBModel.FK_DAH_SubCategories_DAH_Categories" />
+        <AssociationConnector Association="dahDBModel.FK__DAH_Img_S__SubCa__66603565" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Products" Width="1.5" PointX="11.625" PointY="1.125" />
+        <AssociationConnector Association="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" />
         <AssociationConnector Association="dahDBModel.FK_DAH_Products_DAH_SubCategories" />
       </Diagram>
     </edmx:Diagrams>
