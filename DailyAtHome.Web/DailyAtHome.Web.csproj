@@ -254,6 +254,8 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="Views\Admin\Admin.html" />
+    <Content Include="Views\Admin\Shared\AdminCategory.html" />
+    <Content Include="Views\Admin\Shared\EditCategory.html" />
     <Content Include="Views\categories.html" />
     <Content Include="Views\ConfirmEmail.html" />
     <Content Include="Views\Home.html" />
@@ -279,6 +281,7 @@
     <Content Include="scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="scripts\App\JQuery\" />
     <Folder Include="Styles\" />
   </ItemGroup>
   <PropertyGroup>

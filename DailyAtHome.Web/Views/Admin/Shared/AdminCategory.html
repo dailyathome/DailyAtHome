@@ -1,0 +1,41 @@
+﻿<div class="dropdown" ng-controller="AdminController">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Select Action
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a data-toggle="collapse" data-target="#AddCategory"><i class="fa fa-plus-square" aria-hidden="true"></i> Add</a></li>
+        <li><a data-toggle="collapse" data-target="#EditCategory"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+        <li><a> <i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+    </ul>
+</div>
+
+<div id="AddCategory" class="collapse well">
+    <div class="form-group center-block">
+        <h4>Add New Category</h4>
+        <div class="form-group center-block">
+            <input type="text" ng-required="true" name="Category" id="Category" tabindex="1" class="form-control center-block" placeholder="Category" value="">
+        </div>
+        <div class="form-group center-block">
+            <input type="text" ng-required="true" name="CategoryDescription" id="CategoryDescription" tabindex="2" class="form-control center-block" placeholder="Category Description" value="">
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-3">
+            <button name="Category-Add" id="Category-Add" ng-click="btnAddCategoryClick()" class="form-control btn-success center-block" value="Add">Add <i class="fa fa-spinner fa-spin" ng-show="loading"></i></button>
+        </div>
+    </div>
+</div>
+
+<div id="EditCategory" class="collapse well">
+    <h4>Edit An Existing Category</h4>
+    <a class="dropdown-toggle" data-toggle="dropdown">
+        Select Action
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="category in Categories">
+        <a data-toggle="collapse"> {{category.Category}}</a>
+        </li>
+    </ul>
+</div>
+
