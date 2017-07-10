@@ -6,6 +6,8 @@ dahApp.constant('CONFIG', {
     //'API_URL': 'http://sample-env-1.tit52nkbfk.us-west-2.elasticbeanstalk.com'
     'API_URL': 'http://localhost:56259'
 });
+
+dahApp.value('cartStorage', { products: [] });
 dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', function ($routeProvider, $controllerProvider, $locationProvider) {
 
     /*Creating a more synthesized form of service of $ controllerProvider.register*/
@@ -95,10 +97,6 @@ dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', fun
     $locationProvider.html5Mode(true);
 }]);
 
-dahApp.controller("HeaderController", function ($scope, $http, CONFIG) {
 
-    $http.get(CONFIG.API_URL + '/api/Header/GetCategories').then(function (response) {
-        $scope.Categories = response.data;
-    });
-});
+
 

@@ -43,19 +43,19 @@ body .btn-cart {
   width: 45px;
   padding: 0;
   border-radius: 50%;
-  margin: 0 150px;
   color: #5cb85c;
   background: #fff;
   border: none;
+  margin: 0;
+  margin-top: 5px;
 }
 body .btn-cart .badge {
-  margin-top: -20px;
   color: #222;
   background: #5cb85c;
   border: solid 1px #fff;
 }
 body .btn-cart i {
-  margin-top: -20px;
+  margin-top: -5px;
 }
 body .btn:hover,
 body button:hover {

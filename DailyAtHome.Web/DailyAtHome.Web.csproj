@@ -248,6 +248,8 @@
     <Content Include="scripts\App\Controllers\products.js" />
     <Content Include="scripts\App\Controllers\reset-password.js" />
     <Content Include="scripts\App\Controllers\register.js" />
+    <Content Include="scripts\App\Controllers\shoppingCart.js" />
+    <Content Include="scripts\App\directives\directive-header.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
