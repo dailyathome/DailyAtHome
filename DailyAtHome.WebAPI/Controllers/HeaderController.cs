@@ -50,5 +50,13 @@ namespace DailyAtHome.WebAPI.Controllers
             products = dahEntity.DAH_Products.Where(s => s.SubCategoryID == ID).ToList();
             return products;
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("Admin")]
+        public string UpdateCategory()
+        {
+            return "Update Successful";
+        }
     }
 }

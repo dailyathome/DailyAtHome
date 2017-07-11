@@ -27,7 +27,7 @@
                         </td>
                         <td>
                             <i ng-show="cat.showEdit" ng-click="toggleEdit(cat)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            <i ng-show="!cat.showEdit" ng-click="toggleEdit(cat)" class="fa fa-floppy-o" aria-hidden="true"></i>
+                            <i ng-show="!cat.showEdit" ng-click="SaveEdit(cat)" class="fa fa-floppy-o" aria-hidden="true"></i>
                         </td>
                     </tr>
 
@@ -36,8 +36,17 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-sm-offset-3">
+    <!--<div class="col-sm-6 col-sm-offset-3">
         <button name="Category-Add" id="Category-Add" ng-click="btnAddCategoryClick()" class="form-control btn-success center-block" value="Add">Add <i class="fa fa-spinner fa-spin" ng-show="loading"></i></button>
+    </div>-->
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+    <div class="alert alert-success text-center form-group center-block" ng-show="UpdateSuccess">
+        <p>Update Successful!</p>
+    </div>
+    <div class="alert alert-danger text-center form-group center-block" ng-show="UpdateFail">
+        <p>{{registerErrorMsg}}</p>
     </div>
 </div>
 
