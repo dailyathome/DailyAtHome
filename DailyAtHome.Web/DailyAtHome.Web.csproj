@@ -257,7 +257,7 @@
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="Views\Admin\Admin.html" />
     <Content Include="Views\Admin\Shared\AdminCategory.html" />
-    <Content Include="Views\Admin\Shared\EditCategory.html" />
+    <Content Include="Views\Admin\Shared\AdminSubCategory.html" />
     <Content Include="Views\categories.html" />
     <Content Include="Views\ConfirmEmail.html" />
     <Content Include="Views\Home.html" />

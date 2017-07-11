@@ -1,41 +1,44 @@
-﻿<div class="dropdown" ng-controller="AdminController">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        Select Action
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><a data-toggle="collapse" data-target="#AddCategory"><i class="fa fa-plus-square" aria-hidden="true"></i> Add</a></li>
-        <li><a data-toggle="collapse" data-target="#EditCategory"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
-        <li><a> <i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
-    </ul>
-</div>
+﻿<div class="row" ng-controller="AdminController">
+    <div class="bs-example marginTop50" data-example-id="table-within-panel">
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>
+                        </th>
 
-<div id="AddCategory" class="collapse well">
-    <div class="form-group center-block">
-        <h4>Add New Category</h4>
-        <div class="form-group center-block">
-            <input type="text" ng-required="true" name="Category" id="Category" tabindex="1" class="form-control center-block" placeholder="Category" value="">
-        </div>
-        <div class="form-group center-block">
-            <input type="text" ng-required="true" name="CategoryDescription" id="CategoryDescription" tabindex="2" class="form-control center-block" placeholder="Category Description" value="">
-        </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cat in Categories">
+                        <th scope="row">
+                            {{$index+1}}
+                        </th>
+                        <td>
+                            <span ng-show="cat.showEdit">{{cat.Category}}</span>
+                            <input ng-show="!cat.showEdit" type="text" ng-model="cat.Category" class="form-control">
+                        </td>
+                        <td>
+                            <span ng-show="cat.showEdit">{{cat.Description}}</span>
+                            <input ng-show="!cat.showEdit" type="text" ng-model="cat.Description" class="form-control">
+                        </td>
+                        <td>
+                            <i ng-show="cat.showEdit" ng-click="toggleEdit(cat)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <i ng-show="!cat.showEdit" ng-click="toggleEdit(cat)" class="fa fa-floppy-o" aria-hidden="true"></i>
+                        </td>
+                    </tr>
 
-        <div class="col-sm-6 col-sm-offset-3">
-            <button name="Category-Add" id="Category-Add" ng-click="btnAddCategoryClick()" class="form-control btn-success center-block" value="Add">Add <i class="fa fa-spinner fa-spin" ng-show="loading"></i></button>
+                </tbody>
+            </table>
         </div>
+    </div>
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <button name="Category-Add" id="Category-Add" ng-click="btnAddCategoryClick()" class="form-control btn-success center-block" value="Add">Add <i class="fa fa-spinner fa-spin" ng-show="loading"></i></button>
     </div>
 </div>
 
-<div id="EditCategory" class="collapse well">
-    <h4>Edit An Existing Category</h4>
-    <a class="dropdown-toggle" data-toggle="dropdown">
-        Select Action
-        <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-        <li ng-repeat="category in Categories">
-        <a data-toggle="collapse"> {{category.Category}}</a>
-        </li>
-    </ul>
-</div>
 

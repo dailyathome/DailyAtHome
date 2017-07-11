@@ -1,0 +1,8 @@
+﻿<div class="panel-body" ng-controller="AdminController">
+    <h4>Edit Existing Category</h4>
+
+    <select class="form-control" ng-model="SubSelectedItem">
+        <option ng-repeat="category in Categories" value="{{category.Category}}">{{category.Category}}</option>
+    </select>
+</div>
+
