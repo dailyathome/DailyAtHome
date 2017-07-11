@@ -1,62 +1,14 @@
-﻿
-<div class="panel-group">
-    <h4></h4>
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Please select an item from list
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a data-toggle="modal" data-target="#Category"> <strong>Category</strong></a></li>
-            <li><a href="#EditCategory" data-toggle="collapse"><strong>Sub Category</strong></a></li>
-            <li><a href="#" data-toggle="collapse"><strong>product</strong></a></li>
-        </ul>
-    </div>
+﻿<h4>Select an Option From below list :</h4>
+<select class="form-control breadcrumb" ng-model="SelectedItem">
+    <option value="Category">Category</option>
+    <option value="SubCategory">Sub Category</option>
+    <option value="Product">Product</option>
+</select>
+
+<div ng-show="SelectedItem == 'Category'" ng-include="'/Views/Admin/Shared/AdminCategory.html'">
+
 </div>
 
+<div ng-show="SelectedItem == 'SubCategory'" ng-include="'/Views/Admin/Shared/AdminSubCategory.html'">
 
-<div class="modal fade" id="Category" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Category</h4>
-            </div>
-            <div class="modal-body" ng-include="'/Views/Admin/Shared/AdminCategory.html'">
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
 </div>
-
-
-<!--<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4></h4>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    Categories
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#AddCategory" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-plus-square" aria-hidden="true"></i> Add</a></li>
-                    <li><a href="#EditCategory"  data-toggle="collapse" data-parent="#accordion"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
-                    <li><a href="#" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="AddCategory" class="panel-collapse collapse" ng-include="'/Views/Admin/Shared/AddCategory.html'">
-        </div>
-
-        <div id="EditCategory" class="panel-collapse collapse" ng-include="'/Views/Admin/Shared/EditCategory.html'">
-        </div>
-    </div>
-</div>-->

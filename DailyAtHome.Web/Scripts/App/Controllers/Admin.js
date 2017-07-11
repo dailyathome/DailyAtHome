@@ -2,6 +2,14 @@
 
     $http.get(CONFIG.API_URL + '/api/Header/GetCategories').then(function (response) {
         $scope.Categories = response.data;
+
+        angular.forEach($scope.Categories, function (obj) {
+            obj["showEdit"] = true;
+
+            $scope.toggleEdit = function (emp) {
+                emp.showEdit = emp.showEdit ? false : true;
+            }
+        })
     });
 
 });
