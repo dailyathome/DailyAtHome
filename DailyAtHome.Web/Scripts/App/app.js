@@ -3,7 +3,7 @@
 var dahApp = angular.module('dahApp', ["ngRoute"]);
 
 dahApp.constant('CONFIG', {
-   'API_URL': 'http://sample-env-1.tit52nkbfk.us-west-2.elasticbeanstalk.com'
+    'API_URL': 'http://sample-env-1.tit52nkbfk.us-west-2.elasticbeanstalk.com'
     //'API_URL': 'http://localhost:56259'
 });
 
@@ -101,14 +101,6 @@ dahApp.config(['$routeProvider', '$controllerProvider', '$locationProvider', fun
         });
     $locationProvider.html5Mode(true);
 }]);
-
-dahApp.controller("HeaderController", function ($scope, $http, CONFIG) {
-
-    $http.get(CONFIG.API_URL + '/api/header/getcategories'
-         ).then(function (response) {
-             $scope.Categories = response.data;
-         });
-});
 
 
 
