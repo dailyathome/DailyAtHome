@@ -54,9 +54,20 @@ namespace DailyAtHome.WebAPI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("Admin")]
-        public string UpdateCategory()
+        public string UpdateCategory(DAH_Categories Category)
         {
-            return "Update Successful";
+            try
+            {
+                dahDBEntities entity = new dahDBEntities();
+
+                entity.DAH_SP_UpdateCategory(Category.ID, Category.Category, Category.Description);
+
+                return "Update Successful";
+            }
+            catch(Exception)
+            {
+                return "Update Failed";
+            }
         }
     }
 }

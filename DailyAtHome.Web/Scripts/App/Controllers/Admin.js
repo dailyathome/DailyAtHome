@@ -15,8 +15,9 @@
     $scope.SaveEdit = function (cat) {
         cat.showEdit = cat.showEdit ? false : true;
         $scope.loading = true;
+        //var index = cat.showEdit.indexOf()
 
-        $http.post(CONFIG.API_URL + '/api/Header/UpdateCategory')
+        $http.post(CONFIG.API_URL + '/api/Header/UpdateCategory', cat)
             .then(function success(response) {
                 $scope.UpdateSuccess = true;
                 $scope.loading = false;

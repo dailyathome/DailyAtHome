@@ -12,6 +12,8 @@ namespace DailyAtHome.DataAccess
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class dahDBEntities : DbContext
     {
@@ -36,5 +38,81 @@ namespace DailyAtHome.DataAccess
         public virtual DbSet<DAH_Categories> DAH_Categories { get; set; }
         public virtual DbSet<DAH_SubCategories> DAH_SubCategories { get; set; }
         public virtual DbSet<DAH_Products> DAH_Products { get; set; }
+    
+        public virtual int DAH_SP_AddCategory(string category, string description)
+        {
+            var categoryParameter = category != null ?
+                new ObjectParameter("Category", category) :
+                new ObjectParameter("Category", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddCategory", categoryParameter, descriptionParameter);
+        }
+    
+        public virtual int DAH_SP_AddSubCategory(string subCategory, Nullable<int> categoryID, string description, Nullable<int> imageID)
+        {
+            var subCategoryParameter = subCategory != null ?
+                new ObjectParameter("SubCategory", subCategory) :
+                new ObjectParameter("SubCategory", typeof(string));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("CategoryID", categoryID) :
+                new ObjectParameter("CategoryID", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var imageIDParameter = imageID.HasValue ?
+                new ObjectParameter("ImageID", imageID) :
+                new ObjectParameter("ImageID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddSubCategory", subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter);
+        }
+    
+        public virtual int DAH_SP_UpdateCategory(Nullable<int> iD, string category, string description)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var categoryParameter = category != null ?
+                new ObjectParameter("Category", category) :
+                new ObjectParameter("Category", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateCategory", iDParameter, categoryParameter, descriptionParameter);
+        }
+    
+        public virtual int DAH_SP_UpdateSubCategory(Nullable<int> iD, string subCategory, Nullable<int> categoryID, string description, Nullable<int> imageID)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var subCategoryParameter = subCategory != null ?
+                new ObjectParameter("SubCategory", subCategory) :
+                new ObjectParameter("SubCategory", typeof(string));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("CategoryID", categoryID) :
+                new ObjectParameter("CategoryID", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var imageIDParameter = imageID.HasValue ?
+                new ObjectParameter("ImageID", imageID) :
+                new ObjectParameter("ImageID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateSubCategory", iDParameter, subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter);
+        }
     }
 }

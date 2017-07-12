@@ -237,6 +237,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DAH_SP_AddCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Category" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DAH_SP_AddSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategory" Type="nvarchar" Mode="In" />
+          <Parameter Name="CategoryID" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImageID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DAH_SP_UpdateCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Category" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DAH_SP_UpdateSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="SubCategory" Type="nvarchar" Mode="In" />
+          <Parameter Name="CategoryID" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImageID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="dahDBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -426,6 +448,28 @@
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
             <End Role="DAH_Products" EntitySet="DAH_Products" />
           </AssociationSet>
+          <FunctionImport Name="DAH_SP_AddCategory">
+            <Parameter Name="Category" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DAH_SP_AddSubCategory">
+            <Parameter Name="SubCategory" Mode="In" Type="String" />
+            <Parameter Name="CategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="ImageID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DAH_SP_UpdateCategory">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Category" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DAH_SP_UpdateSubCategory">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategory" Mode="In" Type="String" />
+            <Parameter Name="CategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="ImageID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="DAH_Img_Categories">
           <Key>
@@ -682,6 +726,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DAH_SP_AddCategory" FunctionName="dahDBModel.Store.DAH_SP_AddCategory" />
+          <FunctionImportMapping FunctionImportName="DAH_SP_AddSubCategory" FunctionName="dahDBModel.Store.DAH_SP_AddSubCategory" />
+          <FunctionImportMapping FunctionImportName="DAH_SP_UpdateCategory" FunctionName="dahDBModel.Store.DAH_SP_UpdateCategory" />
+          <FunctionImportMapping FunctionImportName="DAH_SP_UpdateSubCategory" FunctionName="dahDBModel.Store.DAH_SP_UpdateSubCategory" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
