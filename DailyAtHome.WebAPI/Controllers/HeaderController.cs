@@ -32,21 +32,21 @@ namespace DailyAtHome.WebAPI.Controllers
             List<SubCategories> AppSubcategoriesList = new List<SubCategories>();
             List<Categories> categoriesList = new List<Categories>();
 
-            //DALcategoriesList = dahEntity.DAH_Categories.ToList();
-            //categoriesList = ConvertToAppCategories(DALcategoriesList);
+            DALcategoriesList = dahEntity.DAH_Categories.ToList();
+            categoriesList = ConvertToAppCategories(DALcategoriesList);
 
-            //AppSubcategoriesList = GetSubCategories();
+            AppSubcategoriesList = GetSubCategories();
 
 
-            //foreach (Categories cat in categoriesList)
-            //{
-            //    cat.SubCategoriesList = AppSubcategoriesList.Where(x => x.CategoryID == cat.ID).ToList();
-            //}
+            foreach (Categories cat in categoriesList)
+            {
+                cat.SubCategoriesList = AppSubcategoriesList.Where(x => x.CategoryID == cat.ID).ToList();
+            }
 
-            Categories cat1 = new Categories { Category = "Test1", Description = "Test1", ID = 1 };
-            Categories cat2 = new Categories { Category = "Test2", Description = "Test2", ID = 2 };
-            categoriesList.Add(cat1);
-            categoriesList.Add(cat2);
+            //Categories cat1 = new Categories { Category = "Test1", Description = "Test1", ID = 1 };
+            //Categories cat2 = new Categories { Category = "Test2", Description = "Test2", ID = 2 };
+            //categoriesList.Add(cat1);
+            //categoriesList.Add(cat2);
 
             return categoriesList;
         }

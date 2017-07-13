@@ -51,6 +51,10 @@ body .alert-danger:before {
 }
 body .loading {
   pointer-events: none;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 40px 5px;
+  width: 80px;
 }
 body .inline-list {
   display: inline;
