@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyAtHome.Web", "DailyAtH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyAtHome.WebAPI", "DailyAtHome.WebAPI\DailyAtHome.WebAPI.csproj", "{A87A8A1B-946B-4521-947F-C9B318F3B794}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyAtHome", "DailyAtHome\DailyAtHome.csproj", "{22F098F7-CF0C-4781-82E8-5DE864707061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A87A8A1B-946B-4521-947F-C9B318F3B794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A87A8A1B-946B-4521-947F-C9B318F3B794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A87A8A1B-946B-4521-947F-C9B318F3B794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F098F7-CF0C-4781-82E8-5DE864707061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F098F7-CF0C-4781-82E8-5DE864707061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F098F7-CF0C-4781-82E8-5DE864707061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F098F7-CF0C-4781-82E8-5DE864707061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
