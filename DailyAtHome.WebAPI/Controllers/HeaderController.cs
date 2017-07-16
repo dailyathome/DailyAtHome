@@ -92,10 +92,11 @@ namespace DailyAtHome.WebAPI.Controllers
         private List<SubCategories> ConvertToAppSubCategories(List<DAH_SubCategories> dALSubcategoriesList)
         {
             List<SubCategories> SubCategoriesList = new List<SubCategories>();
-            SubCategories AppSubCategory = new SubCategories();
+            
 
             foreach (DAH_SubCategories SubCategory in dALSubcategoriesList)
             {
+                SubCategories AppSubCategory = new SubCategories();
                 AppSubCategory.ID = SubCategory.ID;
                 AppSubCategory.SubCategory = SubCategory.SubCategory;
                 AppSubCategory.CategoryID = SubCategory.CategoryID;

@@ -1,11 +1,4 @@
-﻿<div *ngFor="let cat of categories">
-    <ul>
-        {{cat.Category}}
-        <li *ngFor="let subcat of cat.SubCategories">{{subcat.SubCategory}}</li>
-    </ul>
-</div>
-
-<nav class="navbar navbar-default">
+﻿<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#category-navbar-collapse" aria-expanded="false">
@@ -26,15 +19,39 @@
         <div class="collapse navbar-collapse pull-right" id="category-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <template ngFor let-cat [ngForOf] = "categories">
-                            <li><h4>{{cat.Category}}</h4></li>
-                            <li *ngFor="let subCat of cat.SubCategoriesList">
-                                <a data-toggle="collapse" data-target=".navbar-collapse" href="products?ID={{subCat.ID}}">{{subCat.SubCategory}}</a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu"> 
+                        <ng-container *ngFor="let category of categories">
+                            <li class="dropdown-header">
+                                {{ category.Category }}
                             </li>
-                        </template>
+                            <ng-container *ngFor="let subCat of category.SubCategoriesList">
+                                <li>
+                                    <a href="{{'products/'+subCat.ID}}">{{ subCat.SubCategory }}</a>
+                                </li>                              
+                            </ng-container>
+                            <li class="divider"></li>
+                        </ng-container>  
                     </ul>
+                    <!--<ul class="dropdown-menu" role="menu">
+                        <ng-container *ngFor="let category of categories">
+                            <li class="dropdown-header">
+
+                            </li>
+                            <li>
+                                <a href= *ngFor="let tag of category.SubCategoriesList">{{ tag.SubCategory }}</a>
+                            </li>
+                            <li class="divider"></li>
+                        </ng-container>
+                    </ul>-->
+                    <!--<ul class="dropdown-menu">
+                        <template ngFor let-a [ngForOf]="categoriescategories" let-i="index">
+                            <li class="dropdown-header">{{a.Category}}</li>
+                            <li *ngFor="let b of a;">
+                                {{b.SubCategory}}
+                            <li>
+                        </template>
+                    </ul>-->
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

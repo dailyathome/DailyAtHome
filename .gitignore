@@ -245,3 +245,5 @@ ModelManifest.xml
 /DailyAtHome.WebAPI/Properties/PublishProfiles/local.pubxml
 /SQLQuery5.sql
 /SQLQuery3.sql
+/DailyAtHome/SQLQuery2.sql
+/DailyAtHome/SQLQuery1.sql

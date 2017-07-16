@@ -1,4 +1,4 @@
-﻿import { Component,OnInit } from '@angular/core';
+﻿import { Component,OnInit, TemplateRef } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 
 
@@ -15,5 +15,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.productsSvc.getCategories()
             .subscribe(result => this.categories = result);
+        console.log(this.categories);
     }
 }

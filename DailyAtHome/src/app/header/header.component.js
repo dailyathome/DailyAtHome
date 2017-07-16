@@ -19,6 +19,7 @@ var HeaderComponent = (function () {
         var _this = this;
         this.productsSvc.getCategories()
             .subscribe(function (result) { return _this.categories = result; });
+        console.log(this.categories);
     };
     HeaderComponent = __decorate([
         core_1.Component({
