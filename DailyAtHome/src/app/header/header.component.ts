@@ -5,6 +5,7 @@ import { ProductsService } from '../services/products.service';
 @Component({
     selector: 'dah-header',
     templateUrl: 'app/header/header.component.html',
+    styleUrls: ['app/header/header.component.css'],
     providers:[ProductsService]
 })
 export class HeaderComponent implements OnInit {

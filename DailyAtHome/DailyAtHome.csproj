@@ -102,7 +102,10 @@
     <Content Include="Content\bootstrap\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="packages.config" />
     <Content Include="bs-config.json" />
     <Content Include="package.json" />
@@ -185,15 +188,29 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\header\header.component.css">
+      <DependentUpon>header.component.less</DependentUpon>
+    </Content>
     <Content Include="src\app\header\header.component.html" />
+    <Content Include="src\app\header\header.component.min.css">
+      <DependentUpon>header.component.css</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\products.component.html" />
     <Content Include="src\tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="src\app\header\header.component.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -214,10 +231,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\app.settings.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\header\header.component.ts" />
+    <TypeScriptCompile Include="src\app\products\products.component.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>

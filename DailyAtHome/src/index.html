@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+      <link href="../Content/font-awesome.min.css" rel="stylesheet" />
       <link href="../Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <!-- Polyfill(s) for older browsers -->
     <script src="/node_modules/core-js/client/shim.min.js"></script>
@@ -15,6 +16,7 @@
      
 
     <script src="systemjs.config.js"></script>
+
     <script>
       System.import('main.js').catch(function(err){ console.error(err); });
     </script>
@@ -23,6 +25,6 @@
   <body>
       <script src="../Scripts/jquery-1.9.1.min.js"></script>
       <script src="../Scripts/bootstrap.min.js"></script>
-    <my-app>Loading AppComponent content here ...</my-app>
+    <my-app><div style="padding:20% 50%"><i class="fa fa-spinner fa-5x fa-spin"></i></div></my-app>
   </body>
 </html>
