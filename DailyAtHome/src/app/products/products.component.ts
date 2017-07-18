@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Component({
     selector: '<products></products>',
     templateUrl: 'app/products/products.component.html',
+    styles: [`.panel-title{ font-weight:bold}`],
     providers: [ProductsService]
 })
 export class ProductsComponent implements OnInit {
@@ -13,12 +14,13 @@ export class ProductsComponent implements OnInit {
     productId: number;
     products = [];
     ngOnInit() {
-        this.productId = Number.parseInt(this._route.snapshot.paramMap.get('id'));
-        console.log('PRODUCT ID: ' + this.productId);
-        this.getProducts(this.productId);
+        this._route.params.subscribe(params => {
+            let id = +params['id']; // (+) converts string 'id' to a number
+            this.getProducts(id);
+
+        });
     }
     getProducts(ID: number) {
-        alert('called');
         this._products.getProductsBySubCategory(ID).subscribe(
             response => this.products = response
         )

@@ -17,8 +17,9 @@ export class ProductsService {
     }
     getProductsBySubCategory(id: number){
         let params = new URLSearchParams();
-        params.set('ID', id.toString());
-        return this.http.get(AppSettings.API_URL + '/api/header/GetProductsBySubCategory', { search: params }).map(
+        //params.set('ID', id);
+        console.log('PRODUCT ID SELECTED IS: ' + id.toString());
+        return this.http.get(AppSettings.API_URL + '/api/header/GetProductsBySubCategory/' + id).map(
             (response: Response) => response.json()
         );
     }
