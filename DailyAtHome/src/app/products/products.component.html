@@ -7,23 +7,23 @@
             </div>
             <div class="panel-body">
                 <div>
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" />
+                    <img src="{{'https://placehold.it/150x80?text='+product.Product}}" class="img-responsive" style="width:100%" />
                 </div>
                 <div>
                     <p>
                         {{product.Description}}
                     </p>
-                    <p>
+                    <p style="font-size:large">
                         <label>Price: </label>
                         <span>{{product.Cost | currency:'USD':true:'1.2-2'}}</span>
                     </p>
                     <div>
-                        <button class="btn btn-success pull-left">Add to cart <i class="fa fa-cart-plus"></i></button>
-
+                        <button class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 

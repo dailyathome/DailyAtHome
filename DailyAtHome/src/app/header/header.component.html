@@ -20,7 +20,7 @@
                             </li>
                             <ng-container *ngFor="let subCat of category.SubCategoriesList">
                                 <li>
-                                    <a [routerLink]="['products',subCat.ID]">{{ subCat.SubCategory }}</a>
+                                    <a  data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['products',subCat.ID]">{{ subCat.SubCategory }}</a>
                                 </li>
                             </ng-container>
                             <li class="divider"></li>

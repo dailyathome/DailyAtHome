@@ -199,6 +199,7 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\cart\cart.component.html" />
     <Content Include="src\app\header\header.component.css">
       <DependentUpon>header.component.less</DependentUpon>
     </Content>
@@ -236,14 +237,19 @@
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
+    <TypeScriptCompile Include="src\app\services\cart.service.ts" />
     <TypeScriptCompile Include="src\app\header\header.component.ts" />
+    <TypeScriptCompile Include="src\app\models\product.model.ts" />
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
+    <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
