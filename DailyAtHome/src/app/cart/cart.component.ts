@@ -4,19 +4,18 @@ import { Product } from '../models/product.model';
 
 @Component({
     selector: 'cart',
-    templateUrl: 'app/cart/cart.component.html',
-    providers: [CartService]
+    templateUrl: 'app/cart/cart.component.html'
 })
 export class CartComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
-    cartItemsCount: number = 0;
+    public cartItemsCount: number = 0;
+    count: number
+    message: string;
     products: Product[] = [];
     ngOnInit() {
-       this.products = this._cartSvc.getItems("dahCart");
+        this._cartSvc.cartStatus.subscribe(
+            (status) => this.count = status
+        )
+        this.products = this._cartSvc.getItems("dahCart");
     }
-    updateCart() {
-        this.cartItemsCount = this._cartSvc.getItems('dahCart').length;
-        console.log('update cart called: total products: ' + this.cartItemsCount);
-    }
-    
 }

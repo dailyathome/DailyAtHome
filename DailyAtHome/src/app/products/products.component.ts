@@ -3,20 +3,23 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
-import { CartComponent } from '../cart/cart.component';
 //import 'rxjs/add/operator/toPromise';
 
 @Component({
     selector: '<products></products>',
     templateUrl: 'app/products/products.component.html',
     styles: [`.panel-title{ font-weight:bold}`],
-    providers: [ProductsService, CartService, CartComponent]
+    providers: [ProductsService]
 })
 export class ProductsComponent implements OnInit {
-    constructor(private _route: ActivatedRoute, private _products: ProductsService, private _cartSvc: CartService, private _cart: CartComponent) { }
+    constructor(private _route: ActivatedRoute, private _products: ProductsService, private _cartSvc: CartService) { }
     productId: number;
     products = [];
+    message: number;
     ngOnInit() {
+        this._cartSvc.cartStatus.subscribe(
+            (status) => this.message = status
+            )
         this._route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.getProducts(id);
@@ -28,7 +31,6 @@ export class ProductsComponent implements OnInit {
         )
     }
     onAddToCartClick(product) {
-        console.log(product);
         this._cartSvc.addItem({
             id: product.ID,
             description: product.Description,
@@ -37,6 +39,7 @@ export class ProductsComponent implements OnInit {
             name: product.Product
         }, 'dahCart');
 
-        this._cart.updateCart();
+        console.log(this._cartSvc.getItems('dahCart'));
+        this._cartSvc.updateCartStatus(this._cartSvc.getTotalCount('dahCart'));
     }
 }
