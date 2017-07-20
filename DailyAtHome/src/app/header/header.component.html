@@ -1,5 +1,5 @@
 ﻿
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="display:none">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -20,7 +20,7 @@
                             </li>
                             <ng-container *ngFor="let subCat of category.SubCategoriesList">
                                 <li>
-                                    <a  data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['products',subCat.ID]">{{ subCat.SubCategory }}</a>
+                                    <a data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['products',subCat.ID]">{{ subCat.SubCategory }}</a>
                                 </li>
                             </ng-container>
                             <li class="divider"></li>
@@ -99,3 +99,70 @@
         <button type="button" class="btn btn-danger">Sign Up</button>
     </form>
 </footer>-->
+
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+        <!-- Title -->
+        <div class="navbar-header pull-left">
+            <a href="/" class="navbar-brand">
+                <img src="../../Content/Images/Logo.png" class="img-responsive" style="width:64px; margin-top:-1.5rem;" />
+            </a>
+        </div>
+
+        <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
+        <div class="navbar-header pull-right">
+            <ul class="nav pull-left">
+                <!-- This works well for static text, like a username -->
+                <!-- <li class="navbar-text pull-left">User Name</li>-->
+                <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
+                <!--<li class="dropdown pull-right">
+                    <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/users/id" title="Profile">Profile</a>
+                        </li>
+                        <li>
+                            <a href="/logout" title="Logout">Logout </a>
+                        </li>
+                    </ul>
+                </li>-->
+                <li class="pull-right cart-container">
+                    <cart>
+                    </cart>
+                </li>
+            </ul>
+
+            <!-- Required bootstrap placeholder for the collapsed menu -->
+            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+
+        <!-- The Collapsing items            navbar-left or navbar-right -->
+        <div class="collapse navbar-collapse">
+            <!--                      pull-right keeps the drop-down in line -->
+            <ul class="nav navbar-nav">
+                <li><a [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a></li>
+                <li><a href="/merchants">Merchants</a></li>             
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <ng-container *ngFor="let category of categories">
+                            <li class="dropdown-header">
+                                {{ category.Category }}
+                            </li>
+                            <ng-container *ngFor="let subCat of category.SubCategoriesList">
+                                <li>
+                                    <a data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['/products',subCat.ID]">{{ subCat.SubCategory }}</a>
+                                </li>
+                            </ng-container>
+                            <li class="divider"></li>
+                        </ng-container>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Additional navbar items -->
+    </div>
+</nav>
+

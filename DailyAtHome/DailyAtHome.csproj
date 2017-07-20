@@ -105,6 +105,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\Logo.png" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="packages.config" />
     <Content Include="bs-config.json" />
@@ -198,7 +199,14 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="src\app\account\login.component.html" />
+    <Content Include="src\app\app.component.css">
+      <DependentUpon>app.component.less</DependentUpon>
+    </Content>
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\app.component.min.css">
+      <DependentUpon>app.component.css</DependentUpon>
+    </Content>
     <Content Include="src\app\cart\cart.component.html" />
     <Content Include="src\app\header\header.component.css">
       <DependentUpon>header.component.less</DependentUpon>
@@ -212,6 +220,7 @@
     <Content Include="tslint.json" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="src\app\header\header.component.less" />
+    <Content Include="src\app\app.component.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -232,6 +241,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\account\login.component.ts" />
     <TypeScriptCompile Include="src\app\app.routing.module.ts" />
     <TypeScriptCompile Include="src\app\app.settings.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
