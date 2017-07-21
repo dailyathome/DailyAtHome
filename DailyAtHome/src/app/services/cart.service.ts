@@ -18,8 +18,14 @@ export class CartService {
     //addItem(product: Product) {
     //    this.cart.push(product);
     //}
-    deleteItem(product: Product) {
+    deleteItem(product: Product, cartName: string) {
         this.cart = this.cart.filter(cartItem => cartItem.id !== product.id);
+        this.saveItems(cartName);
+    }
+
+    updateItem(product: Product, cartName: string) {
+        this.cart.forEach(a => product.id == a.id ? a.quantity = product.quantity : a.quantity);
+        this.saveItems(cartName);
     }
     clearCart() {
         this.cart = [];
@@ -48,11 +54,11 @@ export class CartService {
         }
     }
 
-    getTotalQuantity(cartName:string) {
+    getTotalQuantity(cartName: string) {
         var items = this.getItems(cartName);
         var counter = 0;
-        if(items)
-        items.forEach(q => counter += q.quantity);
+        if (items)
+            items.forEach(q => counter += q.quantity);
         return counter;
     }
     addItem(product: Product, cartName: string) {
