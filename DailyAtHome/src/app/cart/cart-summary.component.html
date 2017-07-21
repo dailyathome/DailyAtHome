@@ -1,0 +1,38 @@
+﻿<div class="panel panel-success cart-summary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Cart Summary</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products">
+                <td>{{p.name}}</td>
+                <td>{{p.quantity}}</td>
+                <td>
+                    {{p.description}}
+                </td>
+                <td>
+                    <img src="{{'https://placehold.it/150x80?text='+p.name}}" class="img-responsive img-circle" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="btn-group-sm">
+    <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
+    <button class="btn btn-success pull-right">Checkout <i class="fa fa-credit-card fa-spin"></i></button>
+</div>

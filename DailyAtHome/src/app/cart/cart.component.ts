@@ -9,15 +9,13 @@ import { Product } from '../models/product.model';
 })
 export class CartComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
-    public cartItemsCount: number = 0;
-    count: number
-    message: string;
-    products: Product[] = [];
+    numOfCartItems: number
     ngOnInit() {
-       // this.count = this._cartSvc.getTotalCount('dahCart');
-        //console.log(this.count);
+        this.numOfCartItems = this._cartSvc.getTotalQuantity("dahCart");
+        console.log('Toal Cart Items' + this.numOfCartItems);
+        this._cartSvc.updateCartStatus(this.numOfCartItems);
         this._cartSvc.cartStatus.subscribe(
-            (status) => this.count = status
+            (status) => this.numOfCartItems = status
         )
         //this.products = this._cartSvc.getItems("dahCart");
     }

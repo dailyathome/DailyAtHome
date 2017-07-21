@@ -2,10 +2,12 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from '../app/products/products.component';
 import { LoginComponent } from '../app/account/login.component';
+import { CartSummaryComponent } from '../app/cart/cart-summary.component';
 
 const routes: Routes = [
     { path: 'products/:id', component: ProductsComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'cart-summary', component: CartSummaryComponent },
     //{ path: 'register', component: RegisterComponent },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
@@ -23,4 +25,4 @@ const routes: Routes = [
     ]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ProductsComponent, LoginComponent]
+export const routingComponents = [ProductsComponent, LoginComponent, CartSummaryComponent]

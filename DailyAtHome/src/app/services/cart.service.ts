@@ -42,10 +42,19 @@ export class CartService {
     saveItems(cartName: string) {
         if (localStorage != null && JSON != null) {
             localStorage[cartName + "_items"] = JSON.stringify(this.cart);
-            this.updateCartStatus(this.cart.length);
+            var counter = 0;
+            this.cart.forEach(q => counter += q.quantity);
+            this.updateCartStatus(counter);
         }
     }
 
+    getTotalQuantity(cartName:string) {
+        var items = this.getItems(cartName);
+        var counter = 0;
+        if(items)
+        items.forEach(q => counter += q.quantity);
+        return counter;
+    }
     addItem(product: Product, cartName: string) {
         // quantity = this.toNumber(product.quantity);
         if (product.quantity != 0) {
@@ -74,14 +83,14 @@ export class CartService {
     }
 
     getItems(cartName: string) {
-        var currentCart = [];
+        this.clearCart();
         var items = localStorage != null ? localStorage[cartName + "_items"] : null;
         if (items != null && JSON != null) {
             try {
                 var items = JSON.parse(items);
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
-                    if (item.Id != null && item.name != null && item.price != null && item.quantity != null) {
+                    if (item.id != null && item.name != null && item.price != null && item.quantity != null) {
                         this.cart.push(item);
                     }
                 }
@@ -103,6 +112,7 @@ export class CartService {
         }
         return count;
     }
+
     toNumber = function (value) {
         value = value * 1;
         return isNaN(value) ? 0 : value;

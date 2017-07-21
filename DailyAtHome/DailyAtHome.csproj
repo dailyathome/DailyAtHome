@@ -194,6 +194,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\dah.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -207,6 +208,7 @@
     <Content Include="src\app\app.component.min.css">
       <DependentUpon>app.component.css</DependentUpon>
     </Content>
+    <Content Include="src\app\cart\cart-summary.component.html" />
     <Content Include="src\app\cart\cart.component.html" />
     <Content Include="src\app\header\header.component.css">
       <DependentUpon>header.component.less</DependentUpon>
@@ -247,6 +249,7 @@
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\cart\cart-summary.component.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="src\app\services\cart.service.ts" />
     <TypeScriptCompile Include="src\app\header\header.component.ts" />

@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
             name: product.Product
         }, 'dahCart');
 
-        console.log(this._cartSvc.getItems('dahCart'));
-        this._cartSvc.updateCartStatus(this._cartSvc.getTotalCount('dahCart'));
+        //console.log(this._cartSvc.getItems('dahCart'));
+        //this._cartSvc.updateCartStatus(this._cartSvc.getTotalCount('dahCart'));
     }
 }
