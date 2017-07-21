@@ -1,37 +1,49 @@
-﻿<div class="panel panel-success cart-summary">
+﻿<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index">
     <!-- Default panel contents -->
-    <div class="panel-heading">Cart Summary</div>
+    <div class="panel-heading"><strong>{{p.name}}</strong></div>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="text-left cart-item-img">
+                        <div>
+                            <img src="{{'https://placehold.it/150x80?text='+p.name}}" class="img-responsive" />
+                        </div>
+                    </td>
+                    <td class="cart-item-description">
+                        <div>
+                            <ul class="list-unstyled">
+                                <li class="wrap-text">
+                                    {{p.description}}
+                                </li>
+                                <li class="text-info">
+                                    <strong> {{p.price | currency:'USD':true:'1.2-2'}}</strong>
+                                </li>
+                                <li>
+                                    <div>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" />
+                                            </li>
+                                            <li><button class="btn btn-danger">Delete</button></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button name="btnUpdate-{{i}}" class="btn btn-success" [class.hidden]="!quntity.dirty" >Update</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Product
-                </th>
-                <th>
-                    Quantity
-                </th>
-                <th>
-                    Description
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let p of products">
-                <td>{{p.name}}</td>
-                <td>{{p.quantity}}</td>
-                <td>
-                    {{p.description}}
-                </td>
-                <td>
-                    <img src="{{'https://placehold.it/150x80?text='+p.name}}" class="img-responsive img-circle" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    
+
+
 </div>
-
 <div class="btn-group-sm">
     <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
     <button class="btn btn-success pull-right">Checkout <i class="fa fa-credit-card fa-spin"></i></button>

@@ -208,7 +208,13 @@
     <Content Include="src\app\app.component.min.css">
       <DependentUpon>app.component.css</DependentUpon>
     </Content>
+    <Content Include="src\app\cart\cart-summary.component.css">
+      <DependentUpon>cart-summary.component.less</DependentUpon>
+    </Content>
     <Content Include="src\app\cart\cart-summary.component.html" />
+    <Content Include="src\app\cart\cart-summary.component.min.css">
+      <DependentUpon>cart-summary.component.css</DependentUpon>
+    </Content>
     <Content Include="src\app\cart\cart.component.html" />
     <Content Include="src\app\header\header.component.css">
       <DependentUpon>header.component.less</DependentUpon>
@@ -223,6 +229,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="src\app\header\header.component.less" />
     <Content Include="src\app\app.component.less" />
+    <Content Include="src\app\cart\cart-summary.component.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

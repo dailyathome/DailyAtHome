@@ -5,7 +5,7 @@ import { Product } from '../models/product.model';
 @Component({
     selector: 'cart-summary',
     templateUrl: 'app/cart/cart-summary.component.html',
-    styles:[`.cart-summary td,th{vertical-align: middle; text-align:center; }`]
+    styleUrls: ['app/cart/cart-summary.component.min.css']
 })
 export class CartSummaryComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
