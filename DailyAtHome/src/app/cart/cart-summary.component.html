@@ -25,12 +25,12 @@
                                             <li>
                                                 <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" />
                                             </li>
-                                            <li><button class="btn btn-danger">Delete</button></li>
+                                            <li><button class="btn btn-danger btn-sm">Delete</button></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <button name="btnUpdate-{{i}}" class="btn btn-success" [class.hidden]="!quntity.dirty" >Update</button>
+                                    <button name="btnUpdate-{{i}}" class="btn btn-success btn-sm" [class.hidden]="!quntity.dirty" >Update</button>
                                 </li>
                             </ul>
                         </div>
@@ -44,7 +44,10 @@
 
 
 </div>
-<div class="btn-group-sm">
-    <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
-    <button class="btn btn-success pull-right">Checkout <i class="fa fa-credit-card fa-spin"></i></button>
+<div class="row">
+    <div class="col-sm-10"> 
+        <button class="btn btn-primary pull-left btn-lg"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
+        <button class="btn btn-success pull-right btn-lg">Checkout <i class="fa fa-credit-card"></i></button>
+
+    </div>
 </div>

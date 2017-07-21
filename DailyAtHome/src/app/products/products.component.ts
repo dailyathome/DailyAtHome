@@ -8,7 +8,11 @@ import { Product } from '../models/product.model';
 @Component({
     selector: '<products></products>',
     templateUrl: 'app/products/products.component.html',
-    styles: [`.panel-title{ font-weight:bold}`],
+    styles: [`.panel-title{ font-weight:bold}
+.panel input{
+width:60px; margin-top:6px;
+}
+`],
     providers: [ProductsService]
 })
 export class ProductsComponent implements OnInit {
