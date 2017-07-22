@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
-  
+
     [RoutePrefix("api/Header")]
     public class HeaderController : ApiController
     {
@@ -61,13 +61,24 @@ namespace DailyAtHome.WebAPI.Controllers
             return SubCategoryList;
         }
 
-        public List<DAH_Products>GetProductsBySubCategory(int ID)
+        public List<DAH_Products> GetProductsBySubCategory(int ID)
         {
             List<DAH_Products> products = new List<DAH_Products>();
             products = dahEntity.DAH_Products.Where(s => s.SubCategoryID == ID).ToList();
             return products;
         }
 
+        public List<Products> GetProducts(string search = null)
+        {
+            List<DAH_Products> products = dahEntity.DAH_Products.ToList();
+            List<Products> domainProducts = new List<Products>();
+            products.ForEach(p => domainProducts.Add(
+                new Products() { Cost = p.Cost, Description = p.Description, ID = p.ID, Product = p.Product, SubCategoryID = p.SubCategoryID }
+                ));
+            if (string.IsNullOrWhiteSpace(search))
+                return domainProducts;
+            else return domainProducts.Where(p => p.Product.Contains(search)).ToList();
+        }
         [HttpPost]
         [AllowAnonymous]
         [Route("UpdateCategory")]
@@ -81,7 +92,7 @@ namespace DailyAtHome.WebAPI.Controllers
 
                 return Ok();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return InternalServerError();
             }
@@ -92,7 +103,7 @@ namespace DailyAtHome.WebAPI.Controllers
         private List<SubCategories> ConvertToAppSubCategories(List<DAH_SubCategories> dALSubcategoriesList)
         {
             List<SubCategories> SubCategoriesList = new List<SubCategories>();
-            
+
 
             foreach (DAH_SubCategories SubCategory in dALSubcategoriesList)
             {

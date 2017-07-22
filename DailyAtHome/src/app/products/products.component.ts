@@ -20,9 +20,10 @@ export class ProductsComponent implements OnInit {
     productId: number;
     products = [];
     message: number;
+    productsArray: Product[];
     ngOnInit() {
         this._cartSvc.cartStatus.subscribe(
-            (status) => this.message = status
+            (status) => this.productsArray = status
             )
         this._route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number

@@ -17,8 +17,7 @@
                       <span class="pull-right"><label>Qty: </label> <input class="input-mini" #quant="ngModel" type="number" ngModel="1" /></span>
                     </p>
                     <div>
-                        <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
-                        
+                        <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>                       
                     </div>
                 </div>
             </div>
