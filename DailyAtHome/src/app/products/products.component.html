@@ -1,6 +1,5 @@
-﻿
-<div class="row">
-    <div class="col-xs-6" *ngFor="let product of products">
+﻿<div class="row">
+    <div class="col-sm-3" *ngFor="let product of products">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">{{product.Product}}</h3>
@@ -14,11 +13,12 @@
                         {{product.Description}}
                     </p>
                     <p style="font-size:large">
-                        <label>Price: </label>
-                        <span>{{product.Cost | currency:'USD':true:'1.2-2'}}</span>
+                        <strong class="text-info">{{product.Cost | currency:'USD':true:'1.2-2'}}</strong>
+                      <span class="pull-right"><label>Qty: </label> <input class="input-mini" #quant="ngModel" type="number" ngModel="1" /></span>
                     </p>
                     <div>
-                        <button class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
+                        <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
+                        
                     </div>
                 </div>
             </div>
