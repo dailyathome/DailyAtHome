@@ -2,6 +2,7 @@
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
 
+
 @Component({
     selector: 'cart',
     templateUrl: 'app/cart/cart.component.html',
