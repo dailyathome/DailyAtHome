@@ -23,7 +23,7 @@ var ProductsComponent = (function () {
     }
     ProductsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._cartSvc.cartStatus.subscribe(function (status) { return _this.message = status; });
+        this._cartSvc.cartStatus.subscribe(function (status) { return _this.productsArray = status; });
         this._route.params.subscribe(function (params) {
             var id = +params['id']; // (+) converts string 'id' to a number
             _this.getProducts(id);
@@ -48,7 +48,7 @@ var ProductsComponent = (function () {
         core_1.Component({
             selector: '<products></products>',
             templateUrl: 'app/products/products.component.html',
-            styles: [".panel-title{ font-weight:bold}"],
+            styles: [".panel-title{ font-weight:bold}\n.panel input{\nwidth:60px; margin-top:6px;\n}\n"],
             providers: [products_service_1.ProductsService]
         }),
         __metadata("design:paramtypes", [router_1.ActivatedRoute, products_service_1.ProductsService, cart_service_1.CartService])

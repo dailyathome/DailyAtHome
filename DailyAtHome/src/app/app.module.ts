@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -11,7 +12,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CartService } from '../app/services/cart.service';
 
 @NgModule({
-    imports: [BrowserModule,FormsModule, AppRoutingModule, HttpModule],
+    imports: [BrowserModule, BrowserAnimationsModule, FormsModule, AppRoutingModule, HttpModule],
     declarations: [AppComponent, HeaderComponent, CartComponent, routingComponents],
     bootstrap: [AppComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, CartService],

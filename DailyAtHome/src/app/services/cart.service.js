@@ -10,32 +10,34 @@ var core_1 = require("@angular/core");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var CartService = (function () {
     function CartService() {
-        this.cartSource = new BehaviorSubject_1.BehaviorSubject(0);
-        this.cartStatus = this.cartSource.asObservable();
         this.cart = [];
+        this.cartSource = new BehaviorSubject_1.BehaviorSubject(this.cart);
+        this.cartStatus = this.cartSource.asObservable();
         this.toNumber = function (value) {
             value = value * 1;
             return isNaN(value) ? 0 : value;
         };
     }
-    CartService.prototype.updateCartStatus = function (status) {
-        this.cartSource.next(status);
+    CartService.prototype.updateCartStatus = function (products) {
+        this.cartSource.next(products);
     };
     // private discount: IDiscount;
     //addItem(product: Product) {
     //    this.cart.push(product);
     //}
-    CartService.prototype.deleteItem = function (product) {
+    CartService.prototype.deleteItem = function (product, cartName) {
         this.cart = this.cart.filter(function (cartItem) { return cartItem.id !== product.id; });
+        this.saveItems(cartName);
+    };
+    CartService.prototype.updateItem = function (product, cartName) {
+        this.cart.forEach(function (a) { return product.id == a.id ? a.quantity = product.quantity : a.quantity; });
+        this.saveItems(cartName);
     };
     CartService.prototype.clearCart = function () {
         this.cart = [];
     };
     //applyDiscount(code: string) {
     //    this.discount = discounts.filter(discount => discount.code == code)[0];
-    //}
-    //getCart(): Product[] {
-    //    return this.cart;
     //}
     CartService.prototype.getTotalPrice = function () {
         var totalPrice = this.cart.reduce(function (sum, cartItem) {
@@ -49,22 +51,11 @@ var CartService = (function () {
     CartService.prototype.saveItems = function (cartName) {
         if (localStorage != null && JSON != null) {
             localStorage[cartName + "_items"] = JSON.stringify(this.cart);
-            var counter = 0;
-            this.cart.forEach(function (q) { return counter += q.quantity; });
-            this.updateCartStatus(counter);
+            this.updateCartStatus(this.cart);
         }
     };
-    CartService.prototype.getTotalQuantity = function (cartName) {
-        var items = this.getItems(cartName);
-        var counter = 0;
-        if (items)
-            items.forEach(function (q) { return counter += q.quantity; });
-        return counter;
-    };
     CartService.prototype.addItem = function (product, cartName) {
-        // quantity = this.toNumber(product.quantity);
         if (product.quantity != 0) {
-            // update quantity for existing item
             var found = false;
             for (var i = 0; i < this.cart.length && !found; i++) {
                 var item = this.cart[i];

@@ -14,14 +14,23 @@ var cart_service_1 = require("../services/cart.service");
 var CartComponent = (function () {
     function CartComponent(_cartSvc) {
         this._cartSvc = _cartSvc;
+        this.numOfCartItems = 0;
+        this.subTotalAmt = 0;
     }
     CartComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.numOfCartItems = this._cartSvc.getTotalQuantity("dahCart");
-        console.log('Toal Cart Items' + this.numOfCartItems);
-        this._cartSvc.updateCartStatus(this.numOfCartItems);
-        this._cartSvc.cartStatus.subscribe(function (status) { return _this.numOfCartItems = status; });
-        //this.products = this._cartSvc.getItems("dahCart");
+        this.products = this._cartSvc.getItems('dahCart');
+        this._cartSvc.updateCartStatus(this.products);
+        this._cartSvc.cartStatus.subscribe(function (r) {
+            var count = 0, amt = 0;
+            for (var i = 0; i < r.length; i++) {
+                count = count + r[i].quantity;
+                var total = r[i].price * r[i].quantity;
+                amt = amt + total;
+            }
+            _this.numOfCartItems = count;
+            _this.subTotalAmt = amt;
+        });
     };
     CartComponent = __decorate([
         core_1.Component({

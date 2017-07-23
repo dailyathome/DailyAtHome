@@ -1,11 +1,21 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
+import { animate, trigger, transition, style } from '@angular/animations';
 
 @Component({
     selector: 'cart-summary',
     templateUrl: 'app/cart/cart-summary.component.html',
-    styleUrls: ['app/cart/cart-summary.component.min.css']
+    styleUrls: ['app/cart/cart-summary.component.min.css'],
+    animations: [
+        trigger('flyInOut', [
+            transition(':leave', [
+                animate('1s', style({
+                    transform:'translateX(100%)'
+                }))
+            ])
+        ])
+    ]
 })
 export class CartSummaryComponent implements OnInit {
     subTotalAmt: number = 0;

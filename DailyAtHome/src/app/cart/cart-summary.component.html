@@ -11,7 +11,7 @@
         <button class="btn btn-success pull-right">Checkout <i class="fa fa-credit-card"></i></button>
     </div>
 </div>
-<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index">
+<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyInOut]>
     <!-- Default panel contents -->
     <div class="panel-heading"><strong>{{p.name}}</strong></div>
     <div class="table-responsive">
