@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DailyAtHome.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,15 +9,46 @@ using System.Web.Http.Cors;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/Admin")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AdminController : ApiController
     {
-        [HttpGet]
-        public IEnumerable<string> AddNewCategory()
+        dahDBEntities dahEntity = new dahDBEntities();
+
+        public AdminController()
         {
-            return new string[] { "value1", "value2" };
+            dahEntity.Configuration.ProxyCreationEnabled = false;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("AddCategory")]
+        public IHttpActionResult AddCategory(DAH_Categories Category)
+        {
+            try
+            {
+                dahEntity.DAH_SP_AddCategory(Category.Category, Category.Description);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("UpdateCategory")]
+        public IHttpActionResult UpdateCategory(DAH_Categories Category)
+        {
+            try
+            {
+                dahEntity.DAH_SP_UpdateCategory(Category.ID, Category.Category, Category.Description);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
         }
     }
 }

@@ -5,14 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import {CartComponent } from './cart/cart.component';
+import { CartComponent } from './cart/cart.component';
+import { AdmCategoryComponent } from './admin/categories/admcategory.component';
+import { AdmSubCategoryComponent } from './admin/subcategories/admsubcategory.component';
 import { AppRoutingModule, routingComponents } from './app.routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CartService } from '../app/services/cart.service';
 
 @NgModule({
     imports: [BrowserModule,FormsModule, AppRoutingModule, HttpModule],
-    declarations: [AppComponent, HeaderComponent, CartComponent, routingComponents],
+    declarations: [AppComponent, HeaderComponent, CartComponent, routingComponents, AdmCategoryComponent, AdmSubCategoryComponent],
     bootstrap: [AppComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, CartService],
 })

@@ -11,16 +11,20 @@ var router_1 = require("@angular/router");
 var products_component_1 = require("../app/products/products.component");
 var login_component_1 = require("../app/account/login.component");
 var cart_summary_component_1 = require("../app/cart/cart-summary.component");
+var home_component_1 = require("../app/home/home.component");
+var admin_component_1 = require("../app/admin/admin.component");
 var routes = [
     { path: 'products/:id', component: products_component_1.ProductsComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'cart-summary', component: cart_summary_component_1.CartSummaryComponent },
+    { path: 'home', component: home_component_1.HomeComponent },
+    { path: 'admin', component: admin_component_1.AdminComponent },
     //{ path: 'register', component: RegisterComponent },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'home',
         pathMatch: 'full',
     }
 ];
@@ -38,5 +42,5 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 exports.AppRoutingModule = AppRoutingModule;
-exports.routingComponents = [products_component_1.ProductsComponent, login_component_1.LoginComponent, cart_summary_component_1.CartSummaryComponent];
+exports.routingComponents = [products_component_1.ProductsComponent, login_component_1.LoginComponent, cart_summary_component_1.CartSummaryComponent, home_component_1.HomeComponent, admin_component_1.AdminComponent];
 //# sourceMappingURL=app.routing.module.js.map

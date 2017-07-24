@@ -48,7 +48,7 @@ var ProductsComponent = (function () {
         core_1.Component({
             selector: '<products></products>',
             templateUrl: 'app/products/products.component.html',
-            styles: [".panel-title{ font-weight:bold}"],
+            styles: [".panel-title{ font-weight:bold}\n.panel input{\nwidth:60px; margin-top:6px;\n}\n"],
             providers: [products_service_1.ProductsService]
         }),
         __metadata("design:paramtypes", [router_1.ActivatedRoute, products_service_1.ProductsService, cart_service_1.CartService])

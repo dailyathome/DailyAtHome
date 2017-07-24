@@ -8,10 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var header_component_1 = require("./header/header.component");
 var cart_component_1 = require("./cart/cart.component");
+var admcategory_component_1 = require("./admin/categories/admcategory.component");
+var admsubcategory_component_1 = require("./admin/subcategories/admsubcategory.component");
 var app_routing_module_1 = require("./app.routing.module");
 var common_1 = require("@angular/common");
 var cart_service_1 = require("../app/services/cart.service");
@@ -20,8 +23,8 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, http_1.HttpModule],
-            declarations: [app_component_1.AppComponent, header_component_1.HeaderComponent, cart_component_1.CartComponent, app_routing_module_1.routingComponents],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_module_1.AppRoutingModule, http_1.HttpModule],
+            declarations: [app_component_1.AppComponent, header_component_1.HeaderComponent, cart_component_1.CartComponent, app_routing_module_1.routingComponents, admcategory_component_1.AdmCategoryComponent, admsubcategory_component_1.AdmSubCategoryComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, cart_service_1.CartService],
         })

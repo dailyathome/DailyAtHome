@@ -25,8 +25,13 @@ var CartService = (function () {
     //addItem(product: Product) {
     //    this.cart.push(product);
     //}
-    CartService.prototype.deleteItem = function (product) {
+    CartService.prototype.deleteItem = function (product, cartName) {
         this.cart = this.cart.filter(function (cartItem) { return cartItem.id !== product.id; });
+        this.saveItems(cartName);
+    };
+    CartService.prototype.updateItem = function (product, cartName) {
+        this.cart.forEach(function (a) { return product.id == a.id ? a.quantity = product.quantity : a.quantity; });
+        this.saveItems(cartName);
     };
     CartService.prototype.clearCart = function () {
         this.cart = [];

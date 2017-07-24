@@ -1,0 +1,8 @@
+﻿<div class="panel-body" *ngIf="ShowUpdate">
+    <h4>Edit Existing Category</h4>
+
+    <select class="form-control breadcrumb" (change)="onCategorySelect($event.target.value)">
+        <option value="-1">--Select an option--</option>
+        <option *ngFor="let cat of categories" value="{{cat.ID}}">{{cat.Category}}</option>
+    </select>
+</div>
