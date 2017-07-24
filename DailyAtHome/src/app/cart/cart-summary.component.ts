@@ -1,28 +1,43 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
+import { animate, trigger, transition, style } from '@angular/animations';
 
 @Component({
     selector: 'cart-summary',
     templateUrl: 'app/cart/cart-summary.component.html',
-    styleUrls: ['app/cart/cart-summary.component.min.css']
+    styleUrls: ['app/cart/cart-summary.component.min.css'],
+    animations: [
+        trigger('flyInOut', [
+            transition(':leave', [
+                animate('1s', style({
+                    transform:'translateX(100%)'
+                }))
+            ])
+        ])
+    ]
 })
 export class CartSummaryComponent implements OnInit {
-
-    cartSubTotal: number = 0;
-    cartItemsCount: number;
+    subTotalAmt: number = 0;
+    numOfCartItems: number=0;
     constructor(private _cartSvc: CartService) { }
     products: Product[];
     ngOnInit() {
         this.products = this._cartSvc.getItems('dahCart');
+        this._cartSvc.updateCartStatus(this.products);
         this._cartSvc.cartStatus.subscribe(
-            (status) => this.cartItemsCount = status
-        )
-        this.products.forEach(a => this.cartSubTotal = a.quantity * a.price);
-        for (var i = 0; i < this.products.length; i++) {
-            var total = this.products[i].price * this.products[i].quantity;
-            this.cartSubTotal = this.cartSubTotal + total;
-        }
+            (r) => {
+                this.products = r;
+                var count = 0, amt = 0;
+                for (var i = 0; i < r.length; i++) {
+                    count = count + r[i].quantity;
+                    var total = r[i].price * r[i].quantity;
+                    amt = amt + total;
+                }
+                this.numOfCartItems = count;
+                this.subTotalAmt = amt;
+            }
+        );
     }
 
     onDeleteClick(product) {
@@ -33,7 +48,6 @@ export class CartSummaryComponent implements OnInit {
             quantity: 1,
             name: product.name
         }, 'dahCart');
-        this.products = this._cartSvc.getItems('dahCart');
     }
 
     onUpdateClick(product) {
@@ -44,6 +58,5 @@ export class CartSummaryComponent implements OnInit {
             quantity: product.quantity,
             name: product.name
         }, 'dahCart');
-        this.products = this._cartSvc.getItems('dahCart');
     }
 }

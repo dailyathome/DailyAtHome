@@ -1,7 +1,7 @@
 ﻿
 <div class="panel panel-info" *ngIf="products && products.length>0">
     <div class="alert-info panel-body">
-        <h4><span> Cart Subtotal ({{cartItemsCount}} items): </span><strong>{{cartSubtotal}}</strong></h4>
+        <h4><span> Cart Subtotal ({{numOfCartItems}} items): <strong>{{subTotalAmt | currency:'USD':true:'1.2-2'}}</strong> </span></h4>
     </div>
 </div>
 
@@ -11,7 +11,7 @@
         <button class="btn btn-success pull-right">Checkout <i class="fa fa-credit-card"></i></button>
     </div>
 </div>
-<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index">
+<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyInOut]>
     <!-- Default panel contents -->
     <div class="panel-heading"><strong>{{p.name}}</strong></div>
     <div class="table-responsive">
@@ -36,14 +36,14 @@
                                     <div>
                                         <ul class="list-inline">
                                             <li>
-                                                <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" />
+                                                <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" min="1" />
                                             </li>
                                             <li><button class="btn btn-danger btn-sm" (click)="onDeleteClick(p)">Delete</button></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <button name="btnUpdate-{{i}}" class="btn btn-success btn-sm" [class.hidden]="!quntity.dirty" (click)="onUpdateClick(p)">Update</button>
+                                    <button class="btn btn-success btn-sm" [class.hidden]="!quntity.dirty || p.quantity<=0" (click)="onUpdateClick(p)">Update</button>
                                 </li>
                             </ul>
                         </div>

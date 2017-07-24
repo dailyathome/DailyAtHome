@@ -23,7 +23,7 @@ var ProductsComponent = (function () {
     }
     ProductsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._cartSvc.cartStatus.subscribe(function (status) { return _this.message = status; });
+        this._cartSvc.cartStatus.subscribe(function (status) { return _this.productsArray = status; });
         this._route.params.subscribe(function (params) {
             var id = +params['id']; // (+) converts string 'id' to a number
             _this.getProducts(id);

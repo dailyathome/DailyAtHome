@@ -7,13 +7,14 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class CartService {
 
-    private cartSource = new BehaviorSubject<number>(0);
+    private cart: Product[] = [];
+    private cartSource = new BehaviorSubject<Product[]>(this.cart);
     cartStatus = this.cartSource.asObservable();
 
-    updateCartStatus(status: number) {
-        this.cartSource.next(status);
+    updateCartStatus(products: Product[]) {
+        this.cartSource.next(products);
     }
-    private cart: Product[] = [];
+    
     // private discount: IDiscount;
     //addItem(product: Product) {
     //    this.cart.push(product);
@@ -33,9 +34,6 @@ export class CartService {
     //applyDiscount(code: string) {
     //    this.discount = discounts.filter(discount => discount.code == code)[0];
     //}
-    //getCart(): Product[] {
-    //    return this.cart;
-    //}
     getTotalPrice() {
         let totalPrice = this.cart.reduce((sum, cartItem) => {
             return sum += cartItem.price, sum;
@@ -48,24 +46,12 @@ export class CartService {
     saveItems(cartName: string) {
         if (localStorage != null && JSON != null) {
             localStorage[cartName + "_items"] = JSON.stringify(this.cart);
-            var counter = 0;
-            this.cart.forEach(q => counter += q.quantity);
-            this.updateCartStatus(counter);
+            this.updateCartStatus(this.cart);
         }
     }
 
-    getTotalQuantity(cartName: string) {
-        var items = this.getItems(cartName);
-        var counter = 0;
-        if (items)
-            items.forEach(q => counter += q.quantity);
-        return counter;
-    }
     addItem(product: Product, cartName: string) {
-        // quantity = this.toNumber(product.quantity);
         if (product.quantity != 0) {
-
-            // update quantity for existing item
             var found = false;
             for (var i = 0; i < this.cart.length && !found; i++) {
                 var item = this.cart[i];

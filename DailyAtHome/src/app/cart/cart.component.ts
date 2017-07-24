@@ -2,7 +2,6 @@
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
 
-
 @Component({
     selector: 'cart',
     templateUrl: 'app/cart/cart.component.html',
@@ -10,14 +9,23 @@ import { Product } from '../models/product.model';
 })
 export class CartComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
-    numOfCartItems: number
+    numOfCartItems: number=0;
+    subTotalAmt: number=0;
+    products: Product[];
     ngOnInit() {
-        this.numOfCartItems = this._cartSvc.getTotalQuantity("dahCart");
-        console.log('Toal Cart Items' + this.numOfCartItems);
-        this._cartSvc.updateCartStatus(this.numOfCartItems);
+        this.products = this._cartSvc.getItems('dahCart');
+        this._cartSvc.updateCartStatus(this.products);
         this._cartSvc.cartStatus.subscribe(
-            (status) => this.numOfCartItems = status
-        )
-        //this.products = this._cartSvc.getItems("dahCart");
+            (r) => {
+                var count = 0, amt = 0;
+                for (var i = 0; i < r.length; i++) {                  
+                    count = count + r[i].quantity;
+                    var total = r[i].price * r[i].quantity;
+                    amt = amt + total;
+                }
+                this.numOfCartItems = count;
+                this.subTotalAmt = amt;
+            }
+        );
     }
 }
