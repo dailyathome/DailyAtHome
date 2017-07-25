@@ -77,7 +77,7 @@ export class CartService {
     getItems(cartName: string) {
         this.clearCart();
         var items = localStorage != null ? localStorage[cartName + "_items"] : null;
-        if (items != null && JSON != null) {
+        if (items != null && JSON != null && items) {
             try {
                 var items = JSON.parse(items);
                 for (var i = 0; i < items.length; i++) {

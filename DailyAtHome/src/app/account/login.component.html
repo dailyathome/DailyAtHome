@@ -1,3 +1,22 @@
-﻿<div>
-    <h2>Login</h2>
-</div>
+﻿<form [formGroup]="loginForm">
+    <div class="form-group">
+        <input type="email" class="form-control" formControlName="userName" placeholder="Email" name="email">
+    <div *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched" class="text-danger">
+        Required!
+    </div>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" >
+        <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="text-danger">
+            Required!
+        </div>
+    </div>
+    <div class="checkbox center-block">
+        <input type="hidden" formControlName="grant_type" value="password" />
+        <label class="center-block text-center"><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <div class="form-group center-block text-center">
+        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success" (click)="login()">Login</button>
+    </div>
+    
+</form>

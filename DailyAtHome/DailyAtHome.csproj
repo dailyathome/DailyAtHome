@@ -228,12 +228,19 @@
       <DependentUpon>header.component.css</DependentUpon>
     </Content>
     <Content Include="src\app\products\products.component.html" />
+    <Content Include="src\styles.css">
+      <DependentUpon>styles.less</DependentUpon>
+    </Content>
+    <Content Include="src\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
     <Content Include="src\tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="src\Scripts\jquery-1.9.1.min.map" />
     <Content Include="src\app\header\header.component.less" />
     <Content Include="src\app\app.component.less" />
     <Content Include="src\app\cart\cart-summary.component.less" />
+    <Content Include="src\styles.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,7 +251,6 @@
   <ItemGroup>
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
-    <Content Include="src\styles.css" />
     <Content Include="src\systemjs-angular-loader.js" />
     <Content Include="src\systemjs.config.extras.js" />
     <Content Include="src\systemjs.config.js" />
@@ -267,12 +273,14 @@
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
+    <TypeScriptCompile Include="src\app\services\auth.service.ts" />
     <TypeScriptCompile Include="src\app\services\cart.service.ts" />
     <TypeScriptCompile Include="src\app\header\header.component.ts" />
     <TypeScriptCompile Include="src\app\models\product.model.ts" />
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
     <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
+    <TypeScriptCompile Include="src\app\utility\utility.auth-guard.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -14,5 +14,9 @@
   {
     "outputFile": "src/app/cart/cart-summary.component.css",
     "inputFile": "src/app/cart/cart-summary.component.less"
+  },
+  {
+    "outputFile": "src/styles.css",
+    "inputFile": "src/styles.less"
   }
 ]

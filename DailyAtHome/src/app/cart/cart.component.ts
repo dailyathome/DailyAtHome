@@ -18,10 +18,12 @@ export class CartComponent implements OnInit {
         this._cartSvc.cartStatus.subscribe(
             (r) => {
                 var count = 0, amt = 0;
-                for (var i = 0; i < r.length; i++) {                  
-                    count = count + r[i].quantity;
-                    var total = r[i].price * r[i].quantity;
-                    amt = amt + total;
+                if (r != null && r) {
+                    for (var i = 0; i < r.length; i++) {
+                        count = count + r[i].quantity;
+                        var total = r[i].price * r[i].quantity;
+                        amt = amt + total;
+                    }
                 }
                 this.numOfCartItems = count;
                 this.subTotalAmt = amt;
