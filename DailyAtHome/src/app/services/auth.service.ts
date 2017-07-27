@@ -18,13 +18,17 @@ export class AuthService {
     login(loginForm) {
 
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(AppSettings.API_URL + '/api/token', JSON.stringify(loginForm), options).
-            map((res: Response) => res.json());       
-        }
- 
-    logout(){
+        return this.http.post(AppSettings.API_URL + "/token",
+            "UserName=" + encodeURIComponent(loginForm.userName) +
+            "&Password=" + encodeURIComponent(loginForm.password) +
+            "&grant_type=password",
+            options
+        ).
+            map((res: Response) => res.json());
+    }
+
+    logout() {
         this.isLoggedIn = false;
     }
 }

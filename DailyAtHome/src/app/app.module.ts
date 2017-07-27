@@ -9,7 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { CartComponent } from './cart/cart.component';
 import { AdmCategoryComponent } from './admin/categories/admcategory.component';
 import { AdmSubCategoryComponent } from './admin/subcategories/admsubcategory.component';
-import { AppRoutingModule, routingComponents } from './app.routing.module';
+import { AppRoutingModule, routingComponents, providers } from './app.routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CartService } from '../app/services/cart.service';
 //import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,6 @@ import { CartService } from '../app/services/cart.service';
     imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule],
     declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, routingComponents],
     bootstrap: [AppComponent],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, CartService],
+    providers: [CartService, providers],
 })
 export class AppModule { }

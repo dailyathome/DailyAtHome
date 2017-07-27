@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthGuard } from '../utility/utility.auth-guard';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
     loginForm = new FormGroup({
         userName: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required])
+        password: new FormControl('', [Validators.required]),
     });
     loading = false;
     returnUrl: string;
@@ -34,7 +35,6 @@ export class LoginComponent implements OnInit {
    
 
     login() {
-        this.loading = true;
         this._authSvc.login(this.loginForm.value)
             .subscribe(
             data => {
