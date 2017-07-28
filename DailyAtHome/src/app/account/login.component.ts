@@ -5,9 +5,8 @@ import { AuthGuard } from '../utility/utility.auth-guard';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-    selector:'login',
-    templateUrl: 'app/account/login.component.html',
-    providers:[AuthService]
+    selector: 'login',
+    templateUrl: 'app/account/login.component.html'
 })
 
 export class LoginComponent implements OnInit {
@@ -16,35 +15,37 @@ export class LoginComponent implements OnInit {
         userName: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
     });
-    loading = false;
     returnUrl: string;
+    loginResult: any = {
+        success: '',
+        message: ''
+    }
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private _authSvc: AuthService ) { }
+        private _authSvc: AuthService) { }
+
+    //IsLoggedIn = this._authSvc.isLoggedIn();
+
 
     ngOnInit() {
-        // reset login status
-        this._authSvc.logout();
-
-        // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
-
-   
 
     login() {
         this._authSvc.login(this.loginForm.value)
             .subscribe(
             data => {
                 sessionStorage.setItem('accessToken', data.access_token);
-                // login successful so redirect to return url
+                this._authSvc.updateAuthStatus();
                 this.router.navigateByUrl(this.returnUrl);
             },
             error => {
-                // login failed so display error
-                this.loading = false;
+                this.loginResult = {
+                    success: false,
+                    message: JSON.parse(error._body)
+                }
             });
     }
 }

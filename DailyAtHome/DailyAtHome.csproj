@@ -96,6 +96,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\app\account\logout.component.html" />
     <Content Include="src\app\admin\admin.component.html" />
     <Content Include="src\app\admin\categories\admcategory.component.html" />
     <Content Include="src\app\admin\subcategories\admsubcategory.component.html" />
@@ -261,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\account\login.component.ts" />
+    <TypeScriptCompile Include="src\app\account\logout.component.ts" />
     <TypeScriptCompile Include="src\app\admin\admin.component.ts" />
     <TypeScriptCompile Include="src\app\admin\categories\admcategory.component.ts" />
     <TypeScriptCompile Include="src\app\admin\subcategories\admsubcategory.component.ts" />
@@ -272,6 +274,7 @@
     <TypeScriptCompile Include="src\app\cart\cart-summary.component.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\models\user.model.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
     <TypeScriptCompile Include="src\app\services\auth.service.ts" />
     <TypeScriptCompile Include="src\app\services\cart.service.ts" />
@@ -327,9 +330,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
-  <Target Name="SpicNSpan"
-          AfterTargets="Clean">
-    <RemoveDir Directories="$(OUTDIR)"/>
+  <Target Name="SpicNSpan" AfterTargets="Clean">
+    <RemoveDir Directories="$(OUTDIR)" />
   </Target>
 </Project>

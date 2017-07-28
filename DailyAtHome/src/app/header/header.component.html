@@ -112,7 +112,7 @@
 
         <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
         <div class="navbar-header pull-right">
-            <ul class="nav pull-left">
+            <ul class="nav pull-left list-inline">
                 <!-- This works well for static text, like a username -->
                 <!-- <li class="navbar-text pull-left">User Name</li>-->
                 <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
@@ -127,6 +127,10 @@
                         </li>
                     </ul>
                 </li>-->
+                <li class="login-link pull-left">
+                <a *ngIf="!IsLoggedIn" [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a>
+                    <a *ngIf="IsLoggedIn" [routerLink]="['logout']"><i class="fa fa-user-circle"></i> Logout</a>
+                 </li>
                 <li class="pull-right cart-container">
                     <cart>
                     </cart>
@@ -141,7 +145,7 @@
         <div class="collapse navbar-collapse">
             <!--                      pull-right keeps the drop-down in line -->
             <ul class="nav navbar-nav">
-                <li><a [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a></li>
+                
                 <li><a href="/merchants">Merchants</a></li>             
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
