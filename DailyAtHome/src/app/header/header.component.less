@@ -17,8 +17,9 @@
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #fff;
-    &:hover, &:active{
-        color:green;
+
+    &:hover, &:active {
+        color: green;
     }
 }
 
@@ -26,8 +27,7 @@
     background-color: #002e4e;
 }
 
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus
-{
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: transparent;
 }
 
@@ -37,6 +37,10 @@
             color: #fff;
             font-size: medium;
             font-weight: bold;
+
+            &:hover, &:active {
+                color: green;
+            }
         }
     }
 }
@@ -89,5 +93,23 @@ li.login-link {
         color: #fff;
         font-weight: bold;
         background-color: transparent;
+
+        &:hover, &:active {
+            color: green;
+        }
+    }
+}
+
+.search-container {
+    color:#003b64;
+    padding-top:20px;
+    input {       
+        width: 70%;
+        border-radius: 6px;
+        margin-right:-25px;
+        
+    }
+    i{
+        cursor:pointer;
     }
 }
