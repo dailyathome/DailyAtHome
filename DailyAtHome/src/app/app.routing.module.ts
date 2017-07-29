@@ -2,6 +2,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from '../app/products/products.component';
 import { LoginComponent } from '../app/account/login.component';
+import { RegisterComponent } from '../app/account/register.component';
 import { CartSummaryComponent } from '../app/cart/cart-summary.component';
 import { HomeComponent } from '../app/home/home.component';
 import { AdminComponent } from '../app/admin/admin.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-    //{ path: 'register', component: RegisterComponent },
+    { path: 'register', component: RegisterComponent },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {
@@ -33,5 +34,5 @@ const routes: Routes = [
     ]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ProductsComponent, LoginComponent, LogoutComponent, CartSummaryComponent, HomeComponent, AdminComponent]
+export const routingComponents = [ProductsComponent, LoginComponent, LogoutComponent, RegisterComponent, CartSummaryComponent, HomeComponent, AdminComponent]
 export const providers = AuthGuard;

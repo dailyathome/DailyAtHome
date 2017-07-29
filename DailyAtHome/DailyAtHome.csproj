@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\app\account\logout.component.html" />
+    <Content Include="src\app\account\register.component.html" />
     <Content Include="src\app\admin\admin.component.html" />
     <Content Include="src\app\admin\categories\admcategory.component.html" />
     <Content Include="src\app\admin\subcategories\admsubcategory.component.html" />
@@ -111,6 +112,7 @@
     <Content Include="src\Content\font-awesome.min.css" />
     <Content Include="src\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="src\Content\Images\Logo.png" />
+    <Content Include="src\favicon.ico" />
     <Content Include="src\fonts\fontawesome-webfont.svg" />
     <Content Include="packages.config" />
     <Content Include="bs-config.json" />
@@ -250,7 +252,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\favicon.ico" />
+    <Content Include="src\favicon1.ico" />
     <Content Include="src\index.html" />
     <Content Include="src\systemjs-angular-loader.js" />
     <Content Include="src\systemjs.config.extras.js" />
@@ -263,6 +265,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\account\login.component.ts" />
     <TypeScriptCompile Include="src\app\account\logout.component.ts" />
+    <TypeScriptCompile Include="src\app\account\register.component.ts" />
     <TypeScriptCompile Include="src\app\admin\admin.component.ts" />
     <TypeScriptCompile Include="src\app\admin\categories\admcategory.component.ts" />
     <TypeScriptCompile Include="src\app\admin\subcategories\admsubcategory.component.ts" />
@@ -284,6 +287,7 @@
     <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
     <TypeScriptCompile Include="src\app\utility\utility.auth-guard.ts" />
+    <TypeScriptCompile Include="src\app\validators\validator.password.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>

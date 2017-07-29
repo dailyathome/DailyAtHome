@@ -1,11 +1,9 @@
 ﻿input.ng-touched.ng-invalid {
-  border-left: solid 5px #a94442 !important ;
+  border-left: solid 5px #a94442 ;
 }
-input.ng-valid {
-  border-left: solid 5px #5cb85c !important;
+input.ngvalid {
+  border-left: solid 5px #5cb85c;
 }
-
-.form-control:focus{
-    border:1px solid #ccc;
-    box-shadow:none;
+a.active {
+  color: #029f5b;
 }
