@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-success">
+        <div class="panel">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6 text-right">
@@ -36,7 +36,7 @@
                                     Minimum 6 characters!
                                 </div>
                                 <div *ngIf="registerForm.controls['password'].hasError('pattern') && registerForm.controls['password'].touched" class="text-danger">
-                                    Must have alphabets and numbers!
+                                    Must be alphabets and numbers!
                                 </div>
                             </div>
                             <div class="form-group">
@@ -56,7 +56,10 @@
                 </div>
             </div>
             <div *ngIf="!registerResult.success" class="alert-danger text-center">
-                {{registerResult.message.error_description}}
+                {{registerResult.message}}
+            </div>
+            <div *ngIf="registerResult.success" class="alert-success text-center">
+                {{registerResult.message}}
             </div>
         </div>
     </div>

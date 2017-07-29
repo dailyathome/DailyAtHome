@@ -5,12 +5,17 @@ import { Product } from '../models/product.model';
 @Component({
     selector: 'cart',
     templateUrl: 'app/cart/cart.component.html',
-    styles:['div{margin:15px;}']
+    styles: [`div{margin:15px;}
+        span.badge {
+            background-color: #fff !important;
+            color: #003b64 !important;
+        }`
+    ]
 })
 export class CartComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
-    numOfCartItems: number=0;
-    subTotalAmt: number=0;
+    numOfCartItems: number = 0;
+    subTotalAmt: number = 0;
     products: Product[];
     ngOnInit() {
         this.products = this._cartSvc.getItems('dahCart');

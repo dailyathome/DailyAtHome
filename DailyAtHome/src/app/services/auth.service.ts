@@ -33,16 +33,26 @@ export class AuthService {
             map((res: Response) => res.json());
     }
 
-
-
-    getUser() {
-        return
+    register(registerForm) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        // headers.append();
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(AppSettings.API_URL + '/api/account/register', JSON.stringify(registerForm), options);
     }
+
     logout() {
         //sessionStorage.removeItem('accessToken');
-        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')});
+        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
         //headers.append('Authorization', 'Bearer ' + sessionStorage.getItem('accessToken'));
         let options = new RequestOptions({ headers: headers });
         return this.http.post(AppSettings.API_URL + '/api/account/Logout', options).map((res: Response) => res.json());
     }
+
+    getUser() {
+        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(AppSettings.API_URL + '/api/account/Logout', options).map((res: Response) => res.json());
+
+    }
+
 }

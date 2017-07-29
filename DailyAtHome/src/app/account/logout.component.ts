@@ -17,6 +17,7 @@ export class LogoutComponent implements OnInit {
             success: true,
             message: 'You have successfully Logged Out.'
         }
+        this._authSvc.updateAuthStatus();
 
         //this._authSvc.logout().
         //    subscribe(

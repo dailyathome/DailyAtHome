@@ -1,5 +1,5 @@
 ﻿.navbar-inverse {
-    background-color: #5cb85c;
+    background-color: #003b64;
     border: none;
 
     .navbar-collapse {
@@ -15,6 +15,22 @@
     background-color: lightgreen;
 }
 
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+    &:hover, &:active{
+        color:green;
+    }
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #002e4e;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus
+{
+    background-color: transparent;
+}
+
 .navbar-nav {
     > li {
         > a {
@@ -26,26 +42,24 @@
 }
 
 .navbar-default {
-    background-color: #5cb85c;
+    background-color: #003b64;
 }
 
-.badge {
-    padding: 3px 4px;
-    margin: -4px 0 0 2px;
-}
+
 
 .dropdown-header {
-    color: #fff;
+    color: deepskyblue;
     font-weight: bold;
 }
 
 .dropdown-menu, .navbar-nav .open .dropdown-menu {
     border-top: none;
-    background-color: lightgreen;
+    background-color: transparent;
     padding: 0;
     margin: 0;
     box-shadow: none;
     border: none;
+    color: #003b64;
 }
 
 .navbar-default .navbar-collapse {
@@ -56,9 +70,10 @@
     min-width: 100%;
 }
 
-li.cart-container{
-        margin:15px;
+li.cart-container {
+    margin: 15px;
 }
+
 .navbar-collapse collapse in {
     max-height: inherit;
 }
@@ -67,6 +82,12 @@ ul.navbar-nav {
     margin: 0;
 }
 
-li.login-link{
-    padding-top:10px;
+li.login-link {
+    padding-top: 10px;
+
+    a {
+        color: #fff;
+        font-weight: bold;
+        background-color: transparent;
+    }
 }

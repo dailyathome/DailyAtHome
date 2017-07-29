@@ -336,7 +336,7 @@ namespace DailyAtHome.WebAPI.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.UserName };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
@@ -347,7 +347,7 @@ namespace DailyAtHome.WebAPI.Controllers
                 token = HttpUtility.UrlEncode(token);
                 try
                 {
-                    var callbackUrl = ConfigurationManager.AppSettings["WebSiteUrl"] + "/confirm-email?userId=" + model.Email + "&token=" + token;
+                    var callbackUrl = ConfigurationManager.AppSettings["WebSiteUrl"] + "/confirm-email?userId=" + model.UserName + "&token=" + token;
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 }
                 catch (Exception ex)
