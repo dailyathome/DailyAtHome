@@ -44,5 +44,6 @@
                 defaultExtension: 'js'
             }
         }
+
     });
 })(this);

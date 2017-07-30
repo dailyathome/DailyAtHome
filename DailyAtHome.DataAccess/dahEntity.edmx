@@ -291,6 +291,9 @@
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
           <Parameter Name="ImageID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DAH_SP_GetSubCategoryByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="DAH_SP_UpdateCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="Category" Type="nvarchar" Mode="In" />
@@ -525,6 +528,9 @@
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="ImageID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="DAH_SP_GetSubCategoryByCategory" ReturnType="Collection(dahDBModel.DAH_SP_GetSubCategoryByCategory_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="DAH_Address" EntityType="dahDBModel.DAH_Address" />
           <EntitySet Name="DAH_AddressType" EntityType="dahDBModel.DAH_AddressType" />
           <AssociationSet Name="FK_DAH_Address_AspNetUsers" Association="dahDBModel.FK_DAH_Address_AspNetUsers">
@@ -708,6 +714,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="DAH_SP_GetSubCategoryByCategory_Result">
+          <Property Type="String" Name="SubCategory" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -842,6 +855,17 @@
           <FunctionImportMapping FunctionImportName="DAH_SP_AddSubCategory" FunctionName="dahDBModel.Store.DAH_SP_AddSubCategory" />
           <FunctionImportMapping FunctionImportName="DAH_SP_UpdateCategory" FunctionName="dahDBModel.Store.DAH_SP_UpdateCategory" />
           <FunctionImportMapping FunctionImportName="DAH_SP_UpdateSubCategory" FunctionName="dahDBModel.Store.DAH_SP_UpdateSubCategory" />
+          <FunctionImportMapping FunctionImportName="DAH_SP_GetSubCategoryByCategory" FunctionName="dahDBModel.Store.DAH_SP_GetSubCategoryByCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dahDBModel.DAH_SP_GetSubCategoryByCategory_Result">
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="DAH_Address">
             <EntityTypeMapping TypeName="dahDBModel.DAH_Address">
               <MappingFragment StoreEntitySet="DAH_Address">

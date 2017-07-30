@@ -103,13 +103,18 @@
     <Compile Include="DAH_Products.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAH_SP_GetSubCategoryByCategory_Result.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAH_SubCategories.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddSubCategoryModel.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\SubCategories.cs" />
+    <Compile Include="Models\SubCategoriesByCategoryID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

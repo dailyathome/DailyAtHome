@@ -52,8 +52,8 @@ export class AdmCategoryComponent implements OnInit {
     ShowUpdateCategories() {
         this.ShowUpdate = true;
     }
-    Add(category) {
-        this.adminSvc.AddCategory(category)
+    Add(categoryItem : any) {
+        this.adminSvc.AddCategory(categoryItem)
             .subscribe(result => {
                 this.updateSuccess = result.ok ? true : false,
                     this.updateFail = result.ok ? false : true,

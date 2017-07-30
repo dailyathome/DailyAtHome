@@ -23,8 +23,8 @@ export class CartSummaryComponent implements OnInit {
     constructor(private _cartSvc: CartService) { }
     products: Product[];
     ngOnInit() {
-        this.products = this._cartSvc.getItems('dahCart');
-        this._cartSvc.updateCartStatus(this.products);
+       // this.products = this._cartSvc.getItems('dahCart');
+        //this._cartSvc.updateCartStatus(this.products);
         this._cartSvc.cartStatus.subscribe(
             (r) => {
                 this.products = r;

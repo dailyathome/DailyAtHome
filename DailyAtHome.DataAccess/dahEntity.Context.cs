@@ -116,5 +116,14 @@ namespace DailyAtHome.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateSubCategory", iDParameter, subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter);
         }
+    
+        public virtual ObjectResult<DAH_SP_GetSubCategoryByCategory_Result> DAH_SP_GetSubCategoryByCategory(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetSubCategoryByCategory_Result>("DAH_SP_GetSubCategoryByCategory", iDParameter);
+        }
     }
 }
