@@ -23,4 +23,10 @@ export class ProductsService {
             (response: Response) => response.json()
         );
     }
+    getSubCategoriesByCategoryID(id: number) {
+
+        return this.http.get(AppSettings.API_URL + '/api/header/GetSubcategoriesByCategoryID/' + id).map(
+            (response: Response) => response.json()
+        );
+    }
 }

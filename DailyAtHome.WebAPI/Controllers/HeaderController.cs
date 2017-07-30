@@ -79,23 +79,13 @@ namespace DailyAtHome.WebAPI.Controllers
                 return domainProducts;
             else return domainProducts.Where(p => p.Product.Contains(search)).ToList();
         }
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("UpdateCategory")]
-        public IHttpActionResult UpdateCategory(DAH_Categories Category)
+
+        public List<SubCategoriesByCategoryID> GetSubcategoriesByCategoryID(int id)
         {
-            try
-            {
-                dahDBEntities entity = new dahDBEntities();
+            List<DAH_SP_GetSubCategoryByCategory_Result> DBSubCategoriesByCategoryID = dahEntity.DAH_SP_GetSubCategoryByCategory(id).ToList();
+            List<SubCategoriesByCategoryID> SubCategoriesByCategoryID = ConvertToAppSubCategoriesByCategories(DBSubCategoriesByCategoryID);
 
-                entity.DAH_SP_UpdateCategory(Category.ID, Category.Category, Category.Description);
-
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return InternalServerError();
-            }
+            return SubCategoriesByCategoryID;
         }
         #endregion
 
@@ -118,6 +108,27 @@ namespace DailyAtHome.WebAPI.Controllers
             }
 
             return SubCategoriesList;
+
+        }
+
+        private List<SubCategoriesByCategoryID> ConvertToAppSubCategoriesByCategories(List<DAH_SP_GetSubCategoryByCategory_Result> dALSubcategoriesList)
+        {
+            List<SubCategoriesByCategoryID> SubCategoriesByCategoryList = new List<SubCategoriesByCategoryID>();
+
+
+            foreach (DAH_SP_GetSubCategoryByCategory_Result SubCategory in dALSubcategoriesList)
+            {
+                SubCategoriesByCategoryID AppSubCategory = new SubCategoriesByCategoryID();
+                AppSubCategory.SubCategory = SubCategory.SubCategory;
+                AppSubCategory.Category = SubCategory.Category;
+                AppSubCategory.Description = SubCategory.Description;
+                AppSubCategory.CategoryID = SubCategory.CategoryID;
+                AppSubCategory.ID = SubCategory.ID;
+
+                SubCategoriesByCategoryList.Add(AppSubCategory);
+            }
+
+            return SubCategoriesByCategoryList;
 
         }
 

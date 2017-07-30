@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using DailyAtHome.DataAccess.Models;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -26,7 +27,7 @@ namespace DailyAtHome.WebAPI.Controllers
         {
             try
             {
-                dahEntity.DAH_SP_AddCategory(Category.Category, Category.Description);
+                //dahEntity.DAH_SP_AddCategory(Category.Category, Category.Description);
                 return Ok();
             }
             catch (Exception)
@@ -43,6 +44,38 @@ namespace DailyAtHome.WebAPI.Controllers
             try
             {
                 dahEntity.DAH_SP_UpdateCategory(Category.ID, Category.Category, Category.Description);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("UpdateSubCategory")]
+        public IHttpActionResult UpdateSubCategory(SubCategoriesByCategoryID SubCategory)
+        {
+            try
+            {
+                dahEntity.DAH_SP_UpdateSubCategory(SubCategory.ID, SubCategory.SubCategory, SubCategory.CategoryID, SubCategory.Description, null);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("AddSubCategory")]
+        public IHttpActionResult AddSubCategory(AddSubCategoryModel SubCategory)
+        {
+            try
+            {
+                dahEntity.DAH_SP_AddSubCategory(SubCategory.SubCategory, Convert.ToInt32(SubCategory.CategoryID), SubCategory.Description, null);
                 return Ok();
             }
             catch (Exception)

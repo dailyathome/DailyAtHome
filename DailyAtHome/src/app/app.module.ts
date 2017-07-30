@@ -15,7 +15,7 @@ import { CartService } from '../app/services/cart.service';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, FormsModule, AppRoutingModule, HttpModule],
-    declarations: [AppComponent, HeaderComponent, CartComponent, routingComponents],
+    declarations: [AppComponent, HeaderComponent, CartComponent, routingComponents, AdmCategoryComponent, AdmSubCategoryComponent],
     bootstrap: [AppComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, CartService],
 })

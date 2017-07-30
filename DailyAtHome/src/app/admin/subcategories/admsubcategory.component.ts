@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, NgZone } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { AdminService } from '../../services/admin.service';
 
@@ -15,18 +15,70 @@ export class AdmSubCategoryComponent implements OnInit {
     ShowUpdate: boolean;
     categories: any[];
     seloption: string;
+    subCategoriesByID: any[];
+    ShowSubCategories: boolean;
+    updateSuccess: boolean;
+    updateFail: boolean;
 
-    constructor(private productsService: ProductsService, private adminSvc: AdminService) { };
+    constructor(private zone: NgZone, private productsService: ProductsService, private adminSvc: AdminService) { };
 
     ngOnInit() {
         this.ShowUpdate = true;
+        this.ShowSubCategories = false;
         this.productsService.getCategories()
             .subscribe(result => this.categories = result);
     }
 
-    onCategorySelect(option:string){
+    toggleEdit(subCategory) {
+        subCategory.showEdit = subCategory.showEdit ? false : true;
+    }
+
+    CancelEdit(subCategory) {
+        this.productsService.getSubCategoriesByCategoryID(+this.seloption)
+            .subscribe(result => this.subCategoriesByID = result);
+    }
+
+    onCategorySelect (option:string){
         this.seloption = option;
+        this.updateSuccess = false;
+        this.updateFail = false;
+        this.productsService.getSubCategoriesByCategoryID(+this.seloption)
+            .subscribe(result => this.subCategoriesByID = result);
+
+        this.ShowSubCategories = true;
 
     }
 
+    SaveEdit(Subcat) {
+        this.adminSvc.UpdateSubCategory(Subcat)
+            .subscribe(result => {
+                this.updateSuccess = result.ok ? true : false,
+                    this.updateFail = result.ok ? false : true,
+                    this.productsService.getSubCategoriesByCategoryID(+this.seloption)
+                        .subscribe(result => this.subCategoriesByID = result);
+            });
+    }
+
+    AddNewSubCategory() {
+        this.ShowUpdate = false;
+        this.productsService.getCategories()
+            .subscribe(result => this.categories = result);
+    }
+
+    ShowUpdateSubCategories() {
+        this.ShowUpdate = true;
+    }
+
+    Add(subCategoryItem: any) {
+
+        this.seloption = subCategoryItem.CategoryID;
+        this.adminSvc.AddSubCategory(subCategoryItem)
+            .subscribe(result => {
+                this.updateSuccess = result.ok ? true : false,
+                    this.updateFail = result.ok ? false : true,
+                    this.ShowUpdate = true;
+                this.productsService.getSubCategoriesByCategoryID(+this.seloption)
+                    .subscribe(result => this.subCategoriesByID = result);
+            });
+    }
 }
