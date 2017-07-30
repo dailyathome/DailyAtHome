@@ -24,6 +24,10 @@
         <EntityTypeShape EntityType="dahDBModel.DAH_Products" Width="1.5" PointX="11.625" PointY="1.125" />
         <AssociationConnector Association="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" />
         <AssociationConnector Association="dahDBModel.FK_DAH_Products_DAH_SubCategories" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Address" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_AddressType" Width="1.5" PointX="3" PointY="11" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Address_AspNetUsers" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Address_DAH_AddressType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

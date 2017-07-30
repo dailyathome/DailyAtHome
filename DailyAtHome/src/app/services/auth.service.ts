@@ -51,7 +51,7 @@ export class AuthService {
     getUser() {
         let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(AppSettings.API_URL + '/api/account/Logout', options).map((res: Response) => res.json());
+        return this.http.get(AppSettings.API_URL + '/api/account/UserInfo', options).map((res: Response) => res.json());
 
     }
 

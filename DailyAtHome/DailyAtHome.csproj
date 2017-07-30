@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\app\account\logout.component.html" />
+    <Content Include="src\app\account\profile.component.html" />
     <Content Include="src\app\account\register.component.html" />
     <Content Include="src\app\admin\admin.component.html" />
     <Content Include="src\app\admin\categories\admcategory.component.html" />
@@ -265,6 +266,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\account\login.component.ts" />
     <TypeScriptCompile Include="src\app\account\logout.component.ts" />
+    <TypeScriptCompile Include="src\app\account\profile.component.ts" />
     <TypeScriptCompile Include="src\app\account\register.component.ts" />
     <TypeScriptCompile Include="src\app\admin\admin.component.ts" />
     <TypeScriptCompile Include="src\app\admin\categories\admcategory.component.ts" />
@@ -277,6 +279,7 @@
     <TypeScriptCompile Include="src\app\cart\cart-summary.component.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\models\address.model.ts" />
     <TypeScriptCompile Include="src\app\models\user.model.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
     <TypeScriptCompile Include="src\app\services\auth.service.ts" />

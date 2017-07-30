@@ -33,4 +33,8 @@ export class HeaderComponent implements OnInit {
                 this._authSvc.updateAuthStatus();
             });
     }
+
+    searchProducts() {
+
+    }
 }

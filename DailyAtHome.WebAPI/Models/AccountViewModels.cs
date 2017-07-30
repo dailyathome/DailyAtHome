@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DailyAtHome.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DailyAtHome.WebAPI.Models
@@ -32,6 +33,8 @@ namespace DailyAtHome.WebAPI.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+
+        public List<Address> Adresses { get; set; }
     }
 
     public class UserLoginInfoViewModel
