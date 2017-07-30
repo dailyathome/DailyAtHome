@@ -1,9 +1,51 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthGuard } from '../utility/utility.auth-guard';
+import { AuthService } from '../services/auth.service';
 
 @Component({
-    selector:'login',
-    templateUrl: 'app/account/login.component.html',
+    selector: 'login',
+    templateUrl: 'app/account/login.component.html'
 })
-export class LoginComponent {
-    pageHeader: string = 'Login';
+
+export class LoginComponent implements OnInit {
+
+    loginForm = new FormGroup({
+        userName: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required]),
+    });
+    returnUrl: string;
+    loginResult: any = {
+        success: '',
+        message: ''
+    }
+
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private _authSvc: AuthService) { }
+
+    //IsLoggedIn = this._authSvc.isLoggedIn();
+
+
+    ngOnInit() {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+    login() {
+        this._authSvc.login(this.loginForm.value)
+            .subscribe(
+            data => {
+                sessionStorage.setItem('accessToken', data.access_token);
+                this._authSvc.updateAuthStatus();
+                this.router.navigateByUrl(this.returnUrl);
+            },
+            error => {
+                this.loginResult = {
+                    success: false,
+                    message: JSON.parse(error._body)
+                }
+            });
+    }
 }

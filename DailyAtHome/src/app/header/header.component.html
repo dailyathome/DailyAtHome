@@ -1,118 +1,14 @@
-﻿
-<nav class="navbar navbar-inverse" style="display:none">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img src="../../Content/Images/Logo.png" style="width:64px; margin-top:-1.5rem;" /></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <ng-container *ngFor="let category of categories">
-                            <li class="dropdown-header">
-                                {{ category.Category }}
-                            </li>
-                            <ng-container *ngFor="let subCat of category.SubCategoriesList">
-                                <li>
-                                    <a data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['products',subCat.ID]">{{ subCat.SubCategory }}</a>
-                                </li>
-                            </ng-container>
-                            <li class="divider"></li>
-                        </ng-container>
-                    </ul>
-                </li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Merchants</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!--<div class="container">
-    <div class="row"
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-danger">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-success">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="container-fluid text-center">
-    <p>Online Store Copyright</p>
-    <form class="form-inline">
-        Get deals:
-        <input type="email" class="form-control" size="50" placeholder="Email Address">
-        <button type="button" class="btn btn-danger">Sign Up</button>
-    </form>
-</footer>-->
-
-<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+﻿<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
 
         <!-- Title -->
         <div class="navbar-header pull-left">
             <a href="/" class="navbar-brand">
-                <img src="../../Content/Images/Logo.png" class="img-responsive" style="width:64px; margin-top:-1.5rem;" />
+                <img src="../../Content/Images/Logo.png" class="img-responsive" style="width:60px; margin-top:-1.5rem;" />
             </a>
         </div>
-
-        <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
         <div class="navbar-header pull-right">
-            <ul class="nav pull-left">
+            <ul class="nav pull-left list-inline">
                 <!-- This works well for static text, like a username -->
                 <!-- <li class="navbar-text pull-left">User Name</li>-->
                 <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
@@ -127,6 +23,10 @@
                         </li>
                     </ul>
                 </li>-->
+                <li class="login-link pull-left">
+                    <a *ngIf="!IsLoggedIn" [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a>
+                    <a *ngIf="IsLoggedIn" [routerLink]="['logout']"><i class="fa fa-user-circle"></i> Logout</a>
+                </li>
                 <li class="pull-right cart-container">
                     <cart>
                     </cart>
@@ -136,13 +36,14 @@
             <!-- Required bootstrap placeholder for the collapsed menu -->
             <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
+        <div class="center-block text-center search-container">
+            <input class="" placeholder="Search">
+      <i class="fa fa-search"></i>
+        </div>
 
-        <!-- The Collapsing items            navbar-left or navbar-right -->
         <div class="collapse navbar-collapse">
-            <!--                      pull-right keeps the drop-down in line -->
             <ul class="nav navbar-nav">
-                <li><a [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a></li>
-                <li><a href="/merchants">Merchants</a></li>             
+                <li><a href="/merchants">Merchants</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -161,8 +62,6 @@
                 </li>
             </ul>
         </div>
-
-        <!-- Additional navbar items -->
     </div>
 </nav>
 

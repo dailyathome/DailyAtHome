@@ -4,3 +4,6 @@
 .wrap-text {
   white-space: normal;
 }
+input.ng-invalid {
+  border: solid 1px red;
+}
