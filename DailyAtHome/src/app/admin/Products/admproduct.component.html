@@ -1,0 +1,75 @@
+﻿<div class="" *ngIf="ShowUpdate">
+    <h4>Edit Existing Product</h4>
+
+    <div>
+        <select class="form-control breadcrumb" (change)="onCategorySelect($event.target.value)">
+            <option value="-1">--Select a Category--</option>
+            <option *ngFor="let cat of categories" [selected]="seloption ==cat.ID" value="{{cat.ID}}">{{cat.Category}}</option>
+        </select>
+    </div>
+
+    <div *ngIf="ShowSubCategories">
+        <select class="form-control breadcrumb" (change)="onSubCategorySelect($event.target.value)">
+            <option value="-1">--Select a Sub Category--</option>
+            <option *ngFor="let SubCat of subCategoriesByID" [selected]="seloption ==SubCat.ID" value="{{SubCat.ID}}">{{SubCat.SubCategory}}</option>
+        </select>
+    </div>
+
+    <div class="panel panel-default" *ngIf="ShowUpdateProducts">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Cost</th>
+                    <th>SubCategory ID</th>
+                    <th>Is Available</th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Product of ProductsBySubcategory">
+                    <td>
+                        <span *ngIf="true">{{Product.Product}}</span>
+                        <input *ngIf="!true" type="text" [(ngModel)]="Product.Product" class="form-control">
+                    </td>
+                    <td>
+                        <span *ngIf="true">{{Product.Description}}</span>
+                        <input *ngIf="!true" type="text" [(ngModel)]="Product.Description" class="form-control">
+                    </td>
+                    <td>
+                        <span *ngIf="true"><img src="{{Product.Image}}" alt="{{Product.Product}}" /></span>
+                        <span *ngIf="!true">
+                            <img [src]="src" [hidden]="!src"><br>
+                            <input type="file" name="Image" ngModel imageUpload
+                                   (imageSelected)="selected($event)"
+                                   [resizeOptions]="resizeOptions">
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="true">$ {{Product.Cost}}</span>
+                        <input *ngIf="false" type="text" [(ngModel)]="Product.Cost" class="form-control">
+                        <!--<select *ngIf="!true" class="form-control" [(ngModel)]="Product.Cost">
+                            <option *ngFor="let cat of categories" [value]="cat.ID">{{cat.Category}}</option>
+                        </select>-->
+                    </td>
+                    <td>
+                        <span *ngIf="true">{{Product.SubCategoryID}}</span>
+                        </td>
+                    <td>
+                        <span *ngIf="true">{{Product.IsAvailable}}</span>
+                    </td>
+                    <td>
+                        <button *ngIf="true" (click)="toggleEdit(Subcat)" value="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!true" (click)="SaveEdit(Subcat)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!true" (click)="CancelEdit(Subcat)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

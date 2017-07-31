@@ -14,11 +14,12 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CartService } from '../app/services/cart.service';
 import { AuthService } from '../app/services/auth.service';
 import { ImageUploadModule } from 'ng2-imageupload';
+import { AdmProductComponent} from '../app/admin/Products/admproduct.component'
 //import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule, ImageUploadModule ],
-    declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, routingComponents],
+    declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, routingComponents, AdmProductComponent],
     bootstrap: [AppComponent],
     providers: [CartService, AuthService, providers],
 })
