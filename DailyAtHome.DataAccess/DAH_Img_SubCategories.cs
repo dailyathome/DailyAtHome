@@ -15,7 +15,7 @@ namespace DailyAtHome.DataAccess
     public partial class DAH_Img_SubCategories
     {
         public int ID { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public Nullable<int> SubCategoryID { get; set; }
     
         public virtual DAH_SubCategories DAH_SubCategories { get; set; }

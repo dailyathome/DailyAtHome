@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, NgZone } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { AdminService } from '../../services/admin.service';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AdmSubCategoryComponent implements OnInit {
     ShowSubCategories: boolean;
     updateSuccess: boolean;
     updateFail: boolean;
+    src: string = "";
 
     constructor(private zone: NgZone, private productsService: ProductsService, private adminSvc: AdminService) { };
 
@@ -50,6 +52,7 @@ export class AdmSubCategoryComponent implements OnInit {
     }
 
     SaveEdit(Subcat) {
+        Subcat.SubCategoryImage = this.src;
         this.adminSvc.UpdateSubCategory(Subcat)
             .subscribe(result => {
                 this.updateSuccess = result.ok ? true : false,
@@ -71,6 +74,7 @@ export class AdmSubCategoryComponent implements OnInit {
 
     Add(subCategoryItem: any) {
 
+        subCategoryItem.Image = this.src;
         this.seloption = subCategoryItem.CategoryID;
         this.adminSvc.AddSubCategory(subCategoryItem)
             .subscribe(result => {
@@ -80,5 +84,16 @@ export class AdmSubCategoryComponent implements OnInit {
                 this.productsService.getSubCategoriesByCategoryID(+this.seloption)
                     .subscribe(result => this.subCategoriesByID = result);
             });
+    }
+
+    resizeOptions: ResizeOptions = {
+        resizeMaxHeight: 128,
+        resizeMaxWidth: 128
+    };
+
+    selected(imageResult: ImageResult) {
+        this.src = imageResult.resized
+            && imageResult.resized.dataURL
+            || imageResult.dataURL;
     }
 }

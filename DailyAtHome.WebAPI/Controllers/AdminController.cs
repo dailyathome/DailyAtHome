@@ -59,7 +59,11 @@ namespace DailyAtHome.WebAPI.Controllers
         {
             try
             {
-                dahEntity.DAH_SP_UpdateSubCategory(SubCategory.ID, SubCategory.SubCategory, SubCategory.CategoryID, SubCategory.Description, null);
+                if(SubCategory.ImageID == 0)
+                {
+                    SubCategory.ImageID = null;
+                }
+                dahEntity.DAH_SP_UpdateSubCategory(SubCategory.ID, SubCategory.SubCategory, SubCategory.CategoryID, SubCategory.Description, SubCategory.ImageID, SubCategory.SubCategoryImage);
                 return Ok();
             }
             catch (Exception)
@@ -75,7 +79,7 @@ namespace DailyAtHome.WebAPI.Controllers
         {
             try
             {
-                dahEntity.DAH_SP_AddSubCategory(SubCategory.SubCategory, Convert.ToInt32(SubCategory.CategoryID), SubCategory.Description, null);
+                dahEntity.DAH_SP_AddSubCategory(SubCategory.SubCategory, Convert.ToInt32(SubCategory.CategoryID), SubCategory.Description, SubCategory.Image);
                 return Ok();
             }
             catch (Exception)

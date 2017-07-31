@@ -19,5 +19,7 @@ namespace DailyAtHome.DataAccess.Models
         public string Description { get; set; }
         public string Category { get; set; }
         public bool showEdit { get; set; }
+        public string SubCategoryImage { get; set; }
+        public int? ImageID { get; set; }
     }
 }

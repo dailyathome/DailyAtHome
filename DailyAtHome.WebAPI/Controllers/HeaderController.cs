@@ -125,6 +125,9 @@ namespace DailyAtHome.WebAPI.Controllers
                 AppSubCategory.Description = SubCategory.Description;
                 AppSubCategory.CategoryID = SubCategory.CategoryID;
                 AppSubCategory.ID = SubCategory.ID;
+                AppSubCategory.ImageID = SubCategory.ImageID;
+                AppSubCategory.SubCategoryImage = SubCategory.Image;
+                
 
                 SubCategoriesByCategoryList.Add(AppSubCategory);
             }
