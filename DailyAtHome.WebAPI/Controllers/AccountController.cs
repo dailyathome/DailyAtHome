@@ -20,6 +20,9 @@ using System.Web.Http.Cors;
 using System.Net;
 using System.Net.Mail;
 using System.Configuration;
+using DailyAtHome.DataAccess;
+using System.Linq;
+using DailyAtHome.DataAccess.Models;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -28,12 +31,17 @@ namespace DailyAtHome.WebAPI.Controllers
     //[EnableCors(origins: "http://localhost:53097", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
+        dahDBEntities dahEntity = new dahDBEntities();
+
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
+
+
         public AccountController()
         {
+            dahEntity.Configuration.ProxyCreationEnabled = false;
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -62,14 +70,34 @@ namespace DailyAtHome.WebAPI.Controllers
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
         {
+            List<DAH_Address> dalAddressList = new List<DAH_Address>();
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
-            return new UserInfoViewModel
+            string userID = User.Identity.GetUserId();
+            dalAddressList = dahEntity.DAH_Address.Where(i => i.UserID == userID).ToList();
+            UserInfoViewModel model = new UserInfoViewModel()
             {
-                Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                Adresses = new List<Address>(),
+                Email = User.Identity.GetUserName()
             };
+            model.Adresses = new List<DataAccess.Models.Address>();
+            dalAddressList.ForEach(a => model.Adresses.Add(new DataAccess.Models.Address()
+            {
+                AddressType = Enum.GetName(typeof(AddressType),a.AddressTypeID),
+                City = a.City,
+                Country = a.Country,
+                ID = a.ID,
+                State = a.State,
+                StreetAddress = a.StreetAddress,
+                Zip = a.Zip
+            }));
+            return model;
+            //return new UserInfoViewModel
+            //{
+
+            //    Email = User.Identity.GetUserName(),
+            //    HasRegistered = externalLogin == null,
+            //    LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+            //};
         }
 
         // POST api/Account/Logout
@@ -381,7 +409,7 @@ namespace DailyAtHome.WebAPI.Controllers
                 {
                     return Ok();
                 }
-                if(!(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (!(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     string confirmEmailToken = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     confirmEmailToken = HttpUtility.UrlEncode(confirmEmailToken);
@@ -453,7 +481,7 @@ namespace DailyAtHome.WebAPI.Controllers
                     return InternalServerError();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Error("method: ConfirmEmail", ex);
             }

@@ -66,6 +66,26 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="DAH_Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressTypeID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="20" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DAH_AddressType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AddressType" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="DAH_Categories">
           <Key>
             <PropertyRef Name="ID" />
@@ -154,6 +174,30 @@
             </Principal>
             <Dependent Role="DAH_Img_SubCategories">
               <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Address_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="DAH_Address" Type="Self.DAH_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DAH_Address">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Address_DAH_AddressType">
+          <End Role="DAH_AddressType" Type="Self.DAH_AddressType" Multiplicity="1" />
+          <End Role="DAH_Address" Type="Self.DAH_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_AddressType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Address">
+              <PropertyRef Name="AddressTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -270,6 +314,8 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_Address" EntityType="Self.DAH_Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_AddressType" EntityType="Self.DAH_AddressType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Categories" EntityType="Self.DAH_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Img_Categories" EntityType="Self.DAH_Img_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Img_Products" EntityType="Self.DAH_Img_Products" Schema="dbo" store:Type="Tables" />
@@ -287,6 +333,14 @@
           <AssociationSet Name="FK__DAH_Img_S__SubCa__66603565" Association="Self.FK__DAH_Img_S__SubCa__66603565">
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
             <End Role="DAH_Img_SubCategories" EntitySet="DAH_Img_SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Address_AspNetUsers" Association="Self.FK_DAH_Address_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Address_DAH_AddressType" Association="Self.FK_DAH_Address_DAH_AddressType">
+            <End Role="DAH_AddressType" EntitySet="DAH_AddressType" />
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
           </AssociationSet>
           <AssociationSet Name="FK_DAH_Products_DAH_SubCategories" Association="Self.FK_DAH_Products_DAH_SubCategories">
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
@@ -375,6 +429,7 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="DAH_Address" Relationship="dahDBModel.FK_DAH_Address_AspNetUsers" FromRole="AspNetUser" ToRole="DAH_Address" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -473,6 +528,16 @@
           <FunctionImport Name="DAH_SP_GetSubCategoryByCategory" ReturnType="Collection(dahDBModel.DAH_SP_GetSubCategoryByCategory_Result)">
           <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="DAH_Address" EntityType="dahDBModel.DAH_Address" />
+          <EntitySet Name="DAH_AddressType" EntityType="dahDBModel.DAH_AddressType" />
+          <AssociationSet Name="FK_DAH_Address_AspNetUsers" Association="dahDBModel.FK_DAH_Address_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Address_DAH_AddressType" Association="dahDBModel.FK_DAH_Address_DAH_AddressType">
+            <End Role="DAH_AddressType" EntitySet="DAH_AddressType" />
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
+          </AssociationSet>
           <EntitySet Name="DAH_Img_SubCategories" EntityType="dahDBModel.DAH_Img_SubCategories" />
           <AssociationSet Name="FK__DAH_Img_S__SubCa__66603565" Association="dahDBModel.FK__DAH_Img_S__SubCa__66603565">
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
@@ -580,6 +645,53 @@
             </Principal>
             <Dependent Role="DAH_Products">
               <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DAH_Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="dahDBModel.FK_DAH_Address_AspNetUsers" FromRole="DAH_Address" ToRole="AspNetUser" />
+          <NavigationProperty Name="DAH_AddressType" Relationship="dahDBModel.FK_DAH_Address_DAH_AddressType" FromRole="DAH_Address" ToRole="DAH_AddressType" />
+        </EntityType>
+        <EntityType Name="DAH_AddressType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AddressType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DAH_Address" Relationship="dahDBModel.FK_DAH_Address_DAH_AddressType" FromRole="DAH_AddressType" ToRole="DAH_Address" />
+        </EntityType>
+        <Association Name="FK_DAH_Address_AspNetUsers">
+          <End Type="dahDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Address" Role="DAH_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DAH_Address">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Address_DAH_AddressType">
+          <End Type="dahDBModel.DAH_AddressType" Role="DAH_AddressType" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Address" Role="DAH_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_AddressType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Address">
+              <PropertyRef Name="AddressTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -751,6 +863,28 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="DAH_Address">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_Address">
+              <MappingFragment StoreEntitySet="DAH_Address">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAH_AddressType">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_AddressType">
+              <MappingFragment StoreEntitySet="DAH_AddressType">
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DAH_Img_SubCategories">
             <EntityTypeMapping TypeName="dahDBModel.DAH_Img_SubCategories">
               <MappingFragment StoreEntitySet="DAH_Img_SubCategories">

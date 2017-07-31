@@ -7,6 +7,7 @@ import { CartSummaryComponent } from '../app/cart/cart-summary.component';
 import { HomeComponent } from '../app/home/home.component';
 import { AdminComponent } from '../app/admin/admin.component';
 import { LogoutComponent } from '../app/account/logout.component';
+import { ProfileComponent } from '../app/account/profile.component';
 import { AuthGuard } from '../app/utility/utility.auth-guard';
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'logout', component: LogoutComponent },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: 'register', component: RegisterComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {
@@ -34,5 +36,5 @@ const routes: Routes = [
     ]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ProductsComponent, LoginComponent, LogoutComponent, RegisterComponent, CartSummaryComponent, HomeComponent, AdminComponent]
+export const routingComponents = [ProductsComponent, LoginComponent, LogoutComponent, ProfileComponent, RegisterComponent, CartSummaryComponent, HomeComponent, AdminComponent]
 export const providers = AuthGuard;

@@ -33,6 +33,7 @@ namespace DailyAtHome.WebAPI.Controllers
             List<Categories> categoriesList = new List<Categories>();
 
             DALcategoriesList = dahEntity.DAH_Categories.ToList();
+           
             categoriesList = ConvertToAppCategories(DALcategoriesList);
 
             AppSubcategoriesList = GetSubCategories();

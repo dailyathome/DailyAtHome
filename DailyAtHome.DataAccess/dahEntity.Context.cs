@@ -37,6 +37,8 @@ namespace DailyAtHome.DataAccess
         public virtual DbSet<DAH_Categories> DAH_Categories { get; set; }
         public virtual DbSet<DAH_SubCategories> DAH_SubCategories { get; set; }
         public virtual DbSet<DAH_Products> DAH_Products { get; set; }
+        public virtual DbSet<DAH_Address> DAH_Address { get; set; }
+        public virtual DbSet<DAH_AddressType> DAH_AddressType { get; set; }
         public virtual DbSet<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
     
         public virtual int DAH_SP_AddCategory(string category, string description)
