@@ -18,5 +18,7 @@ namespace DailyAtHome.DataAccess
         public string Category { get; set; }
         public int ID { get; set; }
         public int CategoryID { get; set; }
+        public Nullable<int> ImageID { get; set; }
+        public string Image { get; set; }
     }
 }

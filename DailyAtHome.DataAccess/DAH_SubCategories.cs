@@ -17,8 +17,8 @@ namespace DailyAtHome.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DAH_SubCategories()
         {
-            this.DAH_Img_SubCategories = new HashSet<DAH_Img_SubCategories>();
             this.DAH_Products = new HashSet<DAH_Products>();
+            this.DAH_Img_SubCategories = new HashSet<DAH_Img_SubCategories>();
         }
     
         public int ID { get; set; }
@@ -29,8 +29,8 @@ namespace DailyAtHome.DataAccess
     
         public virtual DAH_Categories DAH_Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DAH_Products> DAH_Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
     }
 }

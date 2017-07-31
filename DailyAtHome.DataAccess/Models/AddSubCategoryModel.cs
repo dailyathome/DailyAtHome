@@ -11,6 +11,6 @@ namespace DailyAtHome.DataAccess.Models
         public string SubCategory { get; set; }
         public string CategoryID { get; set; }
         public string Description { get; set; }
-        public byte Image { get; set; }
+        public string Image { get; set; }
     }
 }

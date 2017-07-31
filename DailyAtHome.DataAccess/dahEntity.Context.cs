@@ -34,10 +34,10 @@ namespace DailyAtHome.DataAccess
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<DAH_Img_Categories> DAH_Img_Categories { get; set; }
         public virtual DbSet<DAH_Img_Products> DAH_Img_Products { get; set; }
-        public virtual DbSet<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
         public virtual DbSet<DAH_Categories> DAH_Categories { get; set; }
         public virtual DbSet<DAH_SubCategories> DAH_SubCategories { get; set; }
         public virtual DbSet<DAH_Products> DAH_Products { get; set; }
+        public virtual DbSet<DAH_Img_SubCategories> DAH_Img_SubCategories { get; set; }
     
         public virtual int DAH_SP_AddCategory(string category, string description)
         {
@@ -52,7 +52,7 @@ namespace DailyAtHome.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddCategory", categoryParameter, descriptionParameter);
         }
     
-        public virtual int DAH_SP_AddSubCategory(string subCategory, Nullable<int> categoryID, string description, Nullable<int> imageID)
+        public virtual int DAH_SP_AddSubCategory(string subCategory, Nullable<int> categoryID, string description, string image)
         {
             var subCategoryParameter = subCategory != null ?
                 new ObjectParameter("SubCategory", subCategory) :
@@ -66,11 +66,11 @@ namespace DailyAtHome.DataAccess
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            var imageIDParameter = imageID.HasValue ?
-                new ObjectParameter("ImageID", imageID) :
-                new ObjectParameter("ImageID", typeof(int));
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddSubCategory", subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddSubCategory", subCategoryParameter, categoryIDParameter, descriptionParameter, imageParameter);
         }
     
         public virtual int DAH_SP_UpdateCategory(Nullable<int> iD, string category, string description)
@@ -90,7 +90,7 @@ namespace DailyAtHome.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateCategory", iDParameter, categoryParameter, descriptionParameter);
         }
     
-        public virtual int DAH_SP_UpdateSubCategory(Nullable<int> iD, string subCategory, Nullable<int> categoryID, string description, Nullable<int> imageID)
+        public virtual int DAH_SP_UpdateSubCategory(Nullable<int> iD, string subCategory, Nullable<int> categoryID, string description, Nullable<int> imageID, string image)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
@@ -112,7 +112,11 @@ namespace DailyAtHome.DataAccess
                 new ObjectParameter("ImageID", imageID) :
                 new ObjectParameter("ImageID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateSubCategory", iDParameter, subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter);
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateSubCategory", iDParameter, subCategoryParameter, categoryIDParameter, descriptionParameter, imageIDParameter, imageParameter);
         }
     
         public virtual ObjectResult<DAH_SP_GetSubCategoryByCategory_Result> DAH_SP_GetSubCategoryByCategory(Nullable<int> iD)
