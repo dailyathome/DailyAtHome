@@ -9,6 +9,7 @@ import { AdminComponent } from '../app/admin/admin.component';
 import { LogoutComponent } from '../app/account/logout.component';
 import { ProfileComponent } from '../app/account/profile.component';
 import { AuthGuard } from '../app/utility/utility.auth-guard';
+import { SpinnerComponent } from '../app/spinner/spinner.component';
 
 
 const routes: Routes = [
@@ -20,10 +21,11 @@ const routes: Routes = [
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'spinner', component: SpinnerComponent },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {
-       path: '',
+        path: '',
         redirectTo: 'home',
         pathMatch: 'full',
     }

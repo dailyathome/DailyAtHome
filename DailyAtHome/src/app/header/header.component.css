@@ -85,6 +85,7 @@ li.login-link a:active {
 .search-container {
   color: #003b64;
   padding-top: 20px;
+  padding-bottom: 5px;
 }
 .search-container input {
   width: 70%;

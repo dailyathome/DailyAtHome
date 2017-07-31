@@ -103,6 +103,13 @@
     <Content Include="src\app\admin\categories\admcategory.component.html" />
     <Content Include="src\app\admin\subcategories\admsubcategory.component.html" />
     <Content Include="src\app\home\home.component.html" />
+    <Content Include="src\app\spinner\spinner.component.css">
+      <DependentUpon>spinner.component.less</DependentUpon>
+    </Content>
+    <Content Include="src\app\spinner\spinner.component.html" />
+    <Content Include="src\app\spinner\spinner.component.min.css">
+      <DependentUpon>spinner.component.css</DependentUpon>
+    </Content>
     <Content Include="src\Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
@@ -203,6 +210,7 @@
     <Content Include="src\fonts\fontawesome-webfont.ttf" />
     <Content Include="src\fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\dah.pubxml" />
+    <Content Include="src\app\spinner\spinner.component.less" />
     <None Include="src\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="src\Scripts\bootstrap.js" />
     <Content Include="src\Scripts\bootstrap.min.js" />
@@ -289,6 +297,8 @@
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
     <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
+    <TypeScriptCompile Include="src\app\services\spinner.service.ts" />
+    <TypeScriptCompile Include="src\app\spinner\spinner.component.ts" />
     <TypeScriptCompile Include="src\app\utility\utility.auth-guard.ts" />
     <TypeScriptCompile Include="src\app\validators\validator.password.ts" />
     <TypeScriptCompile Include="src\main.ts" />

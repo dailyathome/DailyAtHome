@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthGuard } from '../utility/utility.auth-guard';
 import { AuthService } from '../services/auth.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
     selector: 'login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private _authSvc: AuthService) { }
+        private _authSvc: AuthService,
+        private _spinnerSvc: SpinnerService) { }
 
     //IsLoggedIn = this._authSvc.isLoggedIn();
 
@@ -34,9 +36,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this._spinnerSvc.displaySpinner(true);
         this._authSvc.login(this.loginForm.value)
             .subscribe(
             data => {
+                
                 sessionStorage.setItem('accessToken', data.access_token);
                 this._authSvc.updateAuthStatus();
                 this.router.navigateByUrl(this.returnUrl);
@@ -46,6 +50,8 @@ export class LoginComponent implements OnInit {
                     success: false,
                     message: JSON.parse(error._body)
                 }
-            });
+            },
+            () => this._spinnerSvc.displaySpinner(false)
+            );
     }
 }
