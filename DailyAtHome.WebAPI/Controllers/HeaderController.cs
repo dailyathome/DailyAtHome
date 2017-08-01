@@ -62,24 +62,27 @@ namespace DailyAtHome.WebAPI.Controllers
             return SubCategoryList;
         }
 
-        public List<DAH_Products> GetProductsBySubCategory(int ID)
+        public List<Products> GetProductsBySubCategory(int ID)
         {
-            List<DAH_Products> products = new List<DAH_Products>();
-            products = dahEntity.DAH_Products.Where(s => s.SubCategoryID == ID).ToList();
-            return products;
+            List<DAH_SP_GetProductsBySubCategory_Result> products = new List<DAH_SP_GetProductsBySubCategory_Result>();
+            List<Products> AppProducts = new List<Products>();
+            //products = dahEntity.DAH_Products.Where(s => s.SubCategoryID == ID).ToList();
+            products = dahEntity.DAH_SP_GetProductsBySubCategory(ID).ToList();
+            AppProducts = ConvertToAppProducts(products);
+            return AppProducts;
         }
 
-        public List<Products> GetProducts(string search = null)
-        {
-            List<DAH_Products> products = dahEntity.DAH_Products.ToList();
-            List<Products> domainProducts = new List<Products>();
-            products.ForEach(p => domainProducts.Add(
-                new Products() { Cost = p.Cost, Description = p.Description, ID = p.ID, Product = p.Product, SubCategoryID = p.SubCategoryID }
-                ));
-            if (string.IsNullOrWhiteSpace(search))
-                return domainProducts;
-            else return domainProducts.Where(p => p.Product.Contains(search)).ToList();
-        }
+        //public List<Products> GetProducts(string search = null)
+        //{
+        //    List<DAH_Products> products = dahEntity.DAH_Products.ToList();
+        //    List<Products> domainProducts = new List<Products>();
+        //    products.ForEach(p => domainProducts.Add(
+        //        new Products() { Cost = p.Cost, Description = p.Description, ID = p.ID, Product = p.Product, SubCategoryID = p.SubCategoryID }
+        //        ));
+        //    if (string.IsNullOrWhiteSpace(search))
+        //        return domainProducts;
+        //    else return domainProducts.Where(p => p.Product.Contains(search)).ToList();
+        //}
 
         public List<SubCategoriesByCategoryID> GetSubcategoriesByCategoryID(int id)
         {
@@ -151,6 +154,31 @@ namespace DailyAtHome.WebAPI.Controllers
             }
             return AppCategoryList;
         }
+
+        private List<Products> ConvertToAppProducts(List<DAH_SP_GetProductsBySubCategory_Result> products)
+        {
+            List<Products> AppProductsList = new List<Products>();
+
+            foreach (DAH_SP_GetProductsBySubCategory_Result DALProduct in products)
+            {
+                Products AppProduct = new Products();
+                AppProduct.ID = DALProduct.ID;
+                AppProduct.Product = DALProduct.Product;
+                AppProduct.Description = DALProduct.Description;
+                AppProduct.IsAvailable = DALProduct.IsAvailable;
+                AppProduct.Cost = DALProduct.Cost;
+                AppProduct.ImageID = DALProduct.ImageID;
+                AppProduct.Image = DALProduct.Image;
+                AppProduct.SubCategoryID = DALProduct.SubCategoryID;
+                AppProduct.SubCategory = DALProduct.SubCategory;
+
+                AppProductsList.Add(AppProduct); 
+            }
+
+            return AppProductsList;
+        }
+
+
         #endregion
     }
 }

@@ -103,6 +103,9 @@
     <Compile Include="DAH_Products.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAH_SP_GetProductsBySubCategory_Result.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAH_SP_GetSubCategoryByCategory_Result.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>

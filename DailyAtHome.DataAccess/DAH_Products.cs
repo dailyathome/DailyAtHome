@@ -29,8 +29,8 @@ namespace DailyAtHome.DataAccess
         public bool IsAvailable { get; set; }
         public Nullable<int> ImageID { get; set; }
     
+        public virtual DAH_SubCategories DAH_SubCategories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DAH_Img_Products> DAH_Img_Products { get; set; }
-        public virtual DAH_SubCategories DAH_SubCategories { get; set; }
     }
 }
