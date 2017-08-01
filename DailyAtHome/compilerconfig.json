@@ -18,5 +18,9 @@
   {
     "outputFile": "src/styles.css",
     "inputFile": "src/styles.less"
+  },
+  {
+    "outputFile": "src/app/spinner/spinner.component.css",
+    "inputFile": "src/app/spinner/spinner.component.less"
   }
 ]

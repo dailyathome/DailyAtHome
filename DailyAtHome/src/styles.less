@@ -1,19 +1,29 @@
-﻿input.ng-touched.ng-invalid{
-         border-left: solid 5px #a94442 ;
- }
-input.ngvalid{
-    border-left:solid 5px #5cb85c
+﻿input.ng-touched.ng-invalid {
+    border-left: solid 5px #a94442;
 }
 
-a.active{
-    color:#029f5b;
+input.ngvalid {
+    border-left: solid 5px #5cb85c;
 }
 
-footer{
-    min-height:50px;
-    background-color:#003b64;
-    color:#fff;
+a.active {
+    color: #029f5b;
 }
-.app-body{
-    min-height:500px;
+
+footer {
+    min-height: 50px;
+    background-color: #003b64;
+    color: #fff;
+}
+
+.app-body {
+    min-height: 500px;
+    margin-top:100px;
+}
+
+div.disabled {
+    input, select, button, a, li {
+        cursor: default;
+        pointer-events: none;
+    }
 }
