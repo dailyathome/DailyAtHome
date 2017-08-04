@@ -43,4 +43,13 @@ export class AdminService {
         return this.http.post(AppSettings.API_URL + '/api/admin/AddSubCategory', JSON.stringify(subCategoryItem), options)
             .map((response: Response) => response);
     }
+
+    UpdateProduct(Product) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(AppSettings.API_URL + '/api/admin/UpdateProduct', JSON.stringify(Product), options)
+            .map((response: Response) => response);
+    }
 }

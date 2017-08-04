@@ -23,25 +23,26 @@
                     <th>Description</th>
                     <th>Image</th>
                     <th>Cost</th>
-                    <th>SubCategory ID</th>
+                    <th>SubCategory</th>
                     <th>Is Available</th>
                     <th>
+                        <span><i class="fa fa-cog" aria-hidden="true"></i></span>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let Product of ProductsBySubcategory">
                     <td>
-                        <span *ngIf="true">{{Product.Product}}</span>
-                        <input *ngIf="!true" type="text" [(ngModel)]="Product.Product" class="form-control">
+                        <span *ngIf="Product.showEdit">{{Product.Product}}</span>
+                        <input *ngIf="!Product.showEdit" type="text" [(ngModel)]="Product.Product" class="form-control">
                     </td>
                     <td>
-                        <span *ngIf="true">{{Product.Description}}</span>
-                        <input *ngIf="!true" type="text" [(ngModel)]="Product.Description" class="form-control">
+                        <span *ngIf="Product.showEdit">{{Product.Description}}</span>
+                        <input *ngIf="!Product.showEdit" type="text" [(ngModel)]="Product.Description" class="form-control">
                     </td>
                     <td>
-                        <span *ngIf="true"><img src="{{Product.Image}}" alt="{{Product.Product}}" /></span>
-                        <span *ngIf="!true">
+                        <span *ngIf="Product.showEdit"><img src="{{Product.Image}}" alt="{{Product.Product}}" /></span>
+                        <span *ngIf="!Product.showEdit">
                             <img [src]="src" [hidden]="!src"><br>
                             <input type="file" name="Image" ngModel imageUpload
                                    (imageSelected)="selected($event)"
@@ -49,22 +50,33 @@
                         </span>
                     </td>
                     <td>
-                        <span *ngIf="true">$ {{Product.Cost}}</span>
-                        <input *ngIf="false" type="text" [(ngModel)]="Product.Cost" class="form-control">
-                        <!--<select *ngIf="!true" class="form-control" [(ngModel)]="Product.Cost">
-                            <option *ngFor="let cat of categories" [value]="cat.ID">{{cat.Category}}</option>
-                        </select>-->
+                        <span *ngIf="Product.showEdit">$ {{Product.Cost}}</span>
+                        <input *ngIf="!Product.showEdit" type="text" [(ngModel)]="Product.Cost" class="form-control">
                     </td>
                     <td>
-                        <span *ngIf="true">{{Product.SubCategoryID}}</span>
+                        <span *ngIf="Product.showEdit">{{Product.SubCategory}}</span>
+                        <span *ngIf="!Product.showEdit">
+                            <select class="breadcrumb" [(ngModel)]="Product.SubcategoryID">
+                                <option value="-1"></option>
+                                <option *ngFor="let SubCat of subCategoriesByID" [value]="SubCat.SubCategoryID">{{SubCat.SubCategory}}</option>
+                                
+                            </select>
+                        </span>
                         </td>
                     <td>
-                        <span *ngIf="true">{{Product.IsAvailable}}</span>
+                        <span *ngIf="Product.showEdit">{{Product.IsAvailable}}</span>
+                        <span *ngIf="!Product.showEdit">
+                            <select class="breadcrumb" [(ngModel)]="Product.IsAvailable">
+                                <option value="-1"> </option>
+                                <option [value]="true">Yes</option>
+                                <option [value]="false">No</option>
+                            </select>
+                        </span>
                     </td>
                     <td>
-                        <button *ngIf="true" (click)="toggleEdit(Subcat)" value="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                        <button *ngIf="!true" (click)="SaveEdit(Subcat)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                        <button *ngIf="!true" (click)="CancelEdit(Subcat)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button *ngIf="Product.showEdit" (click)="toggleEdit(Product)" value="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!Product.showEdit" (click)="SaveEdit(Product)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!Product.showEdit" (click)="CancelEdit(Product)"><i class="fa fa-times" aria-hidden="true"></i></button>
                     </td>
                 </tr>
             </tbody>

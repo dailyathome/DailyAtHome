@@ -1,1 +1,0 @@
-{"version":3,"file":"spinner.component.js","sourceRoot":"","sources":["spinner.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAA0C;AAO1C;IAAA;IAEA,CAAC;IAFY,gBAAgB;QAL5B,gBAAS,CAAC;YACP,QAAQ,EAAE,SAAS;YACnB,WAAW,EAAE,oCAAoC;YACjD,SAAS,EAAE,CAAC,mCAAmC,CAAC;SACnD,CAAC;OACW,gBAAgB,CAE5B;IAAD,uBAAC;CAAA,AAFD,IAEC;AAFY,4CAAgB"}

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 //import 'rxjs/add/operator/toPromise';
 
 @Component({
