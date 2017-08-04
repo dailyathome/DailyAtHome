@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-sm-3" *ngFor="let product of products">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{product.Product}}</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <img src="{{'https://placehold.it/150x80?text='+product.Product}}" class="img-responsive" style="width:100%" />
+                </div>
+                <div>
+                    <p>
+                        {{product.Description}}
+                    </p>
+                    <p style="font-size:large">
+                        <strong class="text-info">{{product.Cost | currency:'USD':true:'1.2-2'}}</strong>
+                      <span class="pull-right"><label>Qty: </label> <input class="input-mini" #quant="ngModel" type="number" ngModel="1" /></span>
+                    </p>
+                    <div>
+                        <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

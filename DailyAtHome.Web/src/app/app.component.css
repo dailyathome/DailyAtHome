@@ -1,0 +1,9 @@
+﻿.app-body {
+  margin-top: 120px;
+}
+.wrap-text {
+  white-space: normal;
+}
+input.ng-invalid {
+  border: solid 1px red;
+}

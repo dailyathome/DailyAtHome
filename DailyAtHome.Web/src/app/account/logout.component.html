@@ -1,0 +1,8 @@
+﻿<div class="well">
+    <div class="alert-success text-center" *ngIf="logoutResult.success">
+        {{logoutResult.message}}
+    </div>
+    <div class="alert-danger text-center" *ngIf="!logoutResult.success">
+        {{logoutResult.message}}
+    </div>
+</div>

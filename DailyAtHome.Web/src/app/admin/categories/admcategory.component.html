@@ -1,0 +1,66 @@
+﻿
+<div class="col-lg-12" *ngIf="ShowUpdate">
+    <div class="bs-example marginTop50" data-example-id="table-within-panel">
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cat of categories">
+                        <th scope="row">
+                            {{cat.ID}}
+                        </th>
+                        <td>
+                            <span *ngIf="cat.showEdit">{{cat.Category}}</span>
+                            <input *ngIf="!cat.showEdit" type="text" [(ngModel)]="cat.Category" class="form-control">
+                        </td>
+                        <td>
+                            <span *ngIf="cat.showEdit">{{cat.Description}}</span>
+                            <input *ngIf="!cat.showEdit" type="text" [(ngModel)]="cat.Description" class="form-control">
+                        </td>
+                        <td>
+                            <button *ngIf="cat.showEdit" (click)="toggleEdit(cat)" value="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button *ngIf="!cat.showEdit" (click)="SaveEdit(cat)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                            <button *ngIf="!cat.showEdit" (click)="CancelEdit(cat)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <button class="form-control btn-success center-block" (click)="AddNewCategory()">Add New Category</button>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-success text-center form-group center-block" *ngIf="updateSuccess">
+            <p>Update Successful!</p>
+        </div>
+        <div class="alert alert-danger text-center form-group center-block" *ngIf="updateFail">
+            <p>Update Failed</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12" *ngIf="!ShowUpdate">
+    <div class="form-group">
+        <button class="btn btn-primary pull-left" (click)="ShowUpdateCategories()"><i class="fa fa-arrow-left"></i> Back To Update Categories</button>
+    </div>
+    <br />
+    <br />
+    <form #AddCategoryForm="ngForm" (ngSubmit)="Add(AddCategoryForm.value)">
+        <div class="form-group">
+            <label>Category</label>
+            <input type="text" name="Category" ngModel required class="form-control" placeholder="Category Text">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="Description" ngModel required class="form-control" placeholder="Category Description">
+        </div>
+        <button type="submit" class="btn btn-primary btn-success">Submit</button>
+    </form>
+</div>

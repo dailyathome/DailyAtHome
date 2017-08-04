@@ -1,34 +1,6 @@
 ﻿[
   {
-    "outputFile": "/Content/Less/bootstrap/alerts.css",
-    "inputFile": "Content/Less/bootstrap/alerts.less"
-  },
-  {
-    "outputFile": "Content/Less/bootstrap/variables.css",
-    "inputFile": "Content/Less/bootstrap/variables.less"
-  },
-  {
-    "outputFile": "Content/Less/bootstrap/mixins/alerts.css",
-    "inputFile": "Content/Less/bootstrap/mixins/alerts.less"
-  },
-  {
-    "outputFile": "Content/Less/bootstrap/bootstrap.css",
-    "inputFile": "Content/Less/bootstrap/bootstrap.less"
-  },
-  {
-    "outputFile": "Content/Less/App/login.css",
-    "inputFile": "Content/Less/App/login.less"
-  },
-  {
-    "outputFile": "Content/Less/App/header.css",
-    "inputFile": "Content/Less/App/header.less"
-  },
-  {
-    "outputFile": "Content/Less/App/app.css",
-    "inputFile": "Content/Less/App/app.less"
-  },
-  {
-    "outputFile": "Content/Less/App/utility.css",
-    "inputFile": "Content/Less/App/utility.less"
+    "outputFile": "src/styles.css",
+    "inputFile": "src/styles.less"
   }
 ]

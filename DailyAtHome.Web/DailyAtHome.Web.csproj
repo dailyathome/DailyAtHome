@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,206 +94,175 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Images\Logo.png" />
-    <Content Include="Content\Less\App\app.css">
-      <DependentUpon>app.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\app.min.css">
-      <DependentUpon>app.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\header.css">
-      <DependentUpon>header.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\header.min.css">
-      <DependentUpon>header.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\login.css">
-      <DependentUpon>login.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\login.min.css">
-      <DependentUpon>login.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\utility.css">
-      <DependentUpon>utility.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\App\utility.min.css">
-      <DependentUpon>utility.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\bootstrap.css">
-      <DependentUpon>bootstrap.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\bootstrap.min.css">
-      <DependentUpon>bootstrap.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\mixins\alerts.css">
-      <DependentUpon>alerts.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\mixins\alerts.min.css">
-      <DependentUpon>alerts.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\variables.css">
-      <DependentUpon>variables.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Less\bootstrap\variables.min.css">
-      <DependentUpon>variables.css</DependentUpon>
-    </Content>
-    <Content Include="index.html" />
-    <Content Include="packages.config" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
+    <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\app.po.ts" />
+    <TypeScriptCompile Include="src\app\account\login.component.ts" />
+    <TypeScriptCompile Include="src\app\account\logout.component.ts" />
+    <TypeScriptCompile Include="src\app\account\profile.component.ts" />
+    <TypeScriptCompile Include="src\app\account\register.component.ts" />
+    <TypeScriptCompile Include="src\app\admin\admin.component.ts" />
+    <TypeScriptCompile Include="src\app\admin\categories\admcategory.component.ts" />
+    <TypeScriptCompile Include="src\app\admin\Products\admproduct.component.ts" />
+    <TypeScriptCompile Include="src\app\admin\subcategories\admsubcategory.component.ts" />
+    <TypeScriptCompile Include="src\app\app.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\app.routing.module.ts" />
+    <TypeScriptCompile Include="src\app\app.settings.ts" />
+    <TypeScriptCompile Include="src\app\cart\cart-summary.component.ts" />
+    <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
+    <TypeScriptCompile Include="src\app\header\header.component.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\models\address.model.ts" />
+    <TypeScriptCompile Include="src\app\models\product.model.ts" />
+    <TypeScriptCompile Include="src\app\models\user.model.ts" />
+    <TypeScriptCompile Include="src\app\products\products.component.ts" />
+    <TypeScriptCompile Include="src\app\services\admin.service.ts" />
+    <TypeScriptCompile Include="src\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="src\app\services\cart.service.ts" />
+    <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
+    <TypeScriptCompile Include="src\app\services\products.service.ts" />
+    <TypeScriptCompile Include="src\app\services\spinner.service.ts" />
+    <TypeScriptCompile Include="src\app\spinner\spinner.component.ts" />
+    <TypeScriptCompile Include="src\app\utility\utility.auth-guard.ts" />
+    <TypeScriptCompile Include="src\app\validators\validator.password.ts" />
+    <TypeScriptCompile Include="src\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="src\environments\environment.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\polyfills.ts" />
+    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".angular-cli.json" />
+    <Content Include=".editorconfig" />
+    <Content Include="e2e\tsconfig.e2e.json" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="src\app\account\login.component.js.map" />
+    <Content Include="src\app\account\logout.component.js.map" />
+    <Content Include="src\app\account\profile.component.js.map" />
+    <Content Include="src\app\account\register.component.js.map" />
+    <Content Include="src\app\admin\admin.component.js.map" />
+    <Content Include="src\app\admin\categories\admcategory.component.js.map" />
+    <Content Include="src\app\admin\Products\admproduct.component.js.map" />
+    <Content Include="src\app\admin\subcategories\admsubcategory.component.js.map" />
+    <Content Include="src\app\app.component.less" />
+    <Content Include="src\app\cart\cart-summary.component.js.map" />
+    <Content Include="src\app\cart\cart-summary.component.less" />
+    <Content Include="src\app\cart\cart.component.js.map" />
+    <Content Include="src\app\header\header.component.js.map" />
+    <Content Include="src\app\header\header.component.less" />
+    <Content Include="src\app\home\home.component.js.map" />
+    <Content Include="src\app\models\address.model.js.map" />
+    <Content Include="src\app\models\product.model.js.map" />
+    <Content Include="src\app\models\user.model.js.map" />
+    <Content Include="src\app\products\products.component.js.map" />
+    <Content Include="src\app\services\admin.service.js.map" />
+    <Content Include="src\app\services\auth.service.js.map" />
+    <Content Include="src\app\services\cart.service.js.map" />
+    <Content Include="src\app\services\checkout.service.js.map" />
+    <Content Include="src\app\services\products.service.js.map" />
+    <Content Include="src\app\services\spinner.service.js.map" />
+    <Content Include="src\app\spinner\spinner.component.js.map" />
+    <Content Include="src\app\spinner\spinner.component.less" />
+    <Content Include="src\app\utility\utility.auth-guard.js.map" />
+    <Content Include="src\app\validators\validator.password.js.map" />
+    <Content Include="src\assets\.gitkeep" />
+    <Content Include="src\styles.css">
+      <DependentUpon>styles.less</DependentUpon>
+    </Content>
+    <Content Include="src\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
+    <Content Include="src\tsconfig.app.json" />
+    <Content Include="src\tsconfig.spec.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="karma.conf.js" />
+    <Content Include="protractor.conf.js" />
+    <Content Include="src\app\account\login.component.html" />
+    <Content Include="src\app\account\login.component.js" />
+    <Content Include="src\app\account\logout.component.html" />
+    <Content Include="src\app\account\logout.component.js" />
+    <Content Include="src\app\account\profile.component.html" />
+    <Content Include="src\app\account\profile.component.js" />
+    <Content Include="src\app\account\register.component.html" />
+    <Content Include="src\app\account\register.component.js" />
+    <Content Include="src\app\admin\admin.component.html" />
+    <Content Include="src\app\admin\admin.component.js" />
+    <Content Include="src\app\admin\categories\admcategory.component.html" />
+    <Content Include="src\app\admin\categories\admcategory.component.js" />
+    <Content Include="src\app\admin\Products\admproduct.component.html" />
+    <Content Include="src\app\admin\Products\admproduct.component.js" />
+    <Content Include="src\app\admin\subcategories\admsubcategory.component.html" />
+    <Content Include="src\app\admin\subcategories\admsubcategory.component.js" />
+    <Content Include="src\app\app.component.css" />
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\app.routing.module.js" />
+    <Content Include="src\app\cart\cart-summary.component.css" />
+    <Content Include="src\app\cart\cart-summary.component.html" />
+    <Content Include="src\app\cart\cart-summary.component.js" />
+    <Content Include="src\app\cart\cart-summary.component.min.css" />
+    <Content Include="src\app\cart\cart.component.html" />
+    <Content Include="src\app\cart\cart.component.js" />
+    <Content Include="src\app\header\header.component.css" />
+    <Content Include="src\app\header\header.component.html" />
+    <Content Include="src\app\header\header.component.js" />
+    <Content Include="src\app\header\header.component.min.css" />
+    <Content Include="src\app\home\home.component.html" />
+    <Content Include="src\app\home\home.component.js" />
+    <Content Include="src\app\models\address.model.js" />
+    <Content Include="src\app\models\product.model.js" />
+    <Content Include="src\app\models\user.model.js" />
+    <Content Include="src\app\products\products.component.html" />
+    <Content Include="src\app\products\products.component.js" />
+    <Content Include="src\app\services\admin.service.js" />
+    <Content Include="src\app\services\auth.service.js" />
+    <Content Include="src\app\services\cart.service.js" />
+    <Content Include="src\app\services\checkout.service.js" />
+    <Content Include="src\app\services\products.service.js" />
+    <Content Include="src\app\services\spinner.service.js" />
+    <Content Include="src\app\spinner\spinner.component.css" />
+    <Content Include="src\app\spinner\spinner.component.html" />
+    <Content Include="src\app\spinner\spinner.component.js" />
+    <Content Include="src\app\spinner\spinner.component.min.css" />
+    <Content Include="src\app\utility\utility.auth-guard.js" />
+    <Content Include="src\app\validators\validator.password.js" />
+    <Content Include="src\assets\images\Logo.png" />
+    <Content Include="src\favicon.ico" />
+    <Content Include="src\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\styles.less" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Less\bootstrap\wells.less" />
-    <Content Include="Content\Less\bootstrap\variables.less" />
-    <Content Include="Content\Less\bootstrap\utilities.less" />
-    <Content Include="Content\Less\bootstrap\type.less" />
-    <Content Include="Content\Less\bootstrap\tooltip.less" />
-    <Content Include="Content\Less\bootstrap\thumbnails.less" />
-    <Content Include="Content\Less\bootstrap\theme.less" />
-    <Content Include="Content\Less\bootstrap\tables.less" />
-    <Content Include="Content\Less\bootstrap\scaffolding.less" />
-    <Content Include="Content\Less\bootstrap\responsive-utilities.less" />
-    <Content Include="Content\Less\bootstrap\responsive-embed.less" />
-    <Content Include="Content\Less\bootstrap\progress-bars.less" />
-    <Content Include="Content\Less\bootstrap\print.less" />
-    <Content Include="Content\Less\bootstrap\popovers.less" />
-    <Content Include="Content\Less\bootstrap\panels.less" />
-    <Content Include="Content\Less\bootstrap\pagination.less" />
-    <Content Include="Content\Less\bootstrap\pager.less" />
-    <Content Include="Content\Less\bootstrap\normalize.less" />
-    <Content Include="Content\Less\bootstrap\navs.less" />
-    <Content Include="Content\Less\bootstrap\navbar.less" />
-    <Content Include="Content\Less\bootstrap\modals.less" />
-    <Content Include="Content\Less\bootstrap\mixins\vendor-prefixes.less" />
-    <Content Include="Content\Less\bootstrap\mixins\text-overflow.less" />
-    <Content Include="Content\Less\bootstrap\mixins\text-emphasis.less" />
-    <Content Include="Content\Less\bootstrap\mixins\table-row.less" />
-    <Content Include="Content\Less\bootstrap\mixins\tab-focus.less" />
-    <Content Include="Content\Less\bootstrap\mixins\size.less" />
-    <Content Include="Content\Less\bootstrap\mixins\responsive-visibility.less" />
-    <Content Include="Content\Less\bootstrap\mixins\resize.less" />
-    <Content Include="Content\Less\bootstrap\mixins\reset-text.less" />
-    <Content Include="Content\Less\bootstrap\mixins\reset-filter.less" />
-    <Content Include="Content\Less\bootstrap\mixins\progress-bar.less" />
-    <Content Include="Content\Less\bootstrap\mixins\panels.less" />
-    <Content Include="Content\Less\bootstrap\mixins\pagination.less" />
-    <Content Include="Content\Less\bootstrap\mixins\opacity.less" />
-    <Content Include="Content\Less\bootstrap\mixins\nav-vertical-align.less" />
-    <Content Include="Content\Less\bootstrap\mixins\nav-divider.less" />
-    <Content Include="Content\Less\bootstrap\mixins\list-group.less" />
-    <Content Include="Content\Less\bootstrap\mixins\labels.less" />
-    <Content Include="Content\Less\bootstrap\mixins\image.less" />
-    <Content Include="Content\Less\bootstrap\mixins\hide-text.less" />
-    <Content Include="Content\Less\bootstrap\mixins\grid.less" />
-    <Content Include="Content\Less\bootstrap\mixins\grid-framework.less" />
-    <Content Include="Content\Less\bootstrap\mixins\gradients.less" />
-    <Content Include="Content\Less\bootstrap\mixins\forms.less" />
-    <Content Include="Content\Less\bootstrap\mixins\clearfix.less" />
-    <Content Include="Content\Less\bootstrap\mixins\center-block.less" />
-    <Content Include="Content\Less\bootstrap\mixins\buttons.less" />
-    <Content Include="Content\Less\bootstrap\mixins\border-radius.less" />
-    <Content Include="Content\Less\bootstrap\mixins\background-variant.less" />
-    <Content Include="Content\Less\bootstrap\mixins\alerts.less" />
-    <Content Include="Content\Less\bootstrap\mixins.less" />
-    <Content Include="Content\Less\bootstrap\media.less" />
-    <Content Include="Content\Less\bootstrap\list-group.less" />
-    <Content Include="Content\Less\bootstrap\labels.less" />
-    <Content Include="Content\Less\bootstrap\jumbotron.less" />
-    <Content Include="Content\Less\bootstrap\input-groups.less" />
-    <Content Include="Content\Less\bootstrap\grid.less" />
-    <Content Include="Content\Less\bootstrap\glyphicons.less" />
-    <Content Include="Content\Less\bootstrap\forms.less" />
-    <Content Include="Content\Less\bootstrap\dropdowns.less" />
-    <Content Include="Content\Less\bootstrap\component-animations.less" />
-    <Content Include="Content\Less\bootstrap\code.less" />
-    <Content Include="Content\Less\bootstrap\close.less" />
-    <Content Include="Content\Less\bootstrap\carousel.less" />
-    <Content Include="Content\Less\bootstrap\buttons.less" />
-    <Content Include="Content\Less\bootstrap\button-groups.less" />
-    <Content Include="Content\Less\bootstrap\breadcrumbs.less" />
-    <Content Include="Content\Less\bootstrap\bootstrap.less" />
-    <Content Include="Content\Less\bootstrap\badges.less" />
-    <Content Include="Content\Less\bootstrap\alerts.less" />
-    <Content Include="Content\Less\App\login.less" />
-    <Content Include="scripts\angular-mocks.js" />
-    <Content Include="scripts\angular.js" />
-    <Content Include="scripts\angular.min.js" />
-    <Content Include="scripts\angular.min.js.map" />
-    <Content Include="Content\Less\App\header.less" />
-    <Content Include="Content\Less\App\app.less" />
-    <Content Include="Content\Less\App\utility.less" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="scripts\App\app.js" />
-    <Content Include="scripts\App\Controllers\admin.js" />
-    <Content Include="scripts\App\Controllers\header.js" />
-    <Content Include="scripts\App\Controllers\confirm-email.js" />
-    <Content Include="scripts\App\Controllers\home.js" />
-    <Content Include="scripts\App\Controllers\login.js" />
-    <Content Include="scripts\App\Controllers\orders.js" />
-    <Content Include="scripts\App\Controllers\forgot-password.js" />
-    <Content Include="scripts\App\Controllers\products.js" />
-    <Content Include="scripts\App\Controllers\reset-password.js" />
-    <Content Include="scripts\App\Controllers\register.js" />
-    <Content Include="scripts\App\Controllers\shoppingCart.js" />
-    <Content Include="scripts\App\directives\directive-header.js" />
-    <Content Include="scripts\App\directives\directive-spinner.js" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\jquery-1.9.1.js" />
-    <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="Views\Admin\Admin.html" />
-    <Content Include="Views\Admin\Shared\AdminCategory.html" />
-    <Content Include="Views\Admin\Shared\AdminSubCategory.html" />
-    <Content Include="Views\categories.html" />
-    <Content Include="Views\ConfirmEmail.html" />
-    <Content Include="Views\Home.html" />
-    <Content Include="Views\Login.html" />
-    <Content Include="Views\Orders.html" />
-    <Content Include="Views\ForgotPassword.html" />
-    <Content Include="Views\Products.html" />
-    <Content Include="Views\Register.html" />
-    <Content Include="Views\ResetPassword.html" />
-    <Content Include="Views\Shared\footer.html" />
-    <Content Include="Views\Shared\header.html" />
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="scripts\jquery-1.9.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\App\JQuery\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

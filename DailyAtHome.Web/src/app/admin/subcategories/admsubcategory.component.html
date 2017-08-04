@@ -1,0 +1,103 @@
+﻿<div class="" *ngIf="ShowUpdate">
+    <h4>Edit Existing Category</h4>
+
+    <select class="form-control breadcrumb" (change)="onCategorySelect($event.target.value)">
+        <option value="-1">--Select an option--</option>
+        <option *ngFor="let cat of categories" [selected]="seloption ==cat.ID" value="{{cat.ID}}">{{cat.Category}}</option>
+    </select>
+    <div class="panel panel-default" *ngIf="ShowSubCategories">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>SubCategory</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Subcat of subCategoriesByID">
+                    <td>
+                        <span *ngIf="Subcat.showEdit">{{Subcat.SubCategory}}</span>
+                        <input *ngIf="!Subcat.showEdit" type="text" [(ngModel)]="Subcat.SubCategory" class="form-control">
+                    </td>
+                    <td>
+                        <span *ngIf="Subcat.showEdit">{{Subcat.Description}}</span>
+                        <input *ngIf="!Subcat.showEdit" type="text" [(ngModel)]="Subcat.Description" class="form-control">
+                    </td>
+                    <td>
+                        <span *ngIf="Subcat.showEdit">{{Subcat.Category}}</span>
+                        <select *ngIf="!Subcat.showEdit" class="form-control" [(ngModel)]="Subcat.CategoryID">
+                            <option *ngFor="let cat of categories" [value]="cat.ID">{{cat.Category}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span *ngIf="Subcat.showEdit"><img src="{{Subcat.SubCategoryImage}}" alt="{{Subcat.SubCategory}}" /></span>
+                        <span *ngIf="!Subcat.showEdit">
+                            <img [src]="src" [hidden]="!src"><br>
+                            <input type="file" name="Image" ngModel imageUpload
+                                   (imageSelected)="selected($event)"
+                                   [resizeOptions]="resizeOptions">
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="false">{{Subcat.ID}}</span>
+                        <span *ngIf="false">{{Subcat.ImageID}}</span>
+                    </td>
+                    <td>
+                        <button *ngIf="Subcat.showEdit" (click)="toggleEdit(Subcat)" value="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!Subcat.showEdit" (click)="SaveEdit(Subcat)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <button *ngIf="!Subcat.showEdit" (click)="CancelEdit(Subcat)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button *ngIf="ShowSubCategories" class="form-control btn-success center-block" (click)="AddNewSubCategory()">Add New Sub Category</button>
+</div>
+
+<div *ngIf="!ShowUpdate">
+    <div class="form-group">
+        <button class="btn btn-primary pull-left" (click)="ShowUpdateSubCategories()"><i class="fa fa-arrow-left"></i> Back To Update Sub Categories</button>
+    </div>
+    <br />
+    <br />
+    <form #AddSubCategoryForm="ngForm" (ngSubmit)="Add(AddSubCategoryForm.value)">
+        <div class="form-group">
+            <!--<label>Sub Category</label>-->
+            <input type="text" name="SubCategory" ngModel required class="form-control" placeholder="Sub Category Text">
+        </div>
+        <div class="form-group">
+            <!--<label>Description</label>-->
+            <input type="text" name="Description" ngModel required class="form-control" placeholder="Sub Category Description">
+        </div>
+        <div class="form-group">
+            <!--<label>Select Category: </label>-->
+            <select required class="form-control" [(ngModel)]="subCategoriesByID.CategoryID" name="CategoryID" ngModel>
+                <option [value]="-1" selected="selected">---Select a category---</option>
+                <option *ngFor="let cat of categories" [value]="cat.ID">{{cat.Category}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <!--<label>Subcategory Image</label>
+            <input type="file" name="Image" ngModel>-->
+            <img [src]="src" [hidden]="!src"><br>
+            <input type="file" name="Image" ngModel imageUpload
+                   (imageSelected)="selected($event)"
+                   [resizeOptions]="resizeOptions">
+        </div>
+        <button type="submit" class="btn btn-primary btn-success">Submit</button>
+    </form>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+    <div class="alert alert-success text-center form-group center-block" *ngIf="updateSuccess">
+        <p>Update Successful!</p>
+    </div>
+    <div class="alert alert-danger text-center form-group center-block" *ngIf="updateFail">
+        <p>Update Failed</p>
+    </div>
+</div>
+
