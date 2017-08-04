@@ -12,18 +12,19 @@
                             <li><hr /></li>
                             <li>
                                 <h4 class="text-center text-info">
-                                    {{a.AddressType}}
+                                    {{a.addressType}}
                                 </h4>
                             </li>
-                            <ng-container *ngIf="!showBillingForm[i]">
+                            <ng-container *ngIf="!showBillingForm[i] && a.id">
                                 <li>{{a.StreetAddress}}</li>
                                 <li>{{a.City+'  '+a.State+' '+a.Zip+'  '}}</li>
                                 <li>{{a.Country}}</li>
                                 <li><button class="btn btn-sm btn-warning" (click)="billingEdit(i)">Edit</button></li>
                             </ng-container>
-                            <ng-container *ngIf="showBillingForm[i]">
+
+                            <ng-container *ngIf="showBillingForm[i] || !a.id">
                                 <li>
-                                    <form *ngIf="showBillingForm" #addressForm="ngForm">
+                                    <form  #addressForm="ngForm">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="StreetAddress" [(ngModel)]="a.StreetAddress" placeholder="Street Address">
                                         </div>
@@ -40,8 +41,8 @@
                                             <input type="text" class="form-control" name="Country" [(ngModel)]="a.Country" placeholder="Country">
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-sm btn-success">Save</button>
-                                            <button class="btn btn-warning btn-sm" (click)="billingEdit(i)">Cancel</button>
+                                            <button type="submit" (click)="saveAddress(a)" class="btn btn-sm btn-success">Save</button>
+                                            <button class="btn btn-warning btn-sm" *ngIf="a.id" (click)="billingEdit(i)">Cancel</button>
                                         </div>
                                     </form>
                                 </li>
@@ -49,7 +50,7 @@
                             <li>
                                 <hr />
                             </li>
-                        </ul>
+                        </ul>                       
                     </div>
                 </div>
             </div>

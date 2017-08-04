@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
         this.productsSvc.getCategories()
             .subscribe(result => this.categories = result);
-        console.log(this.categories);
     }
 
     logout() {

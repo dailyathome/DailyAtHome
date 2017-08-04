@@ -82,7 +82,7 @@ namespace DailyAtHome.WebAPI.Controllers
             model.Adresses = new List<DataAccess.Models.Address>();
             dalAddressList.ForEach(a => model.Adresses.Add(new DataAccess.Models.Address()
             {
-                AddressType = Enum.GetName(typeof(AddressType),a.AddressTypeID),
+                AddressType = Enum.GetName(typeof(AddressType), a.AddressTypeID),
                 City = a.City,
                 Country = a.Country,
                 ID = a.ID,
@@ -98,6 +98,24 @@ namespace DailyAtHome.WebAPI.Controllers
             //    HasRegistered = externalLogin == null,
             //    LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             //};
+        }
+
+        public IHttpActionResult AddAddress(Address address)
+        {
+            DAH_Address dalAddress = new DAH_Address()
+            {
+                AddressTypeID = (int)Enum.Parse(typeof(AddressType), address.AddressType),
+                UserID = User.Identity.GetUserId(),
+                City = address.City,
+                Country = address.Country,
+                ID = address.ID,
+                State = address.State,
+                StreetAddress = address.StreetAddress,
+                Zip = address.Zip
+            };
+            dahEntity.DAH_Address.Add(dalAddress);
+
+            return Ok();
         }
 
         // POST api/Account/Logout

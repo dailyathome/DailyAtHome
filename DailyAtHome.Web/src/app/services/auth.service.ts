@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AppSettings } from '../app.settings';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Address } from '../models/address.model';
 
 @Injectable()
 export class AuthService {
@@ -53,6 +54,21 @@ export class AuthService {
         let options = new RequestOptions({ headers: headers });
         return this.http.get(AppSettings.API_URL + '/api/account/UserInfo', options).map((res: Response) => res.json());
 
+    }
+
+    updateAddress(address: Address) {
+        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(AppSettings.API_URL + '/api/account/UpdateAddress', options).map(
+            (res: Response) => res.json()
+        );
+    }
+    addAddress(address: Address) {
+        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(AppSettings.API_URL + '/api/account/AddAddress', options).map(
+            (res: Response) => res.json()
+        );
     }
 
 }

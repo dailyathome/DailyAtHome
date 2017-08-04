@@ -18,8 +18,10 @@ export class CartComponent implements OnInit {
     subTotalAmt: number = 0;
     products: Product[];
     ngOnInit() {
-        //this.products = this._cartSvc.getItems('dahCart');
-        //this._cartSvc.updateCartStatus(this.products);
+
+        //incase if page gets refreshed.
+        this.products = this._cartSvc.getItems('dahCart');
+        this._cartSvc.updateCartStatus(this.products);
         this._cartSvc.cartStatus.subscribe(
             (r) => {
                 var count = 0, amt = 0;
