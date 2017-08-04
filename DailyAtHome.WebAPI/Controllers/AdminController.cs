@@ -74,6 +74,26 @@ namespace DailyAtHome.WebAPI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [Route("UpdateProduct")]
+        public IHttpActionResult UpdateProduct(Products Product)
+        {
+            try
+            {
+                if (Product.ImageID == 0)
+                {
+                    Product.ImageID = null;
+                }
+                dahEntity.DAH_SP_UpdateProduct(Product.ID, Product.Product, Product.Description, Product.Cost, Product.SubCategoryID, Product.IsAvailable, Product.ImageID, Product.Image);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
         [Route("AddSubCategory")]
         public IHttpActionResult AddSubCategory(AddSubCategoryModel SubCategory)
         {

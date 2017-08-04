@@ -138,5 +138,42 @@ namespace DailyAtHome.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetProductsBySubCategory_Result>("DAH_SP_GetProductsBySubCategory", iDParameter);
         }
+    
+        public virtual int DAH_SP_UpdateProduct(Nullable<int> iD, string pRODUCT, string dESCRIPTION, Nullable<decimal> cOST, Nullable<int> sUBCATEGORYID, Nullable<bool> iSAVAILABLE, Nullable<int> iMAGEID, string iMAGE)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var pRODUCTParameter = pRODUCT != null ?
+                new ObjectParameter("PRODUCT", pRODUCT) :
+                new ObjectParameter("PRODUCT", typeof(string));
+    
+            var dESCRIPTIONParameter = dESCRIPTION != null ?
+                new ObjectParameter("DESCRIPTION", dESCRIPTION) :
+                new ObjectParameter("DESCRIPTION", typeof(string));
+    
+            var cOSTParameter = cOST.HasValue ?
+                new ObjectParameter("COST", cOST) :
+                new ObjectParameter("COST", typeof(decimal));
+    
+            var sUBCATEGORYIDParameter = sUBCATEGORYID.HasValue ?
+                new ObjectParameter("SUBCATEGORYID", sUBCATEGORYID) :
+                new ObjectParameter("SUBCATEGORYID", typeof(int));
+    
+            var iSAVAILABLEParameter = iSAVAILABLE.HasValue ?
+                new ObjectParameter("ISAVAILABLE", iSAVAILABLE) :
+                new ObjectParameter("ISAVAILABLE", typeof(bool));
+    
+            var iMAGEIDParameter = iMAGEID.HasValue ?
+                new ObjectParameter("IMAGEID", iMAGEID) :
+                new ObjectParameter("IMAGEID", typeof(int));
+    
+            var iMAGEParameter = iMAGE != null ?
+                new ObjectParameter("IMAGE", iMAGE) :
+                new ObjectParameter("IMAGE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateProduct", iDParameter, pRODUCTParameter, dESCRIPTIONParameter, cOSTParameter, sUBCATEGORYIDParameter, iSAVAILABLEParameter, iMAGEIDParameter, iMAGEParameter);
+        }
     }
 }

@@ -6,7 +6,8 @@
             </div>
             <div class="panel-body">
                 <div>
-                    <img src="{{'https://placehold.it/150x80?text='+product.Product}}" class="img-responsive" style="width:100%" />
+                    <img *ngIf="!product.Image" src="{{'https://placehold.it/500x500?text='+product.Product}}" class="img-responsive" style="width:50%; margin:0 auto" />
+                    <img *ngIf="product.Image"src="{{product.Image}}" alt="{{product.Product}}" class="img-responsive" style="width:50%; margin: 0 auto" />
                 </div>
                 <div>
                     <p>

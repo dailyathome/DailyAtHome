@@ -302,6 +302,16 @@
           <Parameter Name="Category" Type="nvarchar" Mode="In" />
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="DAH_SP_UpdateProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="PRODUCT" Type="nvarchar" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="nvarchar" Mode="In" />
+          <Parameter Name="COST" Type="money" Mode="In" />
+          <Parameter Name="SUBCATEGORYID" Type="int" Mode="In" />
+          <Parameter Name="ISAVAILABLE" Type="bit" Mode="In" />
+          <Parameter Name="IMAGEID" Type="int" Mode="In" />
+          <Parameter Name="IMAGE" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="DAH_SP_UpdateSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="SubCategory" Type="nvarchar" Mode="In" />
@@ -549,6 +559,16 @@
             <End Role="DAH_Products" EntitySet="DAH_Products" />
             <End Role="DAH_Img_Products" EntitySet="DAH_Img_Products" />
           </AssociationSet>
+          <FunctionImport Name="DAH_SP_UpdateProduct">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="PRODUCT" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="COST" Mode="In" Type="Decimal" />
+            <Parameter Name="SUBCATEGORYID" Mode="In" Type="Int32" />
+            <Parameter Name="ISAVAILABLE" Mode="In" Type="Boolean" />
+            <Parameter Name="IMAGEID" Mode="In" Type="Int32" />
+            <Parameter Name="IMAGE" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="DAH_Img_Categories">
           <Key>
@@ -926,6 +946,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DAH_SP_UpdateProduct" FunctionName="dahDBModel.Store.DAH_SP_UpdateProduct" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
