@@ -107,7 +107,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="ProductID" Type="int" />
         </EntityType>
         <EntityType Name="DAH_Img_SubCategories">
@@ -290,6 +290,9 @@
           <Parameter Name="CategoryID" Type="int" Mode="In" />
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
           <Parameter Name="Image" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DAH_SP_GetProductsBySubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="DAH_SP_GetSubCategoryByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -482,7 +485,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="DAH_Img_Categories" EntityType="dahDBModel.DAH_Img_Categories" />
-          <EntitySet Name="DAH_Img_Products" EntityType="dahDBModel.DAH_Img_Products" />
           <EntitySet Name="DAH_Categories" EntityType="dahDBModel.DAH_Categories" />
           <AssociationSet Name="FK__DAH_Img_C__Categ__5DCAEF64" Association="dahDBModel.FK__DAH_Img_C__Categ__5DCAEF64">
             <End Role="DAH_Categories" EntitySet="DAH_Categories" />
@@ -494,10 +496,6 @@
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
           </AssociationSet>
           <EntitySet Name="DAH_Products" EntityType="dahDBModel.DAH_Products" />
-          <AssociationSet Name="FK__DAH_Img_P__Categ__60A75C0F" Association="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F">
-            <End Role="DAH_Products" EntitySet="DAH_Products" />
-            <End Role="DAH_Img_Products" EntitySet="DAH_Img_Products" />
-          </AssociationSet>
           <AssociationSet Name="FK_DAH_Products_DAH_SubCategories" Association="dahDBModel.FK_DAH_Products_DAH_SubCategories">
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
             <End Role="DAH_Products" EntitySet="DAH_Products" />
@@ -543,6 +541,14 @@
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
             <End Role="DAH_Img_SubCategories" EntitySet="DAH_Img_SubCategories" />
           </AssociationSet>
+          <FunctionImport Name="DAH_SP_GetProductsBySubCategory" ReturnType="Collection(dahDBModel.DAH_SP_GetProductsBySubCategory_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="DAH_Img_Products" EntityType="dahDBModel.DAH_Img_Products" />
+          <AssociationSet Name="FK__DAH_Img_P__Categ__60A75C0F" Association="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F">
+            <End Role="DAH_Products" EntitySet="DAH_Products" />
+            <End Role="DAH_Img_Products" EntitySet="DAH_Img_Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DAH_Img_Categories">
           <Key>
@@ -552,15 +558,6 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CategoryID" Type="Int32" />
           <NavigationProperty Name="DAH_Categories" Relationship="dahDBModel.FK__DAH_Img_C__Categ__5DCAEF64" FromRole="DAH_Img_Categories" ToRole="DAH_Categories" />
-        </EntityType>
-        <EntityType Name="DAH_Img_Products">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductID" Type="Int32" />
-          <NavigationProperty Name="DAH_Products" Relationship="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" FromRole="DAH_Img_Products" ToRole="DAH_Products" />
         </EntityType>
         <EntityType Name="DAH_Categories">
           <Key>
@@ -621,21 +618,9 @@
           <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
           <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
           <Property Name="ImageID" Type="Int32" />
-          <NavigationProperty Name="DAH_Img_Products" Relationship="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" FromRole="DAH_Products" ToRole="DAH_Img_Products" />
           <NavigationProperty Name="DAH_SubCategories" Relationship="dahDBModel.FK_DAH_Products_DAH_SubCategories" FromRole="DAH_Products" ToRole="DAH_SubCategories" />
+          <NavigationProperty Name="DAH_Img_Products" Relationship="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" FromRole="DAH_Products" ToRole="DAH_Img_Products" />
         </EntityType>
-        <Association Name="FK__DAH_Img_P__Categ__60A75C0F">
-          <End Type="dahDBModel.DAH_Products" Role="DAH_Products" Multiplicity="0..1" />
-          <End Type="dahDBModel.DAH_Img_Products" Role="DAH_Img_Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DAH_Products">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DAH_Img_Products">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DAH_Products_DAH_SubCategories">
           <End Type="dahDBModel.DAH_SubCategories" Role="DAH_SubCategories" Multiplicity="1" />
           <End Type="dahDBModel.DAH_Products" Role="DAH_Products" Multiplicity="*" />
@@ -725,6 +710,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="DAH_SP_GetProductsBySubCategory_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Product" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategory" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAvailable" Nullable="false" />
+          <Property Type="Int32" Name="ImageID" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="DAH_Img_Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="DAH_Products" Relationship="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" FromRole="DAH_Img_Products" ToRole="DAH_Products" />
+        </EntityType>
+        <Association Name="FK__DAH_Img_P__Categ__60A75C0F">
+          <End Type="dahDBModel.DAH_Products" Role="DAH_Products" Multiplicity="0..1" />
+          <End Type="dahDBModel.DAH_Img_Products" Role="DAH_Img_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Img_Products">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -798,15 +815,6 @@
             <EntityTypeMapping TypeName="dahDBModel.DAH_Img_Categories">
               <MappingFragment StoreEntitySet="DAH_Img_Categories">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DAH_Img_Products">
-            <EntityTypeMapping TypeName="dahDBModel.DAH_Img_Products">
-              <MappingFragment StoreEntitySet="DAH_Img_Products">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -889,6 +897,30 @@
             <EntityTypeMapping TypeName="dahDBModel.DAH_Img_SubCategories">
               <MappingFragment StoreEntitySet="DAH_Img_SubCategories">
                 <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DAH_SP_GetProductsBySubCategory" FunctionName="dahDBModel.Store.DAH_SP_GetProductsBySubCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dahDBModel.DAH_SP_GetProductsBySubCategory_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="DAH_Img_Products">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_Img_Products">
+              <MappingFragment StoreEntitySet="DAH_Img_Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

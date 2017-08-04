@@ -51,5 +51,14 @@ export class AdmProductComponent implements OnInit {
 
     }
 
+    toggleEdit(Product) {
+        Product.showEdit = Product.showEdit ? false : true;
+    }
+
+    CancelEdit(Product) {
+        this.productsService.getProductsBySubCategory(+this.SelSubCategoryOption)
+            .subscribe(result => this.ProductsBySubcategory = result);
+    }
+
 
 }

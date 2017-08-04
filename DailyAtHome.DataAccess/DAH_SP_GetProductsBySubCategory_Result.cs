@@ -10,14 +10,17 @@
 namespace DailyAtHome.DataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DAH_Img_Products
+    public partial class DAH_SP_GetProductsBySubCategory_Result
     {
         public int ID { get; set; }
+        public string Product { get; set; }
+        public string Description { get; set; }
+        public decimal Cost { get; set; }
+        public int SubCategoryID { get; set; }
+        public string SubCategory { get; set; }
+        public bool IsAvailable { get; set; }
+        public Nullable<int> ImageID { get; set; }
         public string Image { get; set; }
-        public Nullable<int> ProductID { get; set; }
-    
-        public virtual DAH_Products DAH_Products { get; set; }
     }
 }
