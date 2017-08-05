@@ -87,8 +87,8 @@ export class AdmSubCategoryComponent implements OnInit {
     }
 
     resizeOptions: ResizeOptions = {
-        resizeMaxHeight: 128,
-        resizeMaxWidth: 128
+        resizeMaxHeight: 300,
+        resizeMaxWidth: 300
     };
 
     selected(imageResult: ImageResult) {

@@ -1,26 +1,31 @@
-﻿<!--<div class="col-md-9 col-md-offset-1">-->
-    <div class="panel">
-        <div class="panel-heading">
-            <h4>Select an Option From below list :</h4>
-            <select class="form-control breadcrumb" (change)="onSelect($event.target.value)">
-                <option value="-1">--Select an option--</option>
-                <option value="1">Category</option>
-                <option value="2">Sub Category</option>
-                <option value="3">Product</option>
-            </select>
-        </div>
-        <div class="panel-body">
-            <div *ngIf="option === '1'">
-                <dah-admcategory></dah-admcategory>
+﻿<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <h4>Select an Option From below list :</h4>
+                    <select class="form-control" (change)="onSelect($event.target.value)">
+                        <option value="-1">--Select an option--</option>
+                        <option value="1">Category</option>
+                        <option value="2">Sub Category</option>
+                        <option value="3">Product</option>
+                    </select>
+                </div>
             </div>
+            <div class="panel-body">
+                <div class="form-group" *ngIf="option === '1'">
+                    <dah-admcategory></dah-admcategory>
+                </div>
 
-            <div *ngIf="option === '2'">
-                <dah-admsubcategory></dah-admsubcategory>
-            </div>
+                <div class="form-group" *ngIf="option === '2'">
+                    <dah-admsubcategory></dah-admsubcategory>
+                </div>
 
-            <div *ngIf="option === '3'">
-                <dah-admproduct></dah-admproduct>
+                <div class="form-group" *ngIf="option === '3'">
+                    <dah-admproduct></dah-admproduct>
+                </div>
             </div>
         </div>
     </div>
-<!--</div>-->
+</div>
+
