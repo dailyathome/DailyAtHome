@@ -5,13 +5,13 @@
     </div>
 </div>
 
-<div class="row" style="margin-bottom:1.5rem" *ngIf="products && products.length>0">
+<div class="row" style="margin-bottom:1.5rem" *ngIf="products && products.length>4">
     <div class="col-sm-12">
         <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
         <button class="btn btn-success pull-right" [routerLink]="['/profile']">Checkout <i class="fa fa-credit-card"></i></button>
     </div>
 </div>
-<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyInOut]>
+<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyOut]>
     <!-- Default panel contents -->
     <div class="panel-heading"><strong>{{p.name}}</strong></div>
     <div class="table-responsive">
@@ -67,6 +67,6 @@
 <div class="row">
     <div class="col-sm-12">
         <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
-        <button class="btn btn-success pull-right" [routerLink]="['/profile']" *ngIf="products && products.length>0">Checkout <i class="fa fa-credit-card"></i></button>
+        <button class="btn btn-success pull-right" [routerLink]="['/profile']" *ngIf="products && products.length>0">Checkout <i class="fa fa-credit-card fa-spin"></i></button>
     </div>
 </div>

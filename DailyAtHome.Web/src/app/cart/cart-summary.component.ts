@@ -8,7 +8,7 @@ import { animate, trigger, transition, style } from '@angular/animations';
     templateUrl: 'cart-summary.component.html',
     styleUrls: ['cart-summary.component.min.css'],
     animations: [
-        trigger('flyInOut', [
+        trigger('flyOut', [
             transition(':leave', [
                 animate('1s', style({
                     transform:'translateX(100%)'

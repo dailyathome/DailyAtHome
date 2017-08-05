@@ -24,10 +24,7 @@
                         </li>
                     </ul>
                 </li>-->
-                <li class="login-link pull-left">
-                    <a *ngIf="!IsLoggedIn" [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a>
-                    <a *ngIf="IsLoggedIn" [routerLink]="['logout']"><i class="fa fa-user-circle"></i> Logout</a>
-                </li>
+
                 <li class="pull-right cart-container">
                     <cart>
                     </cart>
@@ -54,12 +51,17 @@
                             </li>
                             <ng-container *ngFor="let subCat of category.SubCategoriesList">
                                 <li>
-                                    <a data-toggle="collapse" data-target=".navbar-collapse" [routerLink]="['/products',subCat.ID]">{{ subCat.SubCategory }}</a>
+                                    <a data-toggle="collapse" data-target=".navbar-collapse" (click)="getProducts(subCat.ID)">{{ subCat.SubCategory }}</a>
                                 </li>
                             </ng-container>
                             <li class="divider"></li>
                         </ng-container>
                     </ul>
+                </li>
+
+                <li class="">
+                    <a *ngIf="!IsLoggedIn" [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a>
+                    <a *ngIf="IsLoggedIn" [routerLink]="['logout']"><i class="fa fa-user-circle"></i> Logout</a>
                 </li>
             </ul>
         </div>
