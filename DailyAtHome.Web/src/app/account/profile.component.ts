@@ -10,39 +10,29 @@ import { AuthService } from '../services/auth.service';
 export class ProfileComponent implements OnInit {
     constructor(private _authSvc: AuthService) { }
     address: Address[];
-    showBillingForm: any[] = [false];
+    shippingAddress: Address;
+    billingAddress: Address;
+    showBillingForm: boolean = false;
+    showShippingForm: boolean = false;
+    paymentInfo: any;
+    
     ngOnInit() {
         this._authSvc.getUser().subscribe(
             (res) => {
-                this.address = res.Adresses as Address[];
-                if (this.address.length == 0) {
-                    this.address = [{
-                        id: null,
-                        stretAddress: null,
-                        city: null,
-                        state: null,
-                        zip: null,
-                        country: null,
-                        addressType: 'Shipping'
-                    }, {
-                        id: '',
-                        stretAddress: '',
-                        city: '',
-                        state: '',
-                        zip: '',
-                        country: '',
-                        addressType: 'Billing'
-                        }];                   
-                }
+               // this.address = res.Adresses as Address[];
+                this.shippingAddress = res.Adresses.find(a => a.AddressType == 'Shipping');
+                this.billingAddress = res.Adresses.find(a => a.AddressType == 'Billing');
+                //this.paymentInfo = res.paymentInfo;
             }
         )
     }
 
-    billingEdit(i) {
-        this.showBillingForm[i] ? this.showBillingForm[i] = false : this.showBillingForm[i] = true;
+    billingEditClick() {
+        this.showBillingForm ? this.showBillingForm = false : this.showBillingForm = true;
     }
 
-    saveAddress(a) {
-
+    shippingEditClick() {
+        this.showShippingForm ? this.showShippingForm = false : this.showShippingForm = true;
     }
+
 }

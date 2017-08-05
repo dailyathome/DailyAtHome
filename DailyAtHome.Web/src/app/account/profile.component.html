@@ -2,55 +2,56 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel-body">
-            <h3 class="text-center text-primary">
-                Address
-            </h3>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-block text-center">
-                        <ul class="list-unstyled" *ngFor="let a of address let i=index">
-                            <li><hr /></li>
+                        <hr />
+                        <ul class="list-unstyled list-inline" *ngIf="shippingAddress && !showShippingForm">                          
                             <li>
                                 <h4 class="text-center text-info">
-                                    {{a.addressType}}
-                                </h4>
+                                   Ship to
+                                </h4>                              
                             </li>
-                            <ng-container *ngIf="!showBillingForm[i] && a.id">
-                                <li>{{a.StreetAddress}}</li>
-                                <li>{{a.City+'  '+a.State+' '+a.Zip+'  '}}</li>
-                                <li>{{a.Country}}</li>
-                                <li><button class="btn btn-sm btn-warning" (click)="billingEdit(i)">Edit</button></li>
-                            </ng-container>
+                            <li class="v-align-middle">
+                                <div>
+                                    <ul class="list-unstyled">
+                                        <li>{{shippingAddress.StreetAddress}}</li>
+                                        <li>{{shippingAddress.City+'  '+shippingAddress.State+' '+shippingAddress.Zip+'  '}}</li>
+                                        <li>{{shippingAddress.Country}}</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button class="btn btn-sm btn-warning" (click)="shippingEditClick()">Edit</button>
+                            </li>
 
-                            <ng-container *ngIf="showBillingForm[i] || !a.id">
+                            <ng-container *ngIf="showShippingForm">
                                 <li>
-                                    <form  #addressForm="ngForm">
+                                    <form #addressForm="ngForm">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="StreetAddress" [(ngModel)]="a.StreetAddress" placeholder="Street Address">
+                                            <input type="text" class="form-control" name="StreetAddress" [(ngModel)]="shippingAddress.StreetAddress" placeholder="Street Address">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="State" [(ngModel)]="a.State" placeholder="State">
+                                            <input type="text" class="form-control" name="State" [(ngModel)]="shippingAddress.State" placeholder="State">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="City" [(ngModel)]="a.City" placeholder="City">
+                                            <input type="text" class="form-control" name="City" [(ngModel)]="shippingAddress.City" placeholder="City">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="Zip" [(ngModel)]="a.Zip" placeholder="Zip">
+                                            <input type="text" class="form-control" name="Zip" [(ngModel)]="shippingAddress.Zip" placeholder="Zip">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="Country" [(ngModel)]="a.Country" placeholder="Country">
+                                            <input type="text" class="form-control" name="Country" [(ngModel)]="shippingAddress.Country" placeholder="Country">
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" (click)="saveAddress(a)" class="btn btn-sm btn-success">Save</button>
-                                            <button class="btn btn-warning btn-sm" *ngIf="a.id" (click)="billingEdit(i)">Cancel</button>
+                                            <button type="submit" (click)="saveAddress(shippingAddress)" class="btn btn-sm btn-success">Save this {{shippingAddress.AddressType}} address</button>
+                                            <button class="btn btn-warning btn-sm" (click)="shippingEditClick()">Cancel</button>
                                         </div>
                                     </form>
                                 </li>
                             </ng-container>
-                            <li>
-                                <hr />
-                            </li>
-                        </ul>                       
+                        </ul>
+                        <hr />
                     </div>
                 </div>
             </div>
