@@ -342,6 +342,14 @@
           <Parameter Name="Category" Type="nvarchar" Mode="In" />
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="DAH_SP_AddProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Product" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="Image" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Cost" Type="money" Mode="In" />
+          <Parameter Name="IsAvailable" Type="bit" Mode="In" />
+        </Function>
         <Function Name="DAH_SP_AddSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategory" Type="nvarchar" Mode="In" />
           <Parameter Name="CategoryID" Type="int" Mode="In" />
@@ -351,6 +359,7 @@
         <Function Name="DAH_SP_GetProductsBySubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DAH_SP_GetRandomProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="DAH_SP_GetSubCategoryByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -641,6 +650,15 @@
             <Parameter Name="IMAGEID" Mode="In" Type="Int32" />
             <Parameter Name="IMAGE" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="DAH_SP_AddProduct">
+            <Parameter Name="Product" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Image" Mode="In" Type="String" />
+            <Parameter Name="Cost" Mode="In" Type="Decimal" />
+            <Parameter Name="IsAvailable" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DAH_SP_GetRandomProducts" ReturnType="Collection(dahDBModel.DAH_SP_GetRandomProducts_Result)" />
           <EntitySet Name="DAH_Payment" EntityType="dahDBModel.DAH_Payment" />
           <EntitySet Name="DAH_PaymentType" EntityType="dahDBModel.DAH_PaymentType" />
           <AssociationSet Name="FK_DAH_Payment_AspNetUsers" Association="dahDBModel.FK_DAH_Payment_AspNetUsers">
@@ -849,6 +867,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="DAH_SP_GetRandomProducts_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Product" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategory" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAvailable" Nullable="false" />
+          <Property Type="Int32" Name="ImageID" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
         <EntityType Name="DAH_Payment">
           <Key>
             <PropertyRef Name="ID" />
@@ -1118,6 +1147,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DAH_SP_AddProduct" FunctionName="dahDBModel.Store.DAH_SP_AddProduct" />
+          <FunctionImportMapping FunctionImportName="DAH_SP_GetRandomProducts" FunctionName="dahDBModel.Store.DAH_SP_GetRandomProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dahDBModel.DAH_SP_GetRandomProducts_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

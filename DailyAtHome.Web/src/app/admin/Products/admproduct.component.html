@@ -1,22 +1,25 @@
-﻿<div class="" *ngIf="ShowUpdate">
-    <h4>Edit Existing Product</h4>
-
-    <div>
-        <select class="form-control breadcrumb" (change)="onCategorySelect($event.target.value)">
+﻿<div *ngIf="ShowUpdate">
+    <div class="form-group">
+        <h4>Edit Existing Product</h4>
+        <select class="form-control" (change)="onCategorySelect($event.target.value)">
             <option value="-1">--Select a Category--</option>
-            <option *ngFor="let cat of categories" [selected]="seloption ==cat.ID" value="{{cat.ID}}">{{cat.Category}}</option>
+            <option *ngFor="let cat of categories" [selected]="SelCategoryoption ==cat.ID" value="{{cat.ID}}">{{cat.Category}}</option>
         </select>
     </div>
-
-    <div *ngIf="ShowSubCategories">
-        <select class="form-control breadcrumb" (change)="onSubCategorySelect($event.target.value)">
-            <option value="-1">--Select a Sub Category--</option>
-            <option *ngFor="let SubCat of subCategoriesByID" [selected]="seloption ==SubCat.ID" value="{{SubCat.ID}}">{{SubCat.SubCategory}}</option>
-        </select>
+    <div class="form-group">
+        <div *ngIf="ShowSubCategories">
+            <select class="form-control" (change)="onSubCategorySelect($event.target.value)">
+                <option value="-1">--Select a Sub Category--</option>
+                <option *ngFor="let SubCat of subCategoriesByID" [selected]="SelSubCategoryOption ==SubCat.ID" value="{{SubCat.ID}}">{{SubCat.SubCategory}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <button *ngIf="ShowUpdateProducts" class="form-control btn btn-success" (click)="AddNewProduct()">Add New Product</button>
     </div>
 
-    <div class="panel panel-default" *ngIf="ShowUpdateProducts">
-        <table class="table table-striped table-responsive">
+    <div class="form-group table-responsive" *ngIf="ShowUpdateProducts">
+        <table class="table table-condensed">
             <thead>
                 <tr>
                     <th>Product</th>
@@ -41,10 +44,10 @@
                         <input *ngIf="!Product.showEdit" type="text" [(ngModel)]="Product.Description" class="form-control">
                     </td>
                     <td>
-                        <span *ngIf="Product.showEdit"><img src="{{Product.Image}}" alt="{{Product.Product}}" /></span>
+                        <span *ngIf="Product.showEdit"><img style="width:50%" src="{{Product.Image}}" alt="{{Product.Product}}" /></span>
                         <span *ngIf="!Product.showEdit">
                             <img [src]="src" [hidden]="!src"><br>
-                            <input type="file" name="Image" ngModel imageUpload
+                            <input class="form-control " type="file" name="Image" ngModel imageUpload
                                    (imageSelected)="selected($event)"
                                    [resizeOptions]="resizeOptions">
                         </span>
@@ -56,17 +59,17 @@
                     <td>
                         <span *ngIf="Product.showEdit">{{Product.SubCategory}}</span>
                         <span *ngIf="!Product.showEdit">
-                            <select class="breadcrumb" [(ngModel)]="Product.SubcategoryID">
+                            <select class="form-control" [(ngModel)]="Product.SubcategoryID">
                                 <option value="-1"></option>
                                 <option *ngFor="let SubCat of subCategoriesByID" [value]="SubCat.SubCategoryID">{{SubCat.SubCategory}}</option>
-                                
+
                             </select>
                         </span>
-                        </td>
+                    </td>
                     <td>
                         <span *ngIf="Product.showEdit">{{Product.IsAvailable}}</span>
                         <span *ngIf="!Product.showEdit">
-                            <select class="breadcrumb" [(ngModel)]="Product.IsAvailable">
+                            <select class="selectpicker" [(ngModel)]="Product.IsAvailable">
                                 <option value="-1"> </option>
                                 <option [value]="true">Yes</option>
                                 <option [value]="false">No</option>
@@ -82,6 +85,58 @@
             </tbody>
         </table>
     </div>
+</div>
 
+<div *ngIf="!ShowUpdate">
+    <div class="form-group">
+        <button class="btn btn-primary" (click)="ShowUpdateSubCategories()"><i class="fa fa-arrow-left"></i> Back To Update Products</button>
+    </div>
+    <br />
+    <br />
+    <h3>Add Product</h3>
+    <form #AddProductForm="ngForm" (ngSubmit)="Add(AddProductForm.value)">
+        <div class="form-group">
+            <input type="text" name="Product" ngModel required class="form-control" placeholder="Product">
+        </div>
+        <div class="form-group">
+            <input type="text" name="Description" ngModel required class="form-control" placeholder="Product Description">
+        </div>
+        <div class="form-group">
+            <select required class="form-control" (change)="onCategorySelect($event.target.value)">
+                <option value="-1">--Select a Category--</option>
+                <option *ngFor="let cat of categories" [selected]="seloption ==cat.ID" value="{{cat.ID}}">{{cat.Category}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select required class="form-control" [(ngModel)]="ProductsBySubcategory.SubCategoryID" name="SubCategoryID" ngModel>
+                <option [value]="-1" selected="selected">---Select a Sub category---</option>
+                <option *ngFor="let SubCat of subCategoriesByID" [value]="SubCat.ID">{{SubCat.SubCategory}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" name="Cost" ngModel required class="form-control" placeholder="Product Cost">
+        </div>
+        <div class="form-group">
+            <select required class="form-control selectpicker" [(ngModel)]="ProductsBySubcategory.IsAvailable" name="IsAvailable" ngModel>
+                <option [value]="true">Yes</option>
+                <option [value]="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <img [src]="src" [hidden]="!src"><br>
+            <input type="file" name="Image" ngModel imageUpload
+                   (imageSelected)="selected($event)"
+                   [resizeOptions]="resizeOptions">
+        </div>
+        <button type="submit" class="btn btn-primary col-xs-6 col-xs-offset-3">Submit</button>
+    </form>
+</div>
 
+<div class="col-md-6 col-md-offset-3">
+    <div class="alert alert-success text-center form-group center-block" dismiss *ngIf="updateSuccess">
+        <p>Update Successful!</p>
+    </div>
+    <div class="alert alert-danger text-center form-group center-block" *ngIf="updateFail">
+        <p>Update Failed</p>
+    </div>
 </div>

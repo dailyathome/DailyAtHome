@@ -29,4 +29,12 @@ export class ProductsService {
             (response: Response) => response.json()
         );
     }
+
+    getRandomProducts() {
+        let params = new URLSearchParams();
+        return this.http.get(AppSettings.API_URL + '/api/Home/GetRandomProducts').map(
+            (response: Response) => response.json()
+        );
+    }
+
 }

@@ -107,5 +107,21 @@ namespace DailyAtHome.WebAPI.Controllers
                 return InternalServerError();
             }
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("AddProduct")]
+        public IHttpActionResult AddProduct(Products Product)
+        {
+            try
+            {
+                dahEntity.DAH_SP_AddProduct(Product.Product, Product.Description, Product.SubCategoryID, Product.Image, Product.Cost, Product.IsAvailable);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
     }
 }

@@ -177,5 +177,39 @@ namespace DailyAtHome.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_UpdateProduct", iDParameter, pRODUCTParameter, dESCRIPTIONParameter, cOSTParameter, sUBCATEGORYIDParameter, iSAVAILABLEParameter, iMAGEIDParameter, iMAGEParameter);
         }
+    
+        public virtual int DAH_SP_AddProduct(string product, string description, Nullable<int> subCategoryID, string image, Nullable<decimal> cost, Nullable<bool> isAvailable)
+        {
+            var productParameter = product != null ?
+                new ObjectParameter("Product", product) :
+                new ObjectParameter("Product", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var subCategoryIDParameter = subCategoryID.HasValue ?
+                new ObjectParameter("SubCategoryID", subCategoryID) :
+                new ObjectParameter("SubCategoryID", typeof(int));
+    
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var costParameter = cost.HasValue ?
+                new ObjectParameter("Cost", cost) :
+                new ObjectParameter("Cost", typeof(decimal));
+    
+            var isAvailableParameter = isAvailable.HasValue ?
+                new ObjectParameter("IsAvailable", isAvailable) :
+                new ObjectParameter("IsAvailable", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DAH_SP_AddProduct", productParameter, descriptionParameter, subCategoryIDParameter, imageParameter, costParameter, isAvailableParameter);
+        }
+    
+        public virtual ObjectResult<DAH_SP_GetRandomProducts_Result> DAH_SP_GetRandomProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetRandomProducts_Result>("DAH_SP_GetRandomProducts");
+        }
     }
 }
