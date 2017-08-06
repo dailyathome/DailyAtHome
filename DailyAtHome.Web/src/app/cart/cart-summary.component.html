@@ -19,8 +19,11 @@
             <tbody>
                 <tr>
                     <td class="text-left cart-item-img">
-                        <div>
-                            <img src="{{'https://placehold.it/150x80?text='+p.name}}" class="img-responsive" />
+                        <div *ngIf="p.image_src">
+                            <img src="{{p.image_src}}" alt="{{p.name}}" class="img-responsive" style="width:30%" />
+                        </div>
+                        <div *ngIf="!p.image_src">
+                            <img src="{{'https://placehold.it/300x300?text='+p.name}}" class="img-responsive" style="width:30%" />
                         </div>
                     </td>
                     <td class="cart-item-description">
