@@ -62,7 +62,7 @@
   min-width: 100%;
 }
 li.cart-container {
-  margin: 15px;
+  margin: 15px 0;
 }
 .navbar-collapse collapse in {
   max-height: inherit;

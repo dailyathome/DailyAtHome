@@ -100,6 +100,12 @@
     <Compile Include="DAH_Img_SubCategories.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAH_Payment.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAH_PaymentType.cs">
+      <DependentUpon>dahEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAH_Products.cs">
       <DependentUpon>dahEntity.tt</DependentUpon>
     </Compile>
@@ -115,6 +121,7 @@
     <Compile Include="Models\AddSubCategoryModel.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\SubCategories.cs" />
     <Compile Include="Models\SubCategoriesByCategoryID.cs" />

@@ -117,6 +117,7 @@
     <TypeScriptCompile Include="src\app\header\header.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
     <TypeScriptCompile Include="src\app\models\address.model.ts" />
+    <TypeScriptCompile Include="src\app\models\payment.model.ts" />
     <TypeScriptCompile Include="src\app\models\product.model.ts" />
     <TypeScriptCompile Include="src\app\models\user.model.ts" />
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
@@ -128,6 +129,8 @@
     <TypeScriptCompile Include="src\app\services\spinner.service.ts" />
     <TypeScriptCompile Include="src\app\spinner\spinner.component.ts" />
     <TypeScriptCompile Include="src\app\utility\utility.auth-guard.ts" />
+    <TypeScriptCompile Include="src\app\utility\utility.calander.ts" />
+    <TypeScriptCompile Include="src\app\utility\utility.credit-card-identifier.ts" />
     <TypeScriptCompile Include="src\app\validators\validator.password.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />

@@ -9,7 +9,11 @@ import { Product } from '../models/product.model';
         span.badge {
             background-color: #fff !important;
             color: #003b64 !important;
-        }`
+margin-top: -25px;
+    margin-left: -5px;
+    font-size: 10px;
+        }
+`
     ]
 })
 export class CartComponent implements OnInit {

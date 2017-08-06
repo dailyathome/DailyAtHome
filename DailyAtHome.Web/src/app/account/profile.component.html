@@ -1,60 +1,134 @@
 ﻿
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="center-block text-center">
-                        <hr />
-                        <ul class="list-unstyled list-inline" *ngIf="shippingAddress && !showShippingForm">                          
-                            <li>
-                                <h4 class="text-center text-info">
-                                   Ship to
-                                </h4>                              
-                            </li>
-                            <li class="v-align-middle">
-                                <div>
-                                    <ul class="list-unstyled">
-                                        <li>{{shippingAddress.StreetAddress}}</li>
-                                        <li>{{shippingAddress.City+'  '+shippingAddress.State+' '+shippingAddress.Zip+'  '}}</li>
-                                        <li>{{shippingAddress.Country}}</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="btn btn-sm btn-warning" (click)="shippingEditClick()">Edit</button>
-                            </li>
-
-                            <ng-container *ngIf="showShippingForm">
-                                <li>
-                                    <form #addressForm="ngForm">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="StreetAddress" [(ngModel)]="shippingAddress.StreetAddress" placeholder="Street Address">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="State" [(ngModel)]="shippingAddress.State" placeholder="State">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="City" [(ngModel)]="shippingAddress.City" placeholder="City">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="Zip" [(ngModel)]="shippingAddress.Zip" placeholder="Zip">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="Country" [(ngModel)]="shippingAddress.Country" placeholder="Country">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" (click)="saveAddress(shippingAddress)" class="btn btn-sm btn-success">Save this {{shippingAddress.AddressType}} address</button>
-                                            <button class="btn btn-warning btn-sm" (click)="shippingEditClick()">Cancel</button>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ng-container>
-                        </ul>
-                        <hr />
-                    </div>
-                </div>
+        <div class="panel">
+            <div class="panel-heading text-center text-info">
+                <h3>Shipping and Payment</h3>
             </div>
+            <hr />
+            <table class="table">
+                <tr>
+                    <td class="text-info v-align-middle">
+                        Shipping
+                    </td>
+                    <td>
+                        <div>
+                            <form [formGroup]="shippingForm" *ngIf="showShippingForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="streetAddress" name="streetAddress" placeholder="Street Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="state" name="state" placeholder="State">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="city" name="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="zip" name="zip" placeholder="Zip">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="country" name="country" placeholder="Country">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-sm btn-success">Save</button>
+                                    <button class="btn btn-sm btn-warning" type="button" (click)="shippingEditClick()">Cancel</button>
+                                </div>
+                            </form>
+                            <ul class="list-unstyled" [class.hidden]="showShippingForm" *ngIf="shippingAddress">
+                                <li>{{shippingAddress.StreetAddress}}</li>
+                                <li>{{shippingAddress.City+'  '+shippingAddress.State+' '+shippingAddress.Zip+'  '}}</li>
+                                <li>{{shippingAddress.Country}}</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="v-align-middle" [class.hidden]="showShippingForm">
+                        <button class="btn btn-sm btn-warning" (click)="shippingEditClick()">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-info v-align-middle">
+                        Billing
+                    </td>
+                    <td>
+                        <div [class.hidden]="showBillingForm" *ngIf="billingAddress">
+                            <ul class="list-unstyled">
+                                <li>{{billingAddress.StreetAddress}}</li>
+                                <li>{{billingAddress.City+'  '+billingAddress.State+' '+billingAddress.Zip+'  '}}</li>
+                                <li>{{billingAddress.Country}}</li>
+                            </ul>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    {{paymentInfo.NameOnCard}}
+                                </li>
+                                <li>
+                                    {{paymentInfo.PaymentType}}: <i class="fa fa-cc-{{paymentInfo.PaymentType | lowercase}} fa-2x text-info v-align-middle" aria-hidden="true"></i>
+                                </li>
+                                <li>
+                                    <label>Card#: </label> XXXX-XXXX-XXX-{{paymentInfo.CardNumber.slice(-4)}}
+                                </li>
+                                <li><label>Expiration: </label>{{paymentInfo.ExpirationMonth}}/{{paymentInfo.ExpirationYear}}</li>
+                            </ul>
+                        </div>
+
+                        <div *ngIf="showBillingForm" [class.hidden]="!showBillingForm">
+                            <form [formGroup]="billingForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="state" placeholder="State">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="zip" placeholder="Zip">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="country" placeholder="Country">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="nameOnCard" placeholder="Country">
+                                </div>
+                                <div class="form-group">
+
+                                    <input type="number" class="form-control" formControlName="cardNumber" (keyup)="getCardType(billingForm.controls['cardNumber'].value)" placeholder="Card Number">
+                                    <i class="fa fa-cc-visa fa-2x" [ngClass]="{'text-info':cardType=='visa','text-default':cardType!='visa'}"></i>
+                                    <i class="fa fa-cc-mastercard fa-2x" [class.text-info]="cardType=='mastercard'"></i>
+                                    <i class="fa fa-cc-discover fa-2x text-info" [class.text-info]="cardType=='discover'" [ngClass]="{'text-info':cardType=='discover','text-default':cardType!='discover'}"></i>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <select class="form-control" formControlName="expirationMonth">
+                                                <option *ngFor="let m of months" [value]="m.val">{{m.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" formControlName="expirationYear">
+                                                <option *ngFor="let y of years" [value]="y">{{y}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="cvcCode">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-sm btn-success">Save</button>
+                                    <button class="btn btn-sm btn-warning" type="button" (click)="billingEditClick()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="v-align-middle">
+                        <button [class.hidden]="showBillingForm" class="btn btn-sm btn-warning" (click)="billingEditClick()">Edit</button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

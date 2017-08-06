@@ -35,6 +35,9 @@ namespace DailyAtHome.WebAPI.Models
         public string LoginProvider { get; set; }
 
         public List<Address> Adresses { get; set; }
+
+        public Payment PaymentInfo { get; set; }
+
     }
 
     public class UserLoginInfoViewModel

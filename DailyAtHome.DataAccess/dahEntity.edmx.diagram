@@ -28,6 +28,11 @@
         <AssociationConnector Association="dahDBModel.FK__DAH_Img_S__SubCa__66603565" />
         <EntityTypeShape EntityType="dahDBModel.DAH_Img_Products" Width="1.5" PointX="13.875" PointY="1.75" />
         <AssociationConnector Association="dahDBModel.FK__DAH_Img_P__Categ__60A75C0F" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_Payment" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="dahDBModel.DAH_PaymentType" Width="1.5" PointX="5.25" PointY="12.25" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Payment_AspNetUsers" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Payment_DAH_Address" />
+        <AssociationConnector Association="dahDBModel.FK_DAH_Payment_DAH_PaymentType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

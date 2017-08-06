@@ -74,10 +74,23 @@ namespace DailyAtHome.WebAPI.Controllers
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
             string userID = User.Identity.GetUserId();
             dalAddressList = dahEntity.DAH_Address.Where(i => i.UserID == userID).ToList();
+            DAH_Payment dalPaymentInfo = dahEntity.DAH_Payment.Where(p => p.UserID == userID).SingleOrDefault();
+            if (dalPaymentInfo == null) dalPaymentInfo = new DAH_Payment();
             UserInfoViewModel model = new UserInfoViewModel()
             {
                 Adresses = new List<Address>(),
-                Email = User.Identity.GetUserName()
+                Email = User.Identity.GetUserName(),
+                PaymentInfo = new Payment()
+                {
+                    CardNumber = dalPaymentInfo.CardNumber,
+                    CvcCode = dalPaymentInfo.CvcCode,
+                    ExpirationMonth = dalPaymentInfo.ExpirationMonth,
+                    ExpirationYear = dalPaymentInfo.ExpirationYear,
+                    ID = dalPaymentInfo.ID,
+                    // PatmentID=dalPaymentInfo.PaymentTypeID,
+                    PaymentType = Enum.GetName(typeof(PaymentTypes), dalPaymentInfo.PaymentTypeID),
+                    NameOnCard=dalPaymentInfo.NameOnCard
+                }
             };
             model.Adresses = new List<DataAccess.Models.Address>();
             dalAddressList.ForEach(a => model.Adresses.Add(new DataAccess.Models.Address()
@@ -91,13 +104,6 @@ namespace DailyAtHome.WebAPI.Controllers
                 Zip = a.Zip
             }));
             return model;
-            //return new UserInfoViewModel
-            //{
-
-            //    Email = User.Identity.GetUserName(),
-            //    HasRegistered = externalLogin == null,
-            //    LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            //};
         }
 
         public IHttpActionResult AddAddress(Address address)
