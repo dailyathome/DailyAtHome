@@ -12,25 +12,17 @@ namespace DailyAtHome.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class DAH_Address
+    public partial class DAH_PaymentType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DAH_Address()
+        public DAH_PaymentType()
         {
             this.DAH_Payment = new HashSet<DAH_Payment>();
         }
     
         public int ID { get; set; }
-        public int AddressTypeID { get; set; }
-        public string UserID { get; set; }
-        public string StreetAddress { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
-        public string Zip { get; set; }
-        public string Country { get; set; }
+        public string PaymentType { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual DAH_AddressType DAH_AddressType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DAH_Payment> DAH_Payment { get; set; }
     }

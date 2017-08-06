@@ -118,6 +118,27 @@
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="SubCategoryID" Type="int" />
         </EntityType>
+        <EntityType Name="DAH_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentTypeID" Type="int" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BillingAddressID" Type="int" Nullable="false" />
+          <Property Name="NameOnCard" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpirationMonth" Type="int" Nullable="false" />
+          <Property Name="ExpirationYear" Type="int" Nullable="false" />
+          <Property Name="CvcCode" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DAH_PaymentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="DAH_Products">
           <Key>
             <PropertyRef Name="ID" />
@@ -198,6 +219,42 @@
             </Principal>
             <Dependent Role="DAH_Address">
               <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Payment_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="DAH_Payment" Type="Self.DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Payment_DAH_Address">
+          <End Role="DAH_Address" Type="Self.DAH_Address" Multiplicity="1" />
+          <End Role="DAH_Payment" Type="Self.DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="BillingAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Payment_DAH_PaymentType">
+          <End Role="DAH_PaymentType" Type="Self.DAH_PaymentType" Multiplicity="1" />
+          <End Role="DAH_Payment" Type="Self.DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="PaymentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,6 +399,8 @@
           <EntitySet Name="DAH_Img_Categories" EntityType="Self.DAH_Img_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Img_Products" EntityType="Self.DAH_Img_Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Img_SubCategories" EntityType="Self.DAH_Img_SubCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_Payment" EntityType="Self.DAH_Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAH_PaymentType" EntityType="Self.DAH_PaymentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_Products" EntityType="Self.DAH_Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAH_SubCategories" EntityType="Self.DAH_SubCategories" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DAH_Img_C__Categ__5DCAEF64" Association="Self.FK__DAH_Img_C__Categ__5DCAEF64">
@@ -363,6 +422,18 @@
           <AssociationSet Name="FK_DAH_Address_DAH_AddressType" Association="Self.FK_DAH_Address_DAH_AddressType">
             <End Role="DAH_AddressType" EntitySet="DAH_AddressType" />
             <End Role="DAH_Address" EntitySet="DAH_Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Payment_AspNetUsers" Association="Self.FK_DAH_Payment_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Payment_DAH_Address" Association="Self.FK_DAH_Payment_DAH_Address">
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Payment_DAH_PaymentType" Association="Self.FK_DAH_Payment_DAH_PaymentType">
+            <End Role="DAH_PaymentType" EntitySet="DAH_PaymentType" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_DAH_Products_DAH_SubCategories" Association="Self.FK_DAH_Products_DAH_SubCategories">
             <End Role="DAH_SubCategories" EntitySet="DAH_SubCategories" />
@@ -452,6 +523,7 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="DAH_Address" Relationship="dahDBModel.FK_DAH_Address_AspNetUsers" FromRole="AspNetUser" ToRole="DAH_Address" />
+          <NavigationProperty Name="DAH_Payment" Relationship="dahDBModel.FK_DAH_Payment_AspNetUsers" FromRole="AspNetUser" ToRole="DAH_Payment" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -587,6 +659,20 @@
             <Parameter Name="IsAvailable" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="DAH_SP_GetRandomProducts" ReturnType="Collection(dahDBModel.DAH_SP_GetRandomProducts_Result)" />
+          <EntitySet Name="DAH_Payment" EntityType="dahDBModel.DAH_Payment" />
+          <EntitySet Name="DAH_PaymentType" EntityType="dahDBModel.DAH_PaymentType" />
+          <AssociationSet Name="FK_DAH_Payment_AspNetUsers" Association="dahDBModel.FK_DAH_Payment_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Payment_DAH_Address" Association="dahDBModel.FK_DAH_Payment_DAH_Address">
+            <End Role="DAH_Address" EntitySet="DAH_Address" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAH_Payment_DAH_PaymentType" Association="dahDBModel.FK_DAH_Payment_DAH_PaymentType">
+            <End Role="DAH_PaymentType" EntitySet="DAH_PaymentType" />
+            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DAH_Img_Categories">
           <Key>
@@ -685,6 +771,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="dahDBModel.FK_DAH_Address_AspNetUsers" FromRole="DAH_Address" ToRole="AspNetUser" />
           <NavigationProperty Name="DAH_AddressType" Relationship="dahDBModel.FK_DAH_Address_DAH_AddressType" FromRole="DAH_Address" ToRole="DAH_AddressType" />
+          <NavigationProperty Name="DAH_Payment" Relationship="dahDBModel.FK_DAH_Payment_DAH_Address" FromRole="DAH_Address" ToRole="DAH_Payment" />
         </EntityType>
         <EntityType Name="DAH_AddressType">
           <Key>
@@ -791,6 +878,67 @@
           <Property Type="Int32" Name="ImageID" Nullable="true" />
           <Property Type="String" Name="Image" Nullable="true" />
         </ComplexType>
+        <EntityType Name="DAH_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddressID" Type="Int32" Nullable="false" />
+          <Property Name="NameOnCard" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpirationMonth" Type="Int32" Nullable="false" />
+          <Property Name="ExpirationYear" Type="Int32" Nullable="false" />
+          <Property Name="CvcCode" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="dahDBModel.FK_DAH_Payment_AspNetUsers" FromRole="DAH_Payment" ToRole="AspNetUser" />
+          <NavigationProperty Name="DAH_Address" Relationship="dahDBModel.FK_DAH_Payment_DAH_Address" FromRole="DAH_Payment" ToRole="DAH_Address" />
+          <NavigationProperty Name="DAH_PaymentType" Relationship="dahDBModel.FK_DAH_Payment_DAH_PaymentType" FromRole="DAH_Payment" ToRole="DAH_PaymentType" />
+        </EntityType>
+        <EntityType Name="DAH_PaymentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DAH_Payment" Relationship="dahDBModel.FK_DAH_Payment_DAH_PaymentType" FromRole="DAH_PaymentType" ToRole="DAH_Payment" />
+        </EntityType>
+        <Association Name="FK_DAH_Payment_AspNetUsers">
+          <End Type="dahDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Payment" Role="DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Payment_DAH_Address">
+          <End Type="dahDBModel.DAH_Address" Role="DAH_Address" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Payment" Role="DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="BillingAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAH_Payment_DAH_PaymentType">
+          <End Type="dahDBModel.DAH_PaymentType" Role="DAH_PaymentType" Multiplicity="1" />
+          <End Type="dahDBModel.DAH_Payment" Role="DAH_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAH_PaymentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAH_Payment">
+              <PropertyRef Name="PaymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -976,6 +1124,29 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="DAH_SP_UpdateProduct" FunctionName="dahDBModel.Store.DAH_SP_UpdateProduct" />
+          <EntitySetMapping Name="DAH_Payment">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_Payment">
+              <MappingFragment StoreEntitySet="DAH_Payment">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CvcCode" ColumnName="CvcCode" />
+                <ScalarProperty Name="ExpirationYear" ColumnName="ExpirationYear" />
+                <ScalarProperty Name="ExpirationMonth" ColumnName="ExpirationMonth" />
+                <ScalarProperty Name="NameOnCard" ColumnName="NameOnCard" />
+                <ScalarProperty Name="BillingAddressID" ColumnName="BillingAddressID" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAH_PaymentType">
+            <EntityTypeMapping TypeName="dahDBModel.DAH_PaymentType">
+              <MappingFragment StoreEntitySet="DAH_PaymentType">
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="DAH_SP_AddProduct" FunctionName="dahDBModel.Store.DAH_SP_AddProduct" />
           <FunctionImportMapping FunctionImportName="DAH_SP_GetRandomProducts" FunctionName="dahDBModel.Store.DAH_SP_GetRandomProducts">
             <ResultMapping>

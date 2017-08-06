@@ -21,6 +21,7 @@ namespace DailyAtHome.DataAccess
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.DAH_Address = new HashSet<DAH_Address>();
+            this.DAH_Payment = new HashSet<DAH_Payment>();
         }
     
         public string Id { get; set; }
@@ -44,5 +45,7 @@ namespace DailyAtHome.DataAccess
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DAH_Address> DAH_Address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DAH_Payment> DAH_Payment { get; set; }
     }
 }

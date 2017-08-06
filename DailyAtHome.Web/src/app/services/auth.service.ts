@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AppSettings } from '../app.settings';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Address } from '../models/address.model';
+import { User } from '../models/user.model'
 
 @Injectable()
 export class AuthService {

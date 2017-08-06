@@ -1,4 +1,4 @@
-﻿import { Component,OnInit, TemplateRef } from '@angular/core';
+﻿import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     categories: any[];
-    constructor(private productsSvc: ProductsService, private _authSvc: AuthService, private _routerSvc:Router) { }
-    
+    constructor(private productsSvc: ProductsService, private _authSvc: AuthService, private _routerSvc: Router) { }
+
     IsLoggedIn: boolean = this._authSvc.isLoggedIn();
 
     ngOnInit() {
@@ -22,7 +22,10 @@ export class HeaderComponent implements OnInit {
         );
 
         this.productsSvc.getCategories()
-            .subscribe(result => this.categories = result);
+            .subscribe(result => {
+                this.categories = result
+                console.log(this.categories);
+            });
     }
 
     logout() {
@@ -35,7 +38,7 @@ export class HeaderComponent implements OnInit {
     }
 
     searchProducts() {
-        
+
     }
 
     getProducts(id) {

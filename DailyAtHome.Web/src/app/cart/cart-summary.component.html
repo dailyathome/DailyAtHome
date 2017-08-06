@@ -1,75 +1,77 @@
 ﻿
-<div class="panel panel-info" *ngIf="products && products.length>0">
-    <div class="alert-info panel-body">
-        <h4><span> Cart Subtotal ({{numOfCartItems}} items): <strong>{{subTotalAmt | currency:'USD':true:'1.2-2'}}</strong> </span></h4>
-    </div>
-</div>
-
-<div class="row" style="margin-bottom:1.5rem" *ngIf="products && products.length>4">
-    <div class="col-sm-12">
-        <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
-        <button class="btn btn-success pull-right" [routerLink]="['/profile']">Checkout <i class="fa fa-credit-card"></i></button>
-    </div>
-</div>
-<div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyOut]>
-    <!-- Default panel contents -->
-    <div class="panel-heading"><strong>{{p.name}}</strong></div>
-    <div class="table-responsive">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td class="text-left cart-item-img">
-                        <div *ngIf="p.image_src">
-                            <img src="{{p.image_src}}" alt="{{p.name}}" class="img-responsive" style="width:30%" />
-                        </div>
-                        <div *ngIf="!p.image_src">
-                            <img src="{{'https://placehold.it/300x300?text='+p.name}}" class="img-responsive" style="width:30%" />
-                        </div>
-                    </td>
-                    <td class="cart-item-description">
-                        <div>
-                            <ul class="list-unstyled">
-                                <li class="wrap-text">
-                                    {{p.description}}
-                                </li>
-                                <li class="text-info">
-                                    <strong> {{p.price | currency:'USD':true:'1.2-2'}}</strong>
-                                </li>
-                                <li>
-                                    <div>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" min="1" />
-                                            </li>
-                                            <li><button class="btn btn-danger btn-sm" (click)="onDeleteClick(p)">Delete</button></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="btn btn-success btn-sm" [class.hidden]="!quntity.dirty || p.quantity<=0" (click)="onUpdateClick(p)">Update</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="panel panel-info" *ngIf="!products || products.length<=0">
-    <div class="alert-warning panel-body">
-        <h3> Your cart is empty.</h3>
-        <div class="panel-body">
-            <i class="fa fa-cart-arrow-down fa-5x"></i>
-        </div>
-    </div>
-
-</div>
-
-
 <div class="row">
-    <div class="col-sm-12">
-        <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
-        <button class="btn btn-success pull-right" [routerLink]="['/profile']" *ngIf="products && products.length>0">Checkout <i class="fa fa-credit-card fa-spin"></i></button>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-info" *ngIf="products && products.length>0">
+            <div class="alert-info panel-body">
+                <h4><span> Cart Subtotal ({{numOfCartItems}} items): <strong>{{subTotalAmt | currency:'USD':true:'1.2-2'}}</strong> </span></h4>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:1.5rem" *ngIf="products && products.length>4">
+            <div class="col-sm-12">
+                <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
+                <button class="btn btn-success pull-right" [routerLink]="['/profile']">Checkout <i class="fa fa-credit-card"></i></button>
+            </div>
+        </div>
+        <div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyOut]>
+            <!-- Default panel contents -->
+            <div class="panel-heading"><strong>{{p.name}}</strong></div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="text-left cart-item-img">
+                                <div>
+                                    <img src="{{'https://placehold.it/150x80?text='+p.name}}" class="img-responsive" />
+                                </div>
+                            </td>
+                            <td class="cart-item-description">
+                                <div>
+                                    <ul class="list-unstyled">
+                                        <li class="wrap-text">
+                                            {{p.description}}
+                                        </li>
+                                        <li class="text-info">
+                                            <strong> {{p.price | currency:'USD':true:'1.2-2'}}</strong>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" min="1" />
+                                                    </li>
+                                                    <li><button class="btn btn-danger btn-sm" (click)="onDeleteClick(p)">Delete</button></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-success btn-sm" [class.hidden]="!quntity.dirty || p.quantity<=0" (click)="onUpdateClick(p)">Update</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info" *ngIf="!products || products.length<=0">
+            <div class="alert-warning panel-body">
+                <h3> Your cart is empty.</h3>
+                <div class="panel-body">
+                    <i class="fa fa-cart-arrow-down fa-5x"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Continue Shoping <i class="fa fa-shopping-cart"></i></button>
+                <button class="btn btn-success pull-right" [routerLink]="['/profile']" *ngIf="products && products.length>0">Checkout <i class="fa fa-credit-card fa-spin"></i></button>
+            </div>
+        </div>
+
     </div>
 </div>

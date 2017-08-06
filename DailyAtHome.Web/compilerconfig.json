@@ -2,5 +2,9 @@
   {
     "outputFile": "src/styles.css",
     "inputFile": "src/styles.less"
+  },
+  {
+    "outputFile": "src/app/header/header.component.css",
+    "inputFile": "src/app/header/header.component.less"
   }
 ]
