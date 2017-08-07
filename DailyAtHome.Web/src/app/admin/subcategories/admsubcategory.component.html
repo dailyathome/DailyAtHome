@@ -14,6 +14,7 @@
                     <th>Category</th>
                     <th>Image</th>
                     <th>
+                        <span><i class="fa fa-cog" aria-hidden="true"></i></span>
                     </th>
                 </tr>
             </thead>
@@ -34,9 +35,9 @@
                         </select>
                     </td>
                     <td>
-                        <span *ngIf="Subcat.showEdit"><img src="{{Subcat.SubCategoryImage}}" alt="{{Subcat.SubCategory}}" /></span>
+                        <span *ngIf="Subcat.showEdit"><img class="img-responsive" style="width:50%" src="{{Subcat.SubCategoryImage}}" alt="{{Subcat.SubCategory}}" /></span>
                         <span *ngIf="!Subcat.showEdit">
-                            <img [src]="src" [hidden]="!src"><br>
+                            <img class="img-responsive" [src]="src" [hidden]="!src"><br>
                             <input type="file" name="Image" ngModel imageUpload
                                    (imageSelected)="selected($event)"
                                    [resizeOptions]="resizeOptions">

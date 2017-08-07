@@ -1,7 +1,4 @@
-﻿
-
-
-<div style="position: relative;" *ngIf="RandomProducts != []">
+﻿<div class="form-group" style="position: relative;" *ngIf="RandomProducts != []">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -23,5 +20,28 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span>Featured Products</span>
+        </div>
+
+        <div class="panel-body" style="text-align:center">
+
+            <ul class="list-inline list-unstyled v-center">
+                <li class="" *ngFor="let item of RandomProducts">
+                    <div class="form-group">
+                        <a href="#">{{item.Product}}</a>
+                        <img src="{{item.Image}}" class="img-responsive" style="width:50%; margin:0 auto" />
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
     </div>
 </div>

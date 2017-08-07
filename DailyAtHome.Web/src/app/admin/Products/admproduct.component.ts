@@ -37,6 +37,7 @@ export class AdmProductComponent implements OnInit {
         this.productsService.getCategories()
             .subscribe(result => this.categories = result);
         this._spinnerSvc.displaySpinner(false);
+        this.src = '';
     }
 
     onCategorySelect(option: string) {
@@ -67,6 +68,7 @@ export class AdmProductComponent implements OnInit {
     CancelEdit(Product) {
         this.productsService.getProductsBySubCategory(+this.SelSubCategoryOption)
             .subscribe(result => this.ProductsBySubcategory = result);
+        this.src = '';
     }
 
     SaveEdit(Product) {
@@ -80,6 +82,7 @@ export class AdmProductComponent implements OnInit {
                         .subscribe(result => this.ProductsBySubcategory = result);
             });
         this._spinnerSvc.displaySpinner(false);
+        this.src = '';
     }
 
     resizeOptions: ResizeOptions = {
@@ -95,9 +98,11 @@ export class AdmProductComponent implements OnInit {
 
     AddNewProduct() {
         this.ShowUpdate = false;
-        //this.productsService.getCategories()
-        //    .subscribe(result => this.AddProductCategories = result);
         
+    }
+
+    BackToUpdateProducts() {
+        this.ShowUpdate = true;
     }
 
     Add(Product: any) {
@@ -113,6 +118,7 @@ export class AdmProductComponent implements OnInit {
                     .subscribe(result => this.ProductsBySubcategory = result);
             });
         this._spinnerSvc.displaySpinner(false);
+        this.src = "";
     }
 
 

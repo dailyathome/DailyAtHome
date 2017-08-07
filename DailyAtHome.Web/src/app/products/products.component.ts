@@ -48,7 +48,8 @@ export class ProductsComponent implements OnInit {
             description: product.Description,
             price: product.Cost,
             quantity: 1,
-            name: product.Product
+            name: product.Product,
+            image_src: product.Image
         }, 'dahCart');
 
         //console.log(this._cartSvc.getItems('dahCart'));
