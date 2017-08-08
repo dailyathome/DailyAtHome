@@ -18,11 +18,12 @@ import { ImageUploadModule } from '../../node_modules/ng2-imageupload/index.js';
 import { AdmProductComponent} from '../app/admin/Products/admproduct.component'
 import { SpinnerComponent } from '../app/spinner/spinner.component';
 import { SpinnerService } from '../app/services/spinner.service';
+import { ProductDetails } from '../app/products/product-details.component';
 //import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule, ImageUploadModule, ModalModule.forRoot()],
-    declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, SpinnerComponent, routingComponents, AdmProductComponent],
+    declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, SpinnerComponent, routingComponents, AdmProductComponent, ProductDetails],
     bootstrap: [AppComponent],
     providers: [CartService, AuthService, SpinnerService, providers],
 })
