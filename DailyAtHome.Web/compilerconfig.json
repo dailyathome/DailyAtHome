@@ -6,5 +6,9 @@
   {
     "outputFile": "src/app/header/header.component.css",
     "inputFile": "src/app/header/header.component.less"
+  },
+  {
+    "outputFile": "src/app/app.component.css",
+    "inputFile": "src/app/app.component.less"
   }
 ]

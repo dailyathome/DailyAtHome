@@ -155,6 +155,9 @@
     <Content Include="src\app\admin\Products\admproduct.component.js.map" />
     <Content Include="src\app\admin\subcategories\admsubcategory.component.js.map" />
     <Content Include="src\app\app.component.less" />
+    <Content Include="src\app\app.component.min.css">
+      <DependentUpon>app.component.css</DependentUpon>
+    </Content>
     <Content Include="src\app\cart\cart-summary.component.js.map" />
     <Content Include="src\app\cart\cart-summary.component.less" />
     <Content Include="src\app\cart\cart.component.js.map" />

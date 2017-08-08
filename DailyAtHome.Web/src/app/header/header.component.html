@@ -1,70 +1,58 @@
-﻿<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-
-        <!-- Title -->
-        <div class="navbar-header pull-left">
-            <a href="/" class="navbar-brand">
-                <img src="assets/images/Logo.png" class="img-responsive" style="width:60px; margin-top:-1.5rem;" />
-            </a>
-
+﻿<div class="panel-group overlay-content" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    Departments
+                </a>
+            </h4>
         </div>
-        <div class="navbar-header pull-right">
-            <ul class="nav pull-left list-inline">
-                <!-- This works well for static text, like a username -->
-                <!-- <li class="navbar-text pull-left">User Name</li>-->
-                <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
-                <!--<li class="dropdown pull-right">
-                    <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/users/id" title="Profile">Profile</a>
-                        </li>
-                        <li>
-                            <a href="/logout" title="Logout">Logout </a>
-                        </li>
-                    </ul>
-                </li>-->
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="panel-group" id="nested">
+                    <ng-container *ngFor="let cat of categories let i=index">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#nested-collapse{{i}}">
+                                        {{cat.Category}}
+                                    </a>
+                                </h4>
+                            </div>
 
-                <li class="pull-right cart-container">
-                    <cart>
-                    </cart>
-                </li>
-            </ul>
-
-            <!-- Required bootstrap placeholder for the collapsed menu -->
-            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-        </div>
-        <div class="center-block text-center search-container">
-            <input class="" placeholder="Search">
-      <i class="fa fa-search"></i>
-        </div>
-
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/merchants">Merchants</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <ng-container *ngFor="let category of categories">
-                            <li class="dropdown-header">
-                                {{ category.Category }}
-                            </li>
-                            <ng-container *ngFor="let subCat of category.SubCategoriesList">
-                                <li>
-                                    <a data-toggle="collapse" data-target=".navbar-collapse" (click)="getProducts(subCat.ID)">{{ subCat.SubCategory }}</a>
-                                </li>
-                            </ng-container>
-                            <li class="divider"></li>
-                        </ng-container>
-                    </ul>
-                </li>
-
-                <li class="">
-                    <a *ngIf="!IsLoggedIn" [routerLink]="['login']"><i class="fa fa-user-circle"></i> Login</a>
-                    <a *ngIf="IsLoggedIn" [routerLink]="['logout']"><i class="fa fa-user-circle"></i> Logout</a>
-                </li>
-            </ul>
+                            <div id="nested-collapse{{i}}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="list-unstyled">
+                                        <ng-container *ngFor="let subcat of cat.SubCategoriesList">
+                                            <li><a (click)="menuClick('products',subcat.ID)">{{subcat.SubCategory}}</a></li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseOne">
+                    <i class="fa fa-user-circle"></i> Account
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul class="list-unstyled">
+                    <li *ngIf="!IsLoggedIn"><a (click)="menuClick('login')">Login</a></li>
+                    <li *ngIf="IsLoggedIn"><a (click)="menuClick('logout')" >Logout</a></li>
+                    <li><a (click)="menuClick()">Forgot password</a></li>
+                    <li *ngIf="!IsLoggedIn"><a (click)="menuClick('register')">Register</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 

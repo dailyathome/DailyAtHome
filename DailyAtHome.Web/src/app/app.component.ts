@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy,Output } from '@angular/core';
 import { HeaderComponent } from '../app/header/header.component';
 //import { } from '../app/products/products.component'
 import { CartComponent } from '../app/cart/cart.component'
@@ -14,6 +14,7 @@ import { SpinnerComponent } from '../app/spinner/spinner.component';
 export class AppComponent implements OnInit {
     displaySpinner: boolean;
     spinnerSubscription: Subscription;
+    opened: boolean = false;
     constructor(private spinnerService: SpinnerService) { }
 
     ngOnInit() {
@@ -24,5 +25,20 @@ export class AppComponent implements OnInit {
 
     ngOnDestroy() {
         this.spinnerSubscription.unsubscribe();
+    }
+
+    menuClick(event) {
+        this.closeNav();
+        //this.mobileView ? this.mobileView = false : this.mobileView = true;
+    }
+
+    openNav() {
+        // document.getElementById("myNav").style.width = "100%";
+        this.opened = true;
+    }
+
+    closeNav() {
+        // document.getElementById("myNav").style.width = "0%";
+        this.opened = false;
     }
 }

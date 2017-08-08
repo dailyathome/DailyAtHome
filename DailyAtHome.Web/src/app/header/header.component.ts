@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, TemplateRef } from '@angular/core';
+﻿import { Component, OnInit, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -42,7 +42,16 @@ export class HeaderComponent implements OnInit {
     }
 
     getProducts(id) {
+        //this.menuClick();
         this._routerSvc.navigate(['products', id]);
         return false;
+    }
+
+    @Output() someEvent = new EventEmitter<string>();
+
+    menuClick(link: string, id: number = 0) {
+        this.someEvent.next('somePhone');
+
+        id ? this._routerSvc.navigate([link, id]) : this._routerSvc.navigate([link]);
     }
 }

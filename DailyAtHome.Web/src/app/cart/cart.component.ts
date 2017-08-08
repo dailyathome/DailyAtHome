@@ -7,10 +7,8 @@ import { Product } from '../models/product.model';
     templateUrl: 'cart.component.html',
     styles: [`div{margin:15px;}
         span.badge {
-            background-color: #fff !important;
-            color: #003b64 !important;
-margin-top: -25px;
-    margin-left: -5px;
+            background-color: #fff;
+            color: #668bb1 !important;
     font-size: 10px;
         }
 `
