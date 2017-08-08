@@ -32,10 +32,14 @@
         <div class="panel-body" style="text-align:center">
 
             <ul class="list-inline list-unstyled v-center">
-                <li class="" *ngFor="let item of RandomProducts">
-                    <div class="form-group">
-                        <a href="#">{{item.Product}}</a>
-                        <img src="{{item.Image}}" class="img-responsive" style="width:50%; margin:0 auto" />
+                <li class="" *ngFor="let item of FeaturedProducts">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <a href="#">{{item.Product}}</a>
+                        </div>
+                        <div class="panel-body">
+                            <img src="{{item.Image}}" class="img-responsive" style="width:50%; margin:0 auto" />
+                        </div>
                     </div>
 
                 </li>

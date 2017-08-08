@@ -1,0 +1,77 @@
+﻿<div class=”container”>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{'https://placehold.it/300x300?text=Product_Image'}}" alt="Product Image" class="image-responsive" />
+        </div>
+
+        <div class="col-md-6" style="float:right">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Product Name</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="description">
+                        Product Description
+                    </p>
+                </div>
+            </div>
+
+            <!--<div class="row">
+                <div class="col-md-3">
+                    <span class="sr-only">Four out of Five Stars</span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="label label-success">61</span>
+                </div>
+                <div class="col-md-3">
+                    <span class="monospaced">Write a Review</span>
+                </div>
+            </div>-->
+
+            <div class="row form-group">
+                <div class="col-md-12 bottom-rule">
+                    <h3 class="text-info">$2.5</h3>
+                    <span class=""><label>Qty: </label> <input class="input-mini" #quant="ngModel" type="number" ngModel="1" /></span>
+
+                    <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
+                </div>
+            </div><!-- end row -->
+
+            <ul class="nav nav-tabs form-group" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#description"
+                       aria-controls="description"
+                       role="tab"
+                       data-toggle="tab">Description</a>
+                </li>
+                <li role="presentation">
+                    <a href="#features"
+                       aria-controls="features"
+                       role="tab"
+                       data-toggle="tab">Features</a>
+                </li>
+                <li role="presentation">
+                    <a href="#notes"
+                       aria-controls="notes"
+                       role="tab"
+                       data-toggle="tab">Notes</a>
+                </li>
+                <li role="presentation">
+                    <a href="#reviews"
+                       aria-controls="reviews"
+                       role="tab"
+                       data-toggle="tab">Reviews</a>
+                </li>
+            </ul>
+
+        </div><!-- end row -->
+
+
+    </div>
+
+</div>

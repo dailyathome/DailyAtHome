@@ -120,6 +120,7 @@
     <TypeScriptCompile Include="src\app\models\payment.model.ts" />
     <TypeScriptCompile Include="src\app\models\product.model.ts" />
     <TypeScriptCompile Include="src\app\models\user.model.ts" />
+    <TypeScriptCompile Include="src\app\products\product-details.component.ts" />
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
     <TypeScriptCompile Include="src\app\services\auth.service.ts" />
@@ -167,6 +168,7 @@
     <Content Include="src\app\models\address.model.js.map" />
     <Content Include="src\app\models\product.model.js.map" />
     <Content Include="src\app\models\user.model.js.map" />
+    <Content Include="src\app\products\product-details.component.html" />
     <Content Include="src\app\products\products.component.js.map" />
     <Content Include="src\app\services\admin.service.js.map" />
     <Content Include="src\app\services\auth.service.js.map" />
