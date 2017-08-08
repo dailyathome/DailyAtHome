@@ -4,13 +4,19 @@ import { Address } from '../models/address.model';
 import { AuthService } from '../services/auth.service';
 import { Calander } from '../utility/utility.calander';
 import { CreditCardIdentifier } from '../utility/utility.credit-card-identifier';
+import { SpinnerService } from '../services/spinner.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
     selector: 'profile',
     templateUrl: 'profile.component.html'
 })
 export class ProfileComponent implements OnInit {
-    constructor(private _authSvc: AuthService, private _formBuilder: FormBuilder) { }
+    public resultModal: BsModalRef;
+    public resultModelOptions = new ModalOptions();
+    resultMsg: string = '';
+    constructor(private _authSvc: AuthService, private _formBuilder: FormBuilder, private _spinnerSvc: SpinnerService, private modalService: BsModalService) { }
     address: Address[];
     shippingAddress: any;
     billingAddress: any;
@@ -25,6 +31,13 @@ export class ProfileComponent implements OnInit {
     billingForm: FormGroup;
 
     ngOnInit() {
+
+        this.getUser();
+
+        this.years = Calander.getNextNYears(20);
+        this.months = Calander.months;
+    }
+    getUser() {
         this._authSvc.getUser().subscribe(
             (res) => {
                 // this.address = res.Adresses as Address[];
@@ -38,9 +51,11 @@ export class ProfileComponent implements OnInit {
                     state: [this.shippingAddress ? this.shippingAddress.State : null],
                     zip: [this.shippingAddress ? this.shippingAddress.Zip : null],
                     country: [this.shippingAddress ? this.shippingAddress.Country : null],
-                    id: [this.shippingAddress ? this.shippingAddress.ID : null]  
+                    id: [this.shippingAddress ? this.shippingAddress.ID : null],
+                    addressType: ['Shipping']
                 });
                 this.billingForm = this._formBuilder.group({
+                    addressType: ['Billing'],
                     streetAddress: [this.billingAddress ? this.billingAddress.StreetAddress : null],
                     city: [this.billingAddress ? this.billingAddress.City : null],
                     state: [this.billingAddress ? this.billingAddress.State : null],
@@ -62,9 +77,6 @@ export class ProfileComponent implements OnInit {
                 if (!this.billingAddress) this.showBillingForm = true; else this.showBillingForm = false;
             }
         )
-
-        this.years = Calander.getNextNYears(20);
-        this.months = Calander.months;
     }
 
     billingEditClick() {
@@ -86,6 +98,31 @@ export class ProfileComponent implements OnInit {
         }
         catch (e) {
             this.cardType = '';
+        }
+    }
+
+    saveShipping(template: TemplateRef<any>) {
+        if (this.shippingForm.valid) {
+            this._spinnerSvc.displaySpinner(true);
+            this._authSvc.saveShippingAddress(this.shippingForm.value).subscribe(
+                (res) => {
+                    this._spinnerSvc.displaySpinner(false);
+                    this.shippingAddress = res.addresses;
+                    console.log(res);
+                    this.showShippingForm = false;
+                    this.resultMsg = res.message;
+                    //var options = new ModalOptions();
+                   this.resultModelOptions.animated = true;
+                   this.resultModelOptions.class = 'text-success';
+                   this.resultModal = this.modalService.show(template, this.resultModelOptions)
+                },
+                error => {
+                    this._spinnerSvc.displaySpinner(false);
+                    this.resultMsg = 'Something went wrong. Please try again';
+                    this.resultModelOptions.class = 'text-danger';
+                    this.resultModal = this.modalService.show(template, this.resultModelOptions);
+                }
+            )
         }
     }
 }

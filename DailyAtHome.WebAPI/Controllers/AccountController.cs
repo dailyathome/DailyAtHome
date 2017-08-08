@@ -23,6 +23,7 @@ using System.Configuration;
 using DailyAtHome.DataAccess;
 using System.Linq;
 using DailyAtHome.DataAccess.Models;
+using System.Data.Entity;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -89,7 +90,7 @@ namespace DailyAtHome.WebAPI.Controllers
                     ID = dalPaymentInfo.ID,
                     // PatmentID=dalPaymentInfo.PaymentTypeID,
                     PaymentType = Enum.GetName(typeof(PaymentTypes), dalPaymentInfo.PaymentTypeID),
-                    NameOnCard=dalPaymentInfo.NameOnCard
+                    NameOnCard = dalPaymentInfo.NameOnCard
                 }
             };
             model.Adresses = new List<DataAccess.Models.Address>();
@@ -106,23 +107,48 @@ namespace DailyAtHome.WebAPI.Controllers
             return model;
         }
 
-        public IHttpActionResult AddAddress(Address address)
-        {
-            DAH_Address dalAddress = new DAH_Address()
-            {
-                AddressTypeID = (int)Enum.Parse(typeof(AddressType), address.AddressType),
-                UserID = User.Identity.GetUserId(),
-                City = address.City,
-                Country = address.Country,
-                ID = address.ID,
-                State = address.State,
-                StreetAddress = address.StreetAddress,
-                Zip = address.Zip
-            };
-            dahEntity.DAH_Address.Add(dalAddress);
 
-            return Ok();
+        [HttpPost]
+        [Route("SaveAddress")]
+        public IHttpActionResult SaveAddress(Address address)
+        {
+            try
+            {
+                string message = "";
+                DAH_Address dalAddress = new DAH_Address()
+                {
+                    AddressTypeID = (int)Enum.Parse(typeof(AddressType), address.AddressType),
+                    UserID = User.Identity.GetUserId(),
+                    City = address.City,
+                    Country = address.Country,
+                    ID = address.ID,
+                    State = address.State,
+                    StreetAddress = address.StreetAddress,
+                    Zip = address.Zip
+                };
+                if (address.ID <= 0)
+                {
+                    dahEntity.DAH_Address.Add(dalAddress);
+                    dahEntity.SaveChanges();
+                    message = "Address has been added successfully.";
+                }
+                else if (address.ID > 0)
+                {
+                    dahEntity.DAH_Address.Attach(dalAddress);
+                    var entry = dahEntity.Entry(dalAddress);
+                    entry.State = EntityState.Modified;
+                    dahEntity.SaveChanges();
+                    message = "Address has been updated successfully.";
+                }
+
+                return Ok(new { addresses = address, message = message });
+            }
+            catch(Exception)
+            {
+                return InternalServerError();
+            }
         }
+
 
         // POST api/Account/Logout
         [Route("Logout")]

@@ -57,6 +57,22 @@ export class AuthService {
 
     }
 
+    updatePaymentInfo() {
+
+    }
+    AddPaymentInfo() {
+
+    }
+
+    saveShippingAddress(address) {
+        let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
+        headers.append('Content-Type', 'application/json')
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(AppSettings.API_URL + '/api/account/SaveAddress', JSON.stringify(address), options).map(
+            (res: Response) => res.json()
+        );
+    }
+
     updateAddress(address: Address) {
         let headers = new Headers({ 'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken') });
         let options = new RequestOptions({ headers: headers });
