@@ -211,5 +211,10 @@ namespace DailyAtHome.DataAccess
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetRandomProducts_Result>("DAH_SP_GetRandomProducts");
         }
+    
+        public virtual ObjectResult<DAH_SP_GetFeaturedProducts_Result> DAH_SP_GetFeaturedProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetFeaturedProducts_Result>("DAH_SP_GetFeaturedProducts");
+        }
     }
 }

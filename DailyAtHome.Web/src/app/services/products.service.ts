@@ -37,4 +37,11 @@ export class ProductsService {
         );
     }
 
+    getFeaturedProducts() {
+        let params = new URLSearchParams();
+        return this.http.get(AppSettings.API_URL + '/api/Home/GetFeaturedProducts').map(
+            (response: Response) => response.json()
+        );
+    }
+
 }

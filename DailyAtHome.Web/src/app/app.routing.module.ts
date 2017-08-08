@@ -6,6 +6,7 @@ import { RegisterComponent } from '../app/account/register.component';
 import { CartSummaryComponent } from '../app/cart/cart-summary.component';
 import { HomeComponent } from '../app/home/home.component';
 import { AdminComponent } from '../app/admin/admin.component';
+import { ProductDetails } from '../app/products/product-details.component';
 import { LogoutComponent } from '../app/account/logout.component';
 import { ProfileComponent } from '../app/account/profile.component';
 import { AuthGuard } from '../app/utility/utility.auth-guard';
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'spinner', component: SpinnerComponent },
+    { path: 'product-details', component: ProductDetails },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {

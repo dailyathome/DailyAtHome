@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace DailyAtHome.WebAPI.Controllers
 {
@@ -24,6 +23,10 @@ namespace DailyAtHome.WebAPI.Controllers
         }
 
         #region Public Methods
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetRandomProducts")]
         public List<Products> GetRandomProducts()
         {
             List<DAH_SP_GetRandomProducts_Result> products = new List<DAH_SP_GetRandomProducts_Result>();
@@ -32,6 +35,16 @@ namespace DailyAtHome.WebAPI.Controllers
             products = dahEntity.DAH_SP_GetRandomProducts().ToList();
             AppProducts = ConvertToAppProducts(products);
             return AppProducts;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetFeaturedProducts")]
+        public List<DAH_SP_GetFeaturedProducts_Result> GetFeaturedProducts()
+        {
+            List<DAH_SP_GetFeaturedProducts_Result> FeaturedProducts = new List<DAH_SP_GetFeaturedProducts_Result>();
+            FeaturedProducts = dahEntity.DAH_SP_GetFeaturedProducts().ToList();
+            return FeaturedProducts;
         }
 
         #endregion

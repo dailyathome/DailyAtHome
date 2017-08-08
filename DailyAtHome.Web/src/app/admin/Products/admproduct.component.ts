@@ -38,6 +38,8 @@ export class AdmProductComponent implements OnInit {
             .subscribe(result => this.categories = result);
         this._spinnerSvc.displaySpinner(false);
         this.src = '';
+        this.updateFail = false;
+        this.updateSuccess = false;
     }
 
     onCategorySelect(option: string) {
@@ -46,6 +48,11 @@ export class AdmProductComponent implements OnInit {
         this.productsService.getSubCategoriesByCategoryID(+this.SelCategoryoption)
             .subscribe(result => this.subCategoriesByID = result);
         this.ShowSubCategories = true;
+        this.ProductsBySubcategory = [];
+        this.subCategoriesByID = [];
+        this.updateSuccess = false;
+        this.updateFail = false;
+
         this._spinnerSvc.displaySpinner(false);
     }
 
@@ -56,19 +63,25 @@ export class AdmProductComponent implements OnInit {
             .subscribe(result => this.ProductsBySubcategory = result);
 
 
+        this.updateSuccess = false;
         this.ShowUpdateProducts = true;
+        this.updateFail = false;
         this._spinnerSvc.displaySpinner(false);
 
     }
 
     toggleEdit(Product) {
         Product.showEdit = Product.showEdit ? false : true;
+        this.updateSuccess = false;
+        this.updateFail = false
     }
 
     CancelEdit(Product) {
         this.productsService.getProductsBySubCategory(+this.SelSubCategoryOption)
             .subscribe(result => this.ProductsBySubcategory = result);
         this.src = '';
+        this.updateFail = false;
+        this.updateSuccess = false;
     }
 
     SaveEdit(Product) {
@@ -98,11 +111,15 @@ export class AdmProductComponent implements OnInit {
 
     AddNewProduct() {
         this.ShowUpdate = false;
+        this.updateSuccess = false;
+        this.updateFail = false;
         
     }
 
     BackToUpdateProducts() {
         this.ShowUpdate = true;
+        this.updateSuccess = false;
+        this.updateFail = false;
     }
 
     Add(Product: any) {
