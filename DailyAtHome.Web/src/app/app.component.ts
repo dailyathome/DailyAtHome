@@ -5,6 +5,7 @@ import { CartComponent } from '../app/cart/cart.component'
 import { Subscription } from 'rxjs/Subscription';
 import { SpinnerService } from '../app/services/spinner.service';
 import { SpinnerComponent } from '../app/spinner/spinner.component';
+import { AuthService } from '../app/services/auth.service';
 
 @Component({
     selector: 'my-app',
@@ -15,12 +16,17 @@ export class AppComponent implements OnInit {
     displaySpinner: boolean;
     spinnerSubscription: Subscription;
     opened: boolean = false;
-    constructor(private spinnerService: SpinnerService) { }
+    constructor(private spinnerService: SpinnerService, private _authSvc: AuthService) { }
+
+    IsLoggedIn: boolean = this._authSvc.isLoggedIn();
 
     ngOnInit() {
         this.spinnerSubscription = this.spinnerService.spinnerCounter.subscribe((counter: number) => {
             this.displaySpinner = counter != 0;
         });
+        this._authSvc.authstatus.subscribe(
+            (status) => this.IsLoggedIn = status
+        );
     }
 
     ngOnDestroy() {

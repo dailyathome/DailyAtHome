@@ -15,7 +15,7 @@ input.ng-invalid {
   top: 0;
   left: 0;
   background-color: #000000;
-  background-color: teal;
+  background-color: #e6fff2;
   /*rgba(0,0,0, 0.9);*/
   overflow-x: hidden;
   transition: 0.5s;

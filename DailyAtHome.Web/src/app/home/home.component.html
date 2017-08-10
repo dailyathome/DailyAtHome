@@ -7,7 +7,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div *ngFor="let j of RandomProducts; let k = index" [ngClass]="k == 0 ? 'item active' : 'item'">
-                <img style="width:30%; margin: 0 auto;" src={{RandomProducts[k].Image}} alt="Event Image">
+                <img style="margin: 0 auto;" src={{RandomProducts[k].Image}} alt="Event Image">
             </div>
         </div>
 
