@@ -72,17 +72,19 @@ namespace DailyAtHome.WebAPI.Controllers
             return AppProducts;
         }
 
-        //public List<Products> GetProducts(string search = null)
-        //{
-        //    List<DAH_Products> products = dahEntity.DAH_Products.ToList();
-        //    List<Products> domainProducts = new List<Products>();
-        //    products.ForEach(p => domainProducts.Add(
-        //        new Products() { Cost = p.Cost, Description = p.Description, ID = p.ID, Product = p.Product, SubCategoryID = p.SubCategoryID }
-        //        ));
-        //    if (string.IsNullOrWhiteSpace(search))
-        //        return domainProducts;
-        //    else return domainProducts.Where(p => p.Product.Contains(search)).ToList();
-        //}
+        [Route("GetProducts")]
+        public List<Products> GetProducts([FromUri]string search)
+        {
+            if (string.IsNullOrWhiteSpace(search)) return new List<Products>();
+            List<DAH_Products> products = dahEntity.DAH_Products.ToList();
+            List<Products> domainProducts = new List<Products>();
+            products.ForEach(p => domainProducts.Add(
+                new Products() { Cost = p.Cost, Description = p.Description, ID = p.ID, Product = p.Product, SubCategoryID = p.SubCategoryID }
+                ));
+            if (string.IsNullOrWhiteSpace(search))
+                return domainProducts;
+            else return domainProducts.FindAll(p => p.Product.ToUpper().Contains(search.ToUpper())).ToList();
+        }
 
         public List<SubCategoriesByCategoryID> GetSubcategoriesByCategoryID(int id)
         {

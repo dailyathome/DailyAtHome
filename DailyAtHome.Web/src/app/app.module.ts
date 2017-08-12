@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CartComponent } from './cart/cart.component';
+import { SearchComponent } from './search/search.component';
 import { AdmCategoryComponent } from './admin/categories/admcategory.component';
 import { AdmSubCategoryComponent } from './admin/subcategories/admsubcategory.component';
 import { AppRoutingModule, routingComponents, providers } from './app.routing.module';
@@ -23,7 +24,7 @@ import { ProductDetails } from '../app/products/product-details.component';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule, ImageUploadModule, ModalModule.forRoot()],
-    declarations: [AppComponent, HeaderComponent, CartComponent, AdmCategoryComponent, AdmSubCategoryComponent, SpinnerComponent, routingComponents, AdmProductComponent, ProductDetails],
+    declarations: [AppComponent, HeaderComponent, CartComponent, SearchComponent, AdmCategoryComponent, AdmSubCategoryComponent, SpinnerComponent, routingComponents, AdmProductComponent, ProductDetails],
     bootstrap: [AppComponent],
     providers: [CartService, AuthService, SpinnerService, providers],
 })

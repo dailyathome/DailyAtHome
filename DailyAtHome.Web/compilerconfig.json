@@ -10,5 +10,9 @@
   {
     "outputFile": "src/app/app.component.css",
     "inputFile": "src/app/app.component.less"
+  },
+  {
+    "outputFile": "src/app/search/search.component.css",
+    "inputFile": "src/app/search/search.component.less"
   }
 ]

@@ -122,6 +122,7 @@
     <TypeScriptCompile Include="src\app\models\user.model.ts" />
     <TypeScriptCompile Include="src\app\products\product-details.component.ts" />
     <TypeScriptCompile Include="src\app\products\products.component.ts" />
+    <TypeScriptCompile Include="src\app\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
     <TypeScriptCompile Include="src\app\services\auth.service.ts" />
     <TypeScriptCompile Include="src\app\services\cart.service.ts" />
@@ -170,6 +171,13 @@
     <Content Include="src\app\models\user.model.js.map" />
     <Content Include="src\app\products\product-details.component.html" />
     <Content Include="src\app\products\products.component.js.map" />
+    <Content Include="src\app\search\search.component.css">
+      <DependentUpon>search.component.less</DependentUpon>
+    </Content>
+    <Content Include="src\app\search\search.component.html" />
+    <Content Include="src\app\search\search.component.min.css">
+      <DependentUpon>search.component.css</DependentUpon>
+    </Content>
     <Content Include="src\app\services\admin.service.js.map" />
     <Content Include="src\app\services\auth.service.js.map" />
     <Content Include="src\app\services\cart.service.js.map" />
@@ -264,6 +272,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="src\app\search\search.component.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

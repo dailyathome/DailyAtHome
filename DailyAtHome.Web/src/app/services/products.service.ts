@@ -1,6 +1,6 @@
 ﻿
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AppSettings } from '../app.settings';
 
@@ -44,4 +44,19 @@ export class ProductsService {
         );
     }
 
+    getProducts(search: string) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('search', search);
+
+        let requestOptions = new RequestOptions();
+        requestOptions.search = params;
+        requestOptions.headers = headers;
+
+        return this.http.get(AppSettings.API_URL +'/api/Header/GetProducts', requestOptions).map(
+            (response: Response) => response.json()
+        )
+    }
 }

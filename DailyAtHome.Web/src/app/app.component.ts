@@ -5,6 +5,7 @@ import { CartComponent } from '../app/cart/cart.component'
 import { Subscription } from 'rxjs/Subscription';
 import { SpinnerService } from '../app/services/spinner.service';
 import { SpinnerComponent } from '../app/spinner/spinner.component';
+import { SearchComponent } from '../app/search/search.component';
 import { AuthService } from '../app/services/auth.service';
 
 @Component({
