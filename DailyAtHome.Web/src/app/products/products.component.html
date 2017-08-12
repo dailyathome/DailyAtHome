@@ -1,24 +1,22 @@
 ﻿<div class="row">
-    <div class="col-sm-3" *ngFor="let product of products">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{product.Product}}</h3>
-            </div>
-            <div class="panel-body">
+    <div class="col-sm-3 col-xs-6" *ngFor="let product of products" style="border:solid 1px lightgray">
+        <div>
+            <div class="text-center">
+                <strong class="text-info">{{product.Product}}</strong>
                 <div>
-                    <img *ngIf="!product.Image" src="{{'https://placehold.it/300x300?text='+product.Product}}" class="img-responsive" style="width:100%; margin:0 auto" />
-                    <img *ngIf="product.Image"src="{{product.Image}}" alt="{{product.Product}}" class="img-responsive" style="width:100%; margin: 0 auto" />
+                    <img *ngIf="!product.Image" src="{{'https://placehold.it/300x300?text='+product.Product}}" class="img-responsive" style="margin:0 auto" />
+                    <img *ngIf="product.Image" src="{{product.Image}}" alt="{{product.Product}}" class="img-responsive" style="margin: 0 auto" />
                 </div>
                 <div>
-                    <p>
-                        {{product.Description}}
-                    </p>
-                    <p style="font-size:large">
-                        <strong class="text-info">{{product.Cost | currency:'USD':true:'1.2-2'}}</strong>
-                      <span class="pull-right"><label>Qty: </label> <input class="input-mini" #quant="ngModel" type="number" ngModel="1" /></span>
-                    </p>
+                    <ul class="list-unstyled">
+                        <li>{{product.Description}}</li>
+                        <li><strong class="text-info">{{product.Cost | currency:'USD':true:'1.2-2'}}</strong></li>
+                        <li>
+                            <label>Qty: </label> <input class="input-mini" style="width:50px" #quant="ngModel" type="number" ngModel="1" />
+                        </li>
+                    </ul>
                     <div>
-                        <button [disabled]="quant.value<=0" class="btn btn-success pull-left" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>                       
+                        <button [disabled]="quant.value<=0" class="btn btn-sm btn-success" (click)="onAddToCartClick(product)">Add to cart <i class="fa fa-cart-plus"></i></button>
                     </div>
                 </div>
             </div>
