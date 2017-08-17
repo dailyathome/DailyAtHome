@@ -125,6 +125,7 @@
     <TypeScriptCompile Include="src\app\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\services\admin.service.ts" />
     <TypeScriptCompile Include="src\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="src\app\services\cache.service.ts" />
     <TypeScriptCompile Include="src\app\services\cart.service.ts" />
     <TypeScriptCompile Include="src\app\services\checkout.service.ts" />
     <TypeScriptCompile Include="src\app\services\products.service.ts" />
@@ -148,6 +149,12 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\animate.css">
+      <DependentUpon>animate.less</DependentUpon>
+    </Content>
+    <Content Include="src\animate.min.css">
+      <DependentUpon>animate.css</DependentUpon>
+    </Content>
     <Content Include="src\app\account\login.component.js.map" />
     <Content Include="src\app\account\logout.component.js.map" />
     <Content Include="src\app\account\profile.component.js.map" />
@@ -273,6 +280,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="src\app\search\search.component.less" />
+    <Content Include="src\animate.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

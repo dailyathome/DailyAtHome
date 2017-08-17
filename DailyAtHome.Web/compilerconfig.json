@@ -14,5 +14,9 @@
   {
     "outputFile": "src/app/search/search.component.css",
     "inputFile": "src/app/search/search.component.less"
+  },
+  {
+    "outputFile": "src/animate.css",
+    "inputFile": "src/animate.less"
   }
 ]

@@ -13,7 +13,7 @@
                 <button class="btn btn-success pull-right" [routerLink]="['/profile']">Checkout <i class="fa fa-credit-card"></i></button>
             </div>
         </div>
-        <div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [@flyOut]>
+        <div class="panel panel-success cart-summary" *ngFor="let p of products let i=index" [ngClass]="animate[i]" (animationend)="stopanimate(i)">
             <!-- Default panel contents -->
             <div class="panel-heading"><strong>{{p.name}}</strong></div>
             <div class="table-responsive">
@@ -43,7 +43,7 @@
                                                     <li>
                                                         <input class="input-sm" #quntity="ngModel" type="number" [(ngModel)]="p.quantity" min="1" />
                                                     </li>
-                                                    <li><button class="btn btn-danger btn-sm" (click)="onDeleteClick(p)">Delete</button></li>
+                                                    <li><button class="btn btn-danger btn-sm" (click)="onDeleteClick(p,i)">Delete</button></li>
                                                 </ul>
                                             </div>
                                         </li>

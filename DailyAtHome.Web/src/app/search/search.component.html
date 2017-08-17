@@ -1,17 +1,62 @@
-﻿
-<input class="form-control" placeholder="&#xf002; Search" id="searchInout" [(ngModel)]="searchInput" (keyup)="searchProducts()" (blur)="toggleSearchResult()" (focus)="toggleSearchResult()" style="margin-top:5px" />
-
-<div *ngIf="showResult && products && products.length>0" class="col-md-9 col-xs-9 text-left search-result panel-success">
-    <ul class="list-unstyled">
-        <li *ngFor="let p of products">
-            <a [routerLink]="['product-details']">{{p.Product}}</a>
-        </li>
-    </ul>
+﻿<div class="col-md-12 col-xs-12" style="padding:10px">
+    <div class="col-md-2 col-xs-4" style="padding-right:0">
+        <!-- Single button -->
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               {{searchBy}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="left:0">
+                <li *ngFor="let cat of categories"><a (click)="onSearchByClick(cat.Category)">{{cat.Category}}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8 col-xs-8" style="padding-left:0">
+        <input class="form-control" placeholder="&#xf002; Search" id="searchInout" [(ngModel)]="searchInput" (keyup)="searchProducts()" (blur)="toggleSearchResult()" (focus)="toggleSearchResult()" />
+        
+        <div *ngIf="products && products.length && showResult" class="text-left search-result col-md-6 col-xs-6">
+            <ul class="list-unstyled">
+                <li *ngFor="let p of products">
+                    <a [routerLink]="['product-details']" style="display:block">{{p.Product}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<div class="input-group hidden">
-    <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchInput" (keyup)="searchProducts()" (blur)="toggleSearchResult()">
-    <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><i class="fa fa-search fa-2x"></i></button>
-    </span>
-</div><!-- /input-group -->
+<!--<ul class="list-unstyled">
+    <li>
+        <ul class="list-unstyled list-inline">
+            <li>
+                <div class="pull-left">
+                    <select>
+                        <option selected>Products</option>
+                    </select>
+                </div>
+                <div class="pull-right">
+                    <input placeholder="&#xf002; Search" id="searchInout" [(ngModel)]="searchInput" (keyup)="searchProducts()" (blur)="toggleSearchResult()" (focus)="toggleSearchResult()" style="margin-top:5px;padding-left:100px;" />
+                    <i class="fa fa-times-circle" style="float: right;
+    margin-top: -25px;
+    font-size: 20px;
+    color: gray;
+    margin-right: 10px;"></i>
+                </div>
+                
+            </li>
+        </ul>
+    </li>
+    <li>
+        
+    </li>
+</ul>-->
+<!--<div class="btn-group pull-left" style="margin-top:-34px;">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Products <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>h
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</div>-->

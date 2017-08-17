@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
     numOfCartItems: number = 0;
     subTotalAmt: number = 0;
     products: Product[];
+    animate: string = '';
     ngOnInit() {
 
         //incase if page gets refreshed.
@@ -36,7 +37,12 @@ export class CartComponent implements OnInit {
                 }
                 this.numOfCartItems = count;
                 this.subTotalAmt = amt;
+                this.animate = 'swing animated';
             }
         );
+    }
+
+    stopanimate() {
+        this.animate = '';
     }
 }

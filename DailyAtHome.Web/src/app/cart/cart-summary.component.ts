@@ -22,6 +22,7 @@ export class CartSummaryComponent implements OnInit {
     numOfCartItems: number=0;
     constructor(private _cartSvc: CartService) { }
     products: Product[];
+    animate: string[] = [''];
     ngOnInit() {
        // this.products = this._cartSvc.getItems('dahCart');
         //this._cartSvc.updateCartStatus(this.products);
@@ -40,7 +41,8 @@ export class CartSummaryComponent implements OnInit {
         );
     }
 
-    onDeleteClick(product) {
+    onDeleteClick(product,i) {
+        this.animate[i] = 'hinge animated';
         this._cartSvc.deleteItem({
             id: product.id,
             description: product.description,
@@ -58,5 +60,9 @@ export class CartSummaryComponent implements OnInit {
             quantity: product.quantity,
             name: product.name
         }, 'dahCart');
+    }
+
+    stopanimate(i) {
+        this.animate[i] = '';
     }
 }

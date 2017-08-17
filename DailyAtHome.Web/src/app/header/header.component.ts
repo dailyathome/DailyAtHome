@@ -22,10 +22,15 @@ export class HeaderComponent implements OnInit {
         );
 
         this.productsSvc.getCategories()
-            .subscribe(result => {
-                this.categories = result
-                console.log(this.categories);
+        if (localStorage && localStorage.getItem('categories')) {
+            this.categories = JSON.parse(localStorage.getItem('categories'));
+        }
+        else {
+            this.productsSvc.getCategories().subscribe(result => {
+                this.categories = result;
+                localStorage.setItem('categories', JSON.stringify(result));
             });
+        }
     }
 
     logout() {

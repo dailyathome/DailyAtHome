@@ -6,10 +6,9 @@
 }
 .search-result ul li {
   background-color: #fff;
-  padding: 15px;
 }
 .search-result ul li a {
-  padding: 15px;
+  padding: 5px 10px;
   color: #222;
 }
 .search-result ul li a:hover {
