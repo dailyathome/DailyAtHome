@@ -16,13 +16,13 @@
                     <img src="../assets/images/Logo.png" style="max-width:60px" class="img-responsive" />
                 </a>
             </div>-->
-            <div class="col-md-11 col-xs-7">
+            <div class="col-md-10 col-xs-7">
                 <button style="border:none; background:none; color:#fff; padding:5px 0" class="btn btn-lg">
                     <i class="fa fa-bars fa-2x" aria-hidden="true" (click)="openNav()"></i>
                 </button>
                 Menu
             </div>
-            <div class="col-md-1 col-xs-5" style="color:#fff">
+            <div class="col-md-2 col-xs-5" style="color:#fff">
                 <ul class="list-unstyled list-inline" style="margin-right:-25px;">
                     <li *ngIf="IsLoggedIn"><a [routerLink]="['logout']" style="color:#fff"><i class="fa fa-user"></i> Logout</a></li>
                     <li *ngIf="!IsLoggedIn"><a [routerLink]="['login']" style="color:#fff"><i class="fa fa-user"></i> Login</a></li>
