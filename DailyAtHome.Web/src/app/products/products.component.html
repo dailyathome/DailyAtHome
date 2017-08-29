@@ -1,4 +1,9 @@
-﻿<div class="row">
+﻿<div class="row" *ngIf="products && products.length>0">
+    <h4 class="text-primary text-center">
+        {{products[0].SubCategory}}
+    </h4>
+</div>
+<div class="row">
     <div class="col-sm-3 col-xs-6" *ngFor="let product of products" style="border:solid 1px lightgray">
             <div class="text-center" style="padding:5px">
                 <strong class="text-info">{{product.Product}}</strong>

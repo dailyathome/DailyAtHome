@@ -19,7 +19,7 @@
   display: block;
   background: #668bb1;
   color: #ffffff;
-  padding: 15px;
+  padding: 5px 10px;
   text-decoration: none;
   position: relative;
 }
@@ -44,7 +44,7 @@
 }
 .panel-group .panel-body {
   background: #ffffff;
-  padding: 5px 15px;
+  padding: 0px 15px;
 }
 .panel-group .panel {
   background-color: transparent;

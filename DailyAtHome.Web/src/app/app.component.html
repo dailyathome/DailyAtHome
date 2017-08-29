@@ -1,19 +1,28 @@
 ﻿<div class="container-fluid">
+    <div class="row">
+        <div class="pull-left">
+            <a [routerLink]="['home']">
+                <img src="../assets/images/Logo.png" style="max-width:100px;" class="img-responsive" />
+            </a>
+        </div>
+
+       <h2 class="text-success text-center header-logo-text"><strong>Daily At Home</strong></h2>
+    </div>
 
     <div class="row bg-primary">
-        <div class="col-md-12 col-xs-12" style="max-height:60px;">
-            <div class="col-md-1 col-xs-2">
+        <div class="col-md-12 col-xs-12">
+            <!--<div class="col-md-1 col-xs-2">
                 <a [routerLink]="['home']">
                     <img src="../assets/images/Logo.png" style="max-width:60px" class="img-responsive" />
                 </a>
-            </div>
-            <div class="col-md-9 col-xs-5">
-                <button style="border:none; background:none; color:#fff" class="btn btn-lg">
+            </div>-->
+            <div class="col-md-11 col-xs-7">
+                <button style="border:none; background:none; color:#fff; padding:5px 0" class="btn btn-lg">
                     <i class="fa fa-bars fa-2x" aria-hidden="true" (click)="openNav()"></i>
                 </button>
-
+                Menu
             </div>
-            <div class="col-md-2 col-xs-5" style="color:#fff">
+            <div class="col-md-1 col-xs-5" style="color:#fff">
                 <ul class="list-unstyled list-inline" style="margin-right:-25px;">
                     <li *ngIf="IsLoggedIn"><a [routerLink]="['logout']" style="color:#fff"><i class="fa fa-user"></i> Logout</a></li>
                     <li *ngIf="!IsLoggedIn"><a [routerLink]="['login']" style="color:#fff"><i class="fa fa-user"></i> Login</a></li>
@@ -39,7 +48,7 @@
                 </button>
                 <dah-header (someEvent)="menuClick($event)"></dah-header>
             </div>
-            <div class="col-sm-12 col-md-12 app-body" (click)="closeNav()">
+            <div class="col-sm-12 col-md-12 app-body" (click)="closeNav()" #loadingModal>
                 <router-outlet>
                 </router-outlet>
                 <spinner [class.hidden]="!displaySpinner"></spinner>
