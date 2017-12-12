@@ -1,12 +1,13 @@
 ﻿<div class="row" *ngIf="products && products.length>0">
-    <h4 class="text-primary text-center">
+    <h2 class="text-primary text-center">
         {{products[0].SubCategory}}
-    </h4>
+        <br />
+    </h2>
 </div>
 <div class="row">
     <div class="col-sm-3 col-xs-6" *ngFor="let product of products" style="border:solid 1px lightgray">
             <div class="text-center" style="padding:5px">
-                <strong class="text-info">{{product.Product}}</strong>
+                <a href="/product-details/{{product.ID}}"><strong class="text-info">{{product.Product}}</strong></a>
                 <div>
                     <img *ngIf="!product.Image" src="{{'https://placehold.it/300x300?text='+product.Product}}" class="img-responsive" style="margin:0 auto" />
                     <img *ngIf="product.Image" src="{{product.Image}}" alt="{{product.Product}}" class="img-responsive" style="margin: 0 auto" />

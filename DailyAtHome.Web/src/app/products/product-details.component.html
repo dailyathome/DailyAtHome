@@ -1,6 +1,6 @@
 ﻿<div class="container" *ngIf="products && products.length>0">
     <section id="row">
-        <div class="col-md-6 v-center" >
+        <div class="col-md-6 text-center" >
             <img src="{{products[0].Image}}" class="img-responsive" style="width:70%;" />
         </div>
 
@@ -48,15 +48,16 @@
                     <span class="btn btn-danger btn-sm btn-qty">
                         <i class="fa fa-minus" aria-hidden="true"></i>
                     </span>
-                    <input class="btn btn-default btn-sm btn-qty" value="1" style="width:25%" />
+                    <!--<input class="btn btn-default btn-sm btn-qty" value="1" style="width:25%" />-->
+                    <input class="input-mini text-center" style="width:25%" #Productquantity="ngModel" type="number" ngModel="1" />
                     <span class="btn btn-success btn-sm btn-qty">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class="col-md-4" style="padding-bottom:5%">
-                    <button class="btn btn-sm btn-success btn-full-width">
-                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    <button [disabled]="Productquantity.value<=0" (click)="onAddToCartClick(products[0])" class="btn btn-sm btn-success btn-full-width">
                         Add to Cart
+                        <i class="fa fa-cart-plus"></i>
                     </button>
                 </div>
             </div>

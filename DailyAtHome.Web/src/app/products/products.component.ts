@@ -51,8 +51,5 @@ export class ProductsComponent implements OnInit {
             name: product.Product,
             image_src: product.Image
         }, 'dahCart');
-
-        //console.log(this._cartSvc.getItems('dahCart'));
-        //this._cartSvc.updateCartStatus(this._cartSvc.getTotalCount('dahCart'));
     }
 }

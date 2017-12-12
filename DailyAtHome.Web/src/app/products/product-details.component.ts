@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { SpinnerService } from '../services/spinner.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
     selector: 'product-details',
@@ -12,7 +13,11 @@ import { SpinnerService } from '../services/spinner.service';
 
 export class ProductDetails implements OnInit {
 
-    constructor(private _productsSvc: ProductsService, private _spinnerSvc: SpinnerService, private _route: ActivatedRoute) { }
+    constructor(private _productsSvc: ProductsService,
+        private _spinnerSvc: SpinnerService,
+        private _route: ActivatedRoute,
+        private _cartSvc: CartService)
+    { }
     products = [];
 
     ngOnInit() {
@@ -32,6 +37,20 @@ export class ProductDetails implements OnInit {
             },
             () => this._spinnerSvc.displaySpinner(false)
         )
+    }
+
+    onAddToCartClick(product) {
+        this._cartSvc.addItem({
+            id: product.ID,
+            description: product.Description,
+            price: product.Cost,
+            quantity: 1,
+            name: product.Product,
+            image_src: product.Image
+        }, 'dahCart');
+
+        //console.log(this._cartSvc.getItems('dahCart'));
+        //this._cartSvc.updateCartStatus(this._cartSvc.getTotalCount('dahCart'));
     }
 
 }

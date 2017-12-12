@@ -1329,6 +1329,22 @@
 .panel-primary > .panel-heading {
   background-color: #668bb1 !important;
 }
+.bg-dark {
+  background-color: #000000 !important;
+}
+.panel-default > .panel-heading-dark {
+  color: #333;
+  background: black;
+  border-color: #ddd;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  color: white;
+}
+.text-white {
+  color: #FFFFFF;
+}
 a {
   cursor: pointer;
 }
