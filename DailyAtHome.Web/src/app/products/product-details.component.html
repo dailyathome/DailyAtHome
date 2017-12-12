@@ -1,23 +1,23 @@
-﻿<div class="container">
+﻿<div class="container" *ngIf="products && products.length>0">
     <section id="row">
-        <div class="col-md-6">
-            <img src="{{'https://placehold.it/500x500?text=Product'}}" class="img-responsive" style="width:100%;" />
+        <div class="col-md-6 v-center" >
+            <img src="{{products[0].Image}}" class="img-responsive" style="width:70%;" />
         </div>
 
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Product Name</h1>
+                    <h1>{{products[0].Product}}</h1>
                 </div>
             </div>
 
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-12">
-                    <p class="description">Production description goes here</p>
+                    <p class="description">{{products[0].Description}}</p>
                 </div>
-            </div>
+            </div>-->
 
-            <div class="row">
+            <div class="row" *ngIf="false"> //Defaulted to false as we dont have rating system yet
                 <div class="col-md-3">
                     <span class="sr-only">Four out of Five Stars</span>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -31,21 +31,26 @@
                     <a href="#">Write a review</a>
                 </div>
             </div>
+            <div class="row" *ngIf ="true">
+                <div class="col-md-6">
+                    <p>No Reviews for this product yet</p>
+                </div>
+            </div>
 
             <div class="row" style="padding-bottom:5%">
                 <div class="col-md-12" style="border-bottom: 1px solid #ccc;">
-                    <h2>$3</h2>
+                    <h2>${{products[0].Cost}}</h2>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 product-qty" style="padding-bottom:5%">
-                    <span class="btn btn-success btn-sm btn-qty">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </span>
-                    <input class="btn btn-default btn-sm btn-qty" value="1" style="width:25%" />
                     <span class="btn btn-danger btn-sm btn-qty">
                         <i class="fa fa-minus" aria-hidden="true"></i>
+                    </span>
+                    <input class="btn btn-default btn-sm btn-qty" value="1" style="width:25%" />
+                    <span class="btn btn-success btn-sm btn-qty">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class="col-md-4" style="padding-bottom:5%">
@@ -73,10 +78,12 @@
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="description">
-                    <b>Product detailed description goes here</b>
+                    <br />
+                    <b>{{products[0].Description}}</b>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="reviews">
-                    Display Reviews here
+                    <br />
+                    <b>Reviews Not Impleted yet.</b>
                 </div>
             </div>
 

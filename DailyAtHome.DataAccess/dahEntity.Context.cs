@@ -216,5 +216,14 @@ namespace DailyAtHome.DataAccess
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetFeaturedProducts_Result>("DAH_SP_GetFeaturedProducts");
         }
+    
+        public virtual ObjectResult<DAH_SP_GetProductDetails_Result> DAH_SP_GetProductDetails(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DAH_SP_GetProductDetails_Result>("DAH_SP_GetProductDetails", iDParameter);
+        }
     }
 }

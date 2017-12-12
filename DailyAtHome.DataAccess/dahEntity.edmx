@@ -234,18 +234,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DAH_Payment_DAH_Address">
-          <End Role="DAH_Address" Type="Self.DAH_Address" Multiplicity="1" />
-          <End Role="DAH_Payment" Type="Self.DAH_Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DAH_Address">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DAH_Payment">
-              <PropertyRef Name="BillingAddressID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DAH_Payment_DAH_PaymentType">
           <End Role="DAH_PaymentType" Type="Self.DAH_PaymentType" Multiplicity="1" />
           <End Role="DAH_Payment" Type="Self.DAH_Payment" Multiplicity="*" />
@@ -357,6 +345,9 @@
           <Parameter Name="Image" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="DAH_SP_GetFeaturedProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DAH_SP_GetProductDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="DAH_SP_GetProductsBySubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -426,10 +417,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_DAH_Payment_AspNetUsers" Association="Self.FK_DAH_Payment_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="DAH_Payment" EntitySet="DAH_Payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DAH_Payment_DAH_Address" Association="Self.FK_DAH_Payment_DAH_Address">
-            <End Role="DAH_Address" EntitySet="DAH_Address" />
             <End Role="DAH_Payment" EntitySet="DAH_Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_DAH_Payment_DAH_PaymentType" Association="Self.FK_DAH_Payment_DAH_PaymentType">
@@ -675,6 +662,9 @@
             <End Role="DAH_Payment" EntitySet="DAH_Payment" />
           </AssociationSet>
           <FunctionImport Name="DAH_SP_GetFeaturedProducts" ReturnType="Collection(dahDBModel.DAH_SP_GetFeaturedProducts_Result)" />
+          <FunctionImport Name="DAH_SP_GetProductDetails" ReturnType="Collection(dahDBModel.DAH_SP_GetProductDetails_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="DAH_Img_Categories">
           <Key>
@@ -946,6 +936,13 @@
           <Property Type="String" Name="Product" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Image" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="DAH_SP_GetProductDetails_Result">
+          <Property Type="String" Name="Product" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="IsAvailable" Nullable="false" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1175,6 +1172,17 @@
               <ComplexTypeMapping TypeName="dahDBModel.DAH_SP_GetFeaturedProducts_Result">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DAH_SP_GetProductDetails" FunctionName="dahDBModel.Store.DAH_SP_GetProductDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dahDBModel.DAH_SP_GetProductDetails_Result">
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
               </ComplexTypeMapping>
             </ResultMapping>

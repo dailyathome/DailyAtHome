@@ -59,4 +59,11 @@ export class ProductsService {
             (response: Response) => response.json()
         )
     }
+
+    getProductDetailsById(id: number) {
+
+        return this.http.get(AppSettings.API_URL + '/api/Product/GetProductByID?id=' + id).map(
+            (response: Response) => response.json()
+        );
+    }
 }

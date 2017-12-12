@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'spinner', component: SpinnerComponent },
-    { path: 'product-details', component: ProductDetails },
+    { path: 'product-details/:id', component: ProductDetails },
     // { path: 'products/:id', component: ProductsComponent },
     //{ path: 'home', component: AppComponent },
     {
